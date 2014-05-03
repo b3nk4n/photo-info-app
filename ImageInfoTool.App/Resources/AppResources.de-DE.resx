@@ -319,4 +319,10 @@ Das würde uns sehr motivieren um die App noch besser zu machen!</value>
   <data name="WhiteBalanceManual" xml:space="preserve">
     <value>manuell</value>
   </data>
+  <data name="AddWithGeoPhoto" xml:space="preserve">
+    <value>mit GeoPhoto hinzufügen</value>
+  </data>
+  <data name="InfoFileType" xml:space="preserve">
+    <value>dateityp</value>
+  </data>
 </root>

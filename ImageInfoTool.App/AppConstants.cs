@@ -19,6 +19,21 @@ namespace ImageInfoTool.App
         /// <summary>
         /// The placeholder string.
         /// </summary>
+        public const string PARAM_FILE_TOKEN = "token";
+
+        /// <summary>
+        /// The placeholder string.
+        /// </summary>
         public const string PLACEHOLDER_STRING = "-";
+
+        /// <summary>
+        /// The light theme base path.
+        /// </summary>
+        public const string THEME_LIGHT_BASEPATH = "/Assets/Images/light/";
+
+        /// <summary>
+        /// The dark theme base path.
+        /// </summary>
+        public const string THEME_DARK_BASEPATH = "/Assets/Images/dark/";
     }
 }

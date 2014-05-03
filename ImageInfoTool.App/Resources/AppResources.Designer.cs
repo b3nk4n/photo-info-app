@@ -70,6 +70,15 @@ namespace ImageInfoTool.App.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die add with GeoPhoto ähnelt.
+        /// </summary>
+        public static string AddWithGeoPhoto {
+            get {
+                return ResourceManager.GetString("AddWithGeoPhoto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die by Benjamin Sautermeister ähnelt.
         /// </summary>
         public static string ApplicationAuthor {
@@ -293,6 +302,15 @@ namespace ImageInfoTool.App.Resources {
         public static string InfoFileSize {
             get {
                 return ResourceManager.GetString("InfoFileSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die file type ähnelt.
+        /// </summary>
+        public static string InfoFileType {
+            get {
+                return ResourceManager.GetString("InfoFileType", resourceCulture);
             }
         }
         

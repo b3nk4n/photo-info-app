@@ -26,17 +26,35 @@ namespace ImageInfoTool.App.Pages
         {
             base.OnNavigatedTo(e);
 
-            if (NavigationContext.QueryString != null &&
-                NavigationContext.QueryString.ContainsKey(AppConstants.PARAM_MEDIA_LIB_INDEX))
+            // query string lookup
+            if (NavigationContext.QueryString != null)
             {
-                var indexString = NavigationContext.QueryString[AppConstants.PARAM_MEDIA_LIB_INDEX];
-
-                int index;
-                if (int.TryParse(indexString, out index))
+                if (NavigationContext.QueryString.ContainsKey(AppConstants.PARAM_MEDIA_LIB_INDEX))
                 {
-                    var vm = ImageLibraryViewModel.Instance.Images[index];
-                    vm.LoadExifData();
-                    DataContext = vm;
+                    var indexString = NavigationContext.QueryString[AppConstants.PARAM_MEDIA_LIB_INDEX];
+
+                    int index;
+                    if (int.TryParse(indexString, out index))
+                    {
+                        var vm = ImageLibraryViewModel.Instance.Images[index];
+                        vm.LoadExifData();
+                        DataContext = vm;
+                    }
+                }
+                else if (NavigationContext.QueryString.ContainsKey(AppConstants.PARAM_FILE_TOKEN))
+                {
+                    var token = NavigationContext.QueryString[AppConstants.PARAM_FILE_TOKEN];
+
+                    var vm = ImageLibraryViewModel.Instance.GetFromToken(token);
+                    if (vm != null)
+                    { 
+                        vm.LoadExifData();
+                        DataContext = vm;                   
+                    }
+                    else
+                    {
+                        // TODO: exeption handling
+                    }
                 }
             }
         }

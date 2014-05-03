@@ -12,6 +12,8 @@ namespace ImageInfoTool.App.ViewModels
 {
     class ImageLibraryViewModel : ViewModelBase
     {
+        private MediaLibrary _mediaLibrary;
+
         /// <summary>
         /// The singleton instance.
         /// </summary>
@@ -29,12 +31,25 @@ namespace ImageInfoTool.App.ViewModels
         /// </summary>
         private void Load()
         {
-            MediaLibrary mediaLib = new MediaLibrary();
-
-            foreach (var image in mediaLib.Pictures)
+            foreach (var image in MediaLibrary.Pictures)
             {
                 _images.Add(new ImageViewModel(image));
             }
+        }
+
+        /// <summary>
+        /// Gets the image from the given library token.
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        public ImageViewModel GetFromToken(string token)
+        {
+            Picture photo = MediaLibrary.GetPictureFromToken(token);
+
+            if (photo == null)
+                return null;
+
+            return new ImageViewModel(photo);
         }
 
         /// <summary>
@@ -55,6 +70,16 @@ namespace ImageInfoTool.App.ViewModels
             get
             {
                 return _images;
+            }
+        }
+
+        public MediaLibrary MediaLibrary
+        {
+            get
+            {
+                if (_mediaLibrary == null)
+                    _mediaLibrary = new MediaLibrary();
+                return _mediaLibrary;
             }
         }
     }

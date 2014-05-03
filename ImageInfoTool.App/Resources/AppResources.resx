@@ -315,4 +315,10 @@ Showing us some love on the store helps us to continue to work on the app and ma
   <data name="WhiteBalanceManual" xml:space="preserve">
     <value>manual</value>
   </data>
+  <data name="AddWithGeoPhoto" xml:space="preserve">
+    <value>add with GeoPhoto</value>
+  </data>
+  <data name="InfoFileType" xml:space="preserve">
+    <value>file type</value>
+  </data>
 </root>

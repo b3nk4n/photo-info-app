@@ -8,6 +8,10 @@
     <!--Anwendungsressourcen-->
     <Application.Resources>
         <local:LocalizedStrings xmlns:local="clr-namespace:ImageInfoTool.App" x:Key="LocalizedStrings"/>
+
+        <ControlTemplate x:Key="EmptyControlTemplate">
+            <ContentPresenter />
+        </ControlTemplate>
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>

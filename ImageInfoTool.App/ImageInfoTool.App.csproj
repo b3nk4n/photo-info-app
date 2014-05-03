@@ -152,7 +152,9 @@
     <Content Include="Assets\Images\176.png" />
     <Content Include="Assets\Images\33.png" />
     <Content Include="Assets\Images\69.png" />
+    <Content Include="Assets\Images\dark\add.png" />
     <Content Include="Assets\Images\icon.png" />
+    <Content Include="Assets\Images\light\add.png" />
     <Content Include="Assets\Tiles\FlipCycleTileLarge.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

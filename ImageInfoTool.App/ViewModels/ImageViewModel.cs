@@ -1,17 +1,16 @@
-﻿using ExifLib;
-using ImageInfoTool.App.GeoLocation;
+﻿using ImageInfoTool.App.GeoLocation;
 using ImageInfoTool.App.Model;
 using ImageInfoTool.App.Resources;
 using Microsoft.Phone;
 using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Media.PhoneExtensions;
+using PhoneKit.Framework.Core.MVVM;
+using PhoneKit.Framework.Core.OS;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Input;
 using System.Windows.Media;
+using Windows.System;
 
 namespace ImageInfoTool.App.ViewModels
 {
@@ -20,10 +19,18 @@ namespace ImageInfoTool.App.ViewModels
         private Picture _image;
         private ExifData _exifData;
 
+        ICommand _openInGeoPhotoCommand;
+
         public ImageViewModel(Picture image)
         {
             _image = image;
             _exifData = new ExifData(image);
+
+            _openInGeoPhotoCommand = new DelegateCommand(async () =>
+            {
+                string imagePath = _image.GetPath();
+                await Launcher.LaunchUriAsync(new Uri("geophoto:ShowPicturePosition?PicturePath=" + imagePath, UriKind.Absolute));
+            });
         }
 
         /// <summary>
@@ -55,7 +62,15 @@ namespace ImageInfoTool.App.ViewModels
         {
             get
             {
-                return _image.Name;
+                return Path.GetFileNameWithoutExtension(_image.GetPath());
+            }
+        }
+
+        public string FileType
+        {
+            get
+            {
+                return Path.GetExtension(_image.GetPath()).Replace(".", string.Empty).ToUpper();
             }
         }
 
@@ -63,7 +78,15 @@ namespace ImageInfoTool.App.ViewModels
         {
             get
             {
-                return string.Format("{0:f}", _image.Date);
+                return string.Format("{0:D}", _image.Date);
+            }
+        }
+
+        public string CreationTime
+        {
+            get
+            {
+                return string.Format("{0:T}", _image.Date);
             }
         }
 
@@ -257,6 +280,30 @@ namespace ImageInfoTool.App.ViewModels
             get
             {
                 return _exifData;
+            }
+        }
+
+        public ICommand OpenInGeoPhotoCommand
+        {
+            get
+            {
+                return _openInGeoPhotoCommand;
+            }
+        }
+
+
+        /// <summary>
+        /// Gets the email button image path.
+        /// </summary>
+        public string AddWithGeoPhotoImagePath
+        {
+            get
+            {
+                const string imageName = "add.png";
+                if (PhoneThemeHelper.IsLightThemeActive)
+                    return AppConstants.THEME_LIGHT_BASEPATH + imageName;
+                else
+                    return AppConstants.THEME_DARK_BASEPATH + imageName;
             }
         }
     }

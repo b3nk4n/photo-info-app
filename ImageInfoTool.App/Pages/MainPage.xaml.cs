@@ -20,6 +20,16 @@ namespace ImageInfoTool.App
         {
             InitializeComponent();
 
+            ImageList.SelectionChanged += (s, e) =>
+            {
+                if (e.AddedItems.Count == 1)
+                {
+                    //var image = e.AddedItems[0] as ImageViewModel;
+                    var index = ImageList.SelectedIndex;
+                    NavigateToImageInfoPage(index);
+                }
+            };
+
             // register startup actions
             StartupActionManager.Instance.Register(5, ActionExecutionRule.Equals, () =>
             {
@@ -33,6 +43,12 @@ namespace ImageInfoTool.App
             DataContext = ImageLibraryViewModel.Instance; // TODO: load the data not here, because there is a slow start time! move load().
 
             BuildLocalizedApplicationBar();
+        }
+
+        private void NavigateToImageInfoPage(int index)
+        {
+            string uriString = string.Format("/Pages/ImageInfoPage.xaml?{0}={1}", AppConstants.PARAM_MEDIA_LIB_INDEX, index);
+            NavigationService.Navigate(new Uri(uriString, UriKind.Relative));
         }
 
         /// <summary>

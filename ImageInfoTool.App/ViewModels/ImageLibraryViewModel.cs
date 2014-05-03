@@ -50,7 +50,7 @@ namespace ImageInfoTool.App.ViewModels
             }
         }
 
-        public ICollection<ImageViewModel> Images
+        public IList<ImageViewModel> Images
         {
             get
             {

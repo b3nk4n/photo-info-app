@@ -13,7 +13,7 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d">
 
-    <toolkit:TransitionService.NavigationInTransition>
+    <!--<toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
             <toolkit:NavigationInTransition.Backward>
                 <toolkit:TurnstileTransition Mode="BackwardIn" />
@@ -32,6 +32,27 @@
                 <toolkit:TurnstileTransition Mode="ForwardOut" />
             </toolkit:NavigationOutTransition.Forward>
         </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>-->
+
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileFeatherTransition Mode="BackwardIn" />
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileFeatherTransition Mode="ForwardIn" />
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileFeatherTransition Mode="BackwardOut" />
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileFeatherTransition Mode="ForwardOut" />
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
 
     <!--LayoutRoot ist das Stammraster, in dem alle anderen Seiteninhalte platziert werden-->
@@ -42,21 +63,52 @@
         </Grid.RowDefinitions>
 
         <!--TitlePanel enthält den Namen der Anwendung und den Seitentitel-->
-        <StackPanel Grid.Row="0" Margin="12,17,0,28">
+        <!--<StackPanel Grid.Row="0" Margin="12,17,0,28">
             <TextBlock Text="MEINE ANWENDUNG" Style="{StaticResource PhoneTextNormalStyle}"/>
             <TextBlock Text="Seitenname" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
-        </StackPanel>
+        </StackPanel>-->
 
         <!--ContentPanel - zusätzliche Inhalte hier platzieren-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <phone:Pivot>
-                <phone:PivotItem Header="information">
-                    
-                </phone:PivotItem>
-                <phone:PivotItem Header="map">
+            <Image Source="{Binding Image}" Stretch="UniformToFill" Height="300" VerticalAlignment="Top" Margin="-12,0,-12,0">
+                <Image.OpacityMask>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Offset="0" Color="#FFFFFFFF" />
+                        <GradientStop Offset="0.9" Color="#FFFFFFFF" />
+                        <GradientStop Offset="1" Color="#00FFFFFF" />
+                    </LinearGradientBrush>
+                </Image.OpacityMask>
+            </Image>
+            <Rectangle Fill="{StaticResource PhoneBackgroundBrush}">
+                <Rectangle.OpacityMask>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Offset="0" Color="#00FFFFFF" />
+                        <GradientStop Offset="0.33" Color="#FFFFFFFF" />
+                        <GradientStop Offset="1" Color="#FFFFFFFF" />
+                    </LinearGradientBrush>
+                </Rectangle.OpacityMask>
+            </Rectangle>
+            <ScrollViewer>
+                <StackPanel>
+                    <!-- GENERAL -->
+                    <Rectangle Height="140" />
+                    <StackPanel toolkit:TurnstileFeatherEffect.FeatheringIndex="0">
+                        <TextBlock Text="Name" Style="{StaticResource PhoneTextLargeStyle}" Foreground="Gray" />
+                        <TextBlock Text="{Binding Name}" Style="{StaticResource PhoneTextNormalStyle}" />
+                    </StackPanel>
 
-                </phone:PivotItem>
-            </phone:Pivot>
+                    <StackPanel toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
+                        <TextBlock Text="Album" Style="{StaticResource PhoneTextLargeStyle}" Foreground="Gray" />
+                        <TextBlock Text="{Binding Album}" Style="{StaticResource PhoneTextNormalStyle}" />
+                    </StackPanel>
+
+                    <!-- EXIF -->
+                    <StackPanel toolkit:TurnstileFeatherEffect.FeatheringIndex="2">
+                        <TextBlock Text="Exif Model" Style="{StaticResource PhoneTextLargeStyle}" Foreground="Gray" />
+                        <TextBlock Text="{Binding ExifData.Model}" Style="{StaticResource PhoneTextNormalStyle}" />
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
         </Grid>
     </Grid>
 

@@ -92,9 +92,11 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AppConstants.cs" />
     <Compile Include="Controls\LocalizedAboutControl.cs" />
     <Compile Include="Controls\LocalizedFeedbackControl.cs" />
     <Compile Include="CustomUriMapper.cs" />
+    <Compile Include="Model\ExifData.cs" />
     <Compile Include="Pages\ImageInfoPage.xaml.cs">
       <DependentUpon>ImageInfoPage.xaml</DependentUpon>
     </Compile>
@@ -135,7 +137,9 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="Properties\AppManifest.xml" />
+    <None Include="Properties\AppManifest.xml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\WMAppManifest.xml">
       <SubType>Designer</SubType>
     </None>
@@ -169,6 +173,9 @@
   <ItemGroup>
     <Reference Include="BugSense-WP8">
       <HintPath>..\packages\BugSense.WP8.3.6.5.0\lib\wp8\BugSense-WP8.dll</HintPath>
+    </Reference>
+    <Reference Include="ExifLib">
+      <HintPath>..\packages\ExifLib.1.5.0.0\lib\sl3-wp\ExifLib.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone.Controls.Toolkit">
       <HintPath>..\Libs\Microsoft.Phone.Controls.Toolkit.dll</HintPath>

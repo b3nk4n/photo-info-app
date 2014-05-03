@@ -75,7 +75,7 @@
 
         <!--ContentPanel - zusätzliche Inhalte hier platzieren-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,30" toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
-            <ListBox ItemsSource="{Binding Images}" >
+            <ListBox x:Name="ImageList" ItemsSource="{Binding Images}" >
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <toolkit:WrapPanel />

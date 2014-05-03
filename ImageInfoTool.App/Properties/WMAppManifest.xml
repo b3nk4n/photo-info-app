@@ -31,6 +31,39 @@
         </TemplateFlip>
       </PrimaryToken>
     </Tokens>
+    <Extensions>
+      <!-- Extend the Photos Hub and launch to default start page. -->
+      <Extension ExtensionName="Photos_Extra_Hub"
+                 ConsumerID="{5B04B775-356B-4AA0-AAF8-6491FFEA5632}"
+                 TaskID="_default" />
+
+      <!-- Extend the photo edit picker. -->
+      <!-- This is only for Windows Phone 8 apps. -->
+      <Extension ExtensionName="Photos_Extra_Image_Editor"
+                 ConsumerID="{5B04B775-356B-4AA0-AAF8-6491FFEA5632}"
+                 TaskID="_default" />
+
+      <!-- Integrate as a rich media app. -->
+      <!-- This is only for Windows Phone 8 apps. -->
+      <Extension ExtensionName="Photos_Rich_Media_Edit"
+                 ConsumerID="{5B04B775-356B-4AA0-AAF8-6491FFEA5632}"
+                 TaskID="_default" />
+      
+      <!-- file association -->
+      <FileTypeAssociation Name="ImageFile" TaskID="_default" NavUriFragment="fileToken=%s">
+        <Logos>
+          <Logo Size="small" IsRelative="true">/Assets/Images/33.png</Logo>
+          <Logo Size="medium" IsRelative="true">/Assets/Images/69.png</Logo>
+          <Logo Size="large" IsRelative="true">/Assets/Images/176.png</Logo>
+        </Logos>
+        <SupportedFileTypes>
+          <FileType ContentType="image/png">.png</FileType>
+          <FileType ContentType="image/jpeg">.jpg</FileType>
+          <FileType ContentType="image/jpeg">.jpeg</FileType>
+        </SupportedFileTypes>
+      </FileTypeAssociation>
+      
+    </Extensions>
     <ScreenResolutions>
       <ScreenResolution Name="ID_RESOLUTION_WVGA" />
       <ScreenResolution Name="ID_RESOLUTION_WXGA" />

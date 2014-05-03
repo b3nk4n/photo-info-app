@@ -94,6 +94,7 @@
     </Compile>
     <Compile Include="Controls\LocalizedAboutControl.cs" />
     <Compile Include="Controls\LocalizedFeedbackControl.cs" />
+    <Compile Include="CustomUriMapper.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Pages\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>

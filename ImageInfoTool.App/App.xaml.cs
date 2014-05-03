@@ -118,6 +118,9 @@ namespace ImageInfoTool.App
             // Navigationsfehler behandeln
             RootFrame.NavigationFailed += RootFrame_NavigationFailed;
 
+            // Assign the custom URI mapper class to the application frame.
+            RootFrame.UriMapper = new CustomUriMapper();
+
             // Behandeln Sie Rücksetzanforderungen zum Löschen des Backstack
             RootFrame.Navigated += CheckForResetNavigation;
 

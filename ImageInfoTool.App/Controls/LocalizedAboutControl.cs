@@ -1,6 +1,7 @@
 ﻿using ImageInfoTool.App.Resources;
 using PhoneKit.Framework.Controls;
 using System;
+using System.Collections.Generic;
 
 namespace ImageInfoTool.App.Controls
 {
@@ -28,7 +29,10 @@ namespace ImageInfoTool.App.Controls
             MoreAppsSearchTerms = "Benjamin Sautermeister";
 
             // contributors
-            ContributorsListVisibility = System.Windows.Visibility.Collapsed;
+            ContributorsListVisibility = System.Windows.Visibility.Visible;
+            IList<ContributorModel> contributors = new List<ContributorModel>();
+            contributors.Add(new ContributorModel("/Assets/Images/icon.png", "Johanna from The Noun Project"));
+            SetContributorsList(contributors);
         }
     }
 }

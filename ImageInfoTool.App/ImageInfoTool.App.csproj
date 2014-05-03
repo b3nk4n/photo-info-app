@@ -96,6 +96,7 @@
     <Compile Include="Controls\LocalizedAboutControl.cs" />
     <Compile Include="Controls\LocalizedFeedbackControl.cs" />
     <Compile Include="CustomUriMapper.cs" />
+    <Compile Include="GeoLocation\GeoLocationHelper.cs" />
     <Compile Include="Model\ExifData.cs" />
     <Compile Include="Pages\ImageInfoPage.xaml.cs">
       <DependentUpon>ImageInfoPage.xaml</DependentUpon>

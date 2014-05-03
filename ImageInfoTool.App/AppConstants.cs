@@ -15,5 +15,10 @@ namespace ImageInfoTool.App
         /// The media library navigation key.
         /// </summary>
         public const string PARAM_MEDIA_LIB_INDEX = "mediaLibIndex";
+
+        /// <summary>
+        /// The placeholder string.
+        /// </summary>
+        public const string PLACEHOLDER_STRING = "-";
     }
 }

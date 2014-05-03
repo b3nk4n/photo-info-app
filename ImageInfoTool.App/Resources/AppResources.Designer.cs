@@ -189,11 +189,254 @@ namespace ImageInfoTool.App.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die enabled ähnelt.
+        /// </summary>
+        public static string FlashFired {
+            get {
+                return ResourceManager.GetString("FlashFired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die enabled (auto mode) ähnelt.
+        /// </summary>
+        public static string FlashFiredAuto {
+            get {
+                return ResourceManager.GetString("FlashFiredAuto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die disabled ähnelt.
+        /// </summary>
+        public static string FlashNotFired {
+            get {
+                return ResourceManager.GetString("FlashNotFired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die disabled (auto mode) ähnelt.
+        /// </summary>
+        public static string FlashNotFiredAuto {
+            get {
+                return ResourceManager.GetString("FlashNotFiredAuto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die album name ähnelt.
+        /// </summary>
+        public static string InfoAlbumName {
+            get {
+                return ResourceManager.GetString("InfoAlbumName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die altitude: ähnelt.
+        /// </summary>
+        public static string InfoAltitude {
+            get {
+                return ResourceManager.GetString("InfoAltitude", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die creation date ähnelt.
+        /// </summary>
+        public static string InfoCreationDate {
+            get {
+                return ResourceManager.GetString("InfoCreationDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die digital zoom ähnelt.
+        /// </summary>
+        public static string InfoDigitalZoom {
+            get {
+                return ResourceManager.GetString("InfoDigitalZoom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die exif version ähnelt.
+        /// </summary>
+        public static string InfoExifVersion {
+            get {
+                return ResourceManager.GetString("InfoExifVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die exposure time ähnelt.
+        /// </summary>
+        public static string InfoExposureTime {
+            get {
+                return ResourceManager.GetString("InfoExposureTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die file name ähnelt.
+        /// </summary>
+        public static string InfoFileName {
+            get {
+                return ResourceManager.GetString("InfoFileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die file size ähnelt.
+        /// </summary>
+        public static string InfoFileSize {
+            get {
+                return ResourceManager.GetString("InfoFileSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die flash ähnelt.
+        /// </summary>
+        public static string InfoFlash {
+            get {
+                return ResourceManager.GetString("InfoFlash", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die focal ratio ähnelt.
+        /// </summary>
+        public static string InfoFocalRatio {
+            get {
+                return ResourceManager.GetString("InfoFocalRatio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die gps ähnelt.
+        /// </summary>
+        public static string InfoGPS {
+            get {
+                return ResourceManager.GetString("InfoGPS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die iso ähnelt.
+        /// </summary>
+        public static string InfoISO {
+            get {
+                return ResourceManager.GetString("InfoISO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die latitude: ähnelt.
+        /// </summary>
+        public static string InfoLatitude {
+            get {
+                return ResourceManager.GetString("InfoLatitude", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die longitude: ähnelt.
+        /// </summary>
+        public static string InfoLongitude {
+            get {
+                return ResourceManager.GetString("InfoLongitude", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die model ähnelt.
+        /// </summary>
+        public static string InfoModel {
+            get {
+                return ResourceManager.GetString("InfoModel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die orientation ähnelt.
+        /// </summary>
+        public static string InfoOrientation {
+            get {
+                return ResourceManager.GetString("InfoOrientation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die resolution ähnelt.
+        /// </summary>
+        public static string InfoResolution {
+            get {
+                return ResourceManager.GetString("InfoResolution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die information ähnelt.
+        /// </summary>
+        public static string InfoTitleBasic {
+            get {
+                return ResourceManager.GetString("InfoTitleBasic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die extended ähnelt.
+        /// </summary>
+        public static string InfoTitleExtended {
+            get {
+                return ResourceManager.GetString("InfoTitleExtended", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die white balance ähnelt.
+        /// </summary>
+        public static string InfoWhiteBalance {
+            get {
+                return ResourceManager.GetString("InfoWhiteBalance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die more apps ähnelt.
         /// </summary>
         public static string MoreApps {
             get {
                 return ResourceManager.GetString("MoreApps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die landscape ähnelt.
+        /// </summary>
+        public static string OrientationLandscape {
+            get {
+                return ResourceManager.GetString("OrientationLandscape", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die portrait ähnelt.
+        /// </summary>
+        public static string OrientationPortrait {
+            get {
+                return ResourceManager.GetString("OrientationPortrait", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die square ähnelt.
+        /// </summary>
+        public static string OrientationSquare {
+            get {
+                return ResourceManager.GetString("OrientationSquare", resourceCulture);
             }
         }
         
@@ -288,6 +531,24 @@ namespace ImageInfoTool.App.Resources {
         public static string SupportAndFeedback {
             get {
                 return ResourceManager.GetString("SupportAndFeedback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die auto ähnelt.
+        /// </summary>
+        public static string WhiteBalanceAuto {
+            get {
+                return ResourceManager.GetString("WhiteBalanceAuto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die manual ähnelt.
+        /// </summary>
+        public static string WhiteBalanceManual {
+            get {
+                return ResourceManager.GetString("WhiteBalanceManual", resourceCulture);
             }
         }
     }

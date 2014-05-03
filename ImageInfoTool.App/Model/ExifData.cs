@@ -38,20 +38,23 @@ namespace ImageInfoTool.App.Model
             {
                 using (ExifReader exifReader = new ExifReader(_image.GetImage()))
                 {
-                    bool resExifVersion = exifReader.GetTagValue<byte[]>(ExifTags.ExifVersion, out _exifVersion);
-                    bool resDigitalZoom = exifReader.GetTagValue<double>(ExifTags.DigitalZoomRatio, out _digitalZoom);
-                    bool resFlash = exifReader.GetTagValue<ushort>(ExifTags.Flash, out _flash);
-                    bool resGPSAltitude = exifReader.GetTagValue<double>(ExifTags.GPSAltitude, out _gpsAltitude);
-                    bool resGPSAreaInformation = exifReader.GetTagValue<string>(ExifTags.GPSAreaInformation, out _gpsAreaInformation);
-                    bool resGPSLatidude = exifReader.GetTagValue<double[]>(ExifTags.GPSLatitude, out _gpsLatitude); // TODO: ExifTags.GPSLatitude.Select(x=>x[0]+x[1]/60+x[2]/3600)
-                    bool resGPSLongitude = exifReader.GetTagValue<double[]>(ExifTags.GPSLongitude, out _gpsLongitude);
-                    bool resExposureTime = exifReader.GetTagValue<double>(ExifTags.ExposureTime, out _exposureTime);
-                    bool resISOSpeedRatings = exifReader.GetTagValue<ushort>(ExifTags.ISOSpeedRatings, out _isoSpeedRatings);
-                    bool resModel = exifReader.GetTagValue<string>(ExifTags.Model, out _model);
-                    bool resOridentation = exifReader.GetTagValue<ushort>(ExifTags.Orientation, out _orientation);
-                    bool resSharpness = exifReader.GetTagValue<string>(ExifTags.Sharpness, out _sharpness);
-                    bool resShutterSpeedValue = exifReader.GetTagValue<double>(ExifTags.ShutterSpeedValue, out _shutterSpeedValue);
-                    bool resWhiteBalance = exifReader.GetTagValue<ushort>(ExifTags.WhiteBalance, out _whiteBalance);
+                    HasExifVersion = exifReader.GetTagValue<byte[]>(ExifTags.ExifVersion, out _exifVersion);
+                    HasDigitalZoom = exifReader.GetTagValue<double>(ExifTags.DigitalZoomRatio, out _digitalZoom);
+                    HasFlash = exifReader.GetTagValue<ushort>(ExifTags.Flash, out _flash);
+                    HasFNumber = exifReader.GetTagValue<double>(ExifTags.FNumber, out _fNumber);
+                    HasGPSAltitude = exifReader.GetTagValue<double>(ExifTags.GPSAltitude, out _gpsAltitude);
+                    HasGPSLatitude = exifReader.GetTagValue<double[]>(ExifTags.GPSLatitude, out _gpsLatitude);
+                    HasGPSLongitude = exifReader.GetTagValue<double[]>(ExifTags.GPSLongitude, out _gpsLongitude);
+                    HasExposureTime = exifReader.GetTagValue<double>(ExifTags.ExposureTime, out _exposureTime);
+                    HasISOSpeedRatings = exifReader.GetTagValue<ushort>(ExifTags.ISOSpeedRatings, out _isoSpeedRatings);
+                    HasModel = exifReader.GetTagValue<string>(ExifTags.Model, out _model);
+                    HasWhiteBalance = exifReader.GetTagValue<ushort>(ExifTags.WhiteBalance, out _whiteBalance);
+
+                    /* black-list - these are tested and not from interest:
+                     * ExifTags.Sharpness (no value)
+                     * ExifTags.Orientation (we get the orientation from the image resolution)
+                     * ExifTags.ShutterSpeedValue (we use exposure time)
+                     */
                 }
             }
             catch (ExifLibException)
@@ -65,7 +68,11 @@ namespace ImageInfoTool.App.Model
                 HasData = false;
             }
 
-            HasData = true;
+            // update data flag
+            HasData = HasExifVersion || HasDigitalZoom || HasFlash || 
+                HasFNumber || HasGPS || HasExposureTime || HasISOSpeedRatings || 
+                HasModel || HasWhiteBalance;
+
             return HasData;
         }
 
@@ -77,6 +84,8 @@ namespace ImageInfoTool.App.Model
             set { _exifVersion = value; }
         }
 
+        public bool HasExifVersion { get; private set; }
+
         private double _digitalZoom;
 
         public double DigitalZoom
@@ -84,6 +93,8 @@ namespace ImageInfoTool.App.Model
             get { return _digitalZoom; }
             set { _digitalZoom = value; }
         }
+
+        public bool HasDigitalZoom { get; private set; }
 
         private ushort _flash;
 
@@ -93,6 +104,18 @@ namespace ImageInfoTool.App.Model
             set { _flash = value; }
         }
 
+        public bool HasFlash { get; private set; }
+
+        private double _fNumber;
+
+        public double FNumber
+        {
+            get { return _fNumber; }
+            set { _fNumber = value; }
+        }
+
+        public bool HasFNumber { get; private set; }
+
         private double _gpsAltitude;
 
         public double GPSAltitude
@@ -101,13 +124,7 @@ namespace ImageInfoTool.App.Model
             set { _gpsAltitude = value; }
         }
 
-        private string _gpsAreaInformation;
-
-        public string GPSAreaInformation
-        {
-            get { return _gpsAreaInformation; }
-            set { _gpsAreaInformation = value; }
-        }
+        public bool HasGPSAltitude { get; private set; }
 
         private double[] _gpsLatitude;
 
@@ -117,12 +134,24 @@ namespace ImageInfoTool.App.Model
             set { _gpsLatitude = value; }
         }
 
+        public bool HasGPSLatitude { get; private set; }
+
         private double[] _gpsLongitude;
 
         public double[] GPSLongitude
         {
             get { return _gpsLongitude; }
             set { _gpsLongitude = value; }
+        }
+
+        public bool HasGPSLongitude { get; private set; }
+
+        public bool HasGPS
+        {
+            get
+            {
+                return HasGPSAltitude || HasGPSLatitude || HasGPSLongitude;
+            }
         }
 
         private double _exposureTime;
@@ -133,6 +162,8 @@ namespace ImageInfoTool.App.Model
             set { _exposureTime = value; }
         }
 
+        public bool HasExposureTime { get; private set; }
+
         private ushort _isoSpeedRatings;
 
         public ushort ISOSpeedRatings
@@ -140,6 +171,8 @@ namespace ImageInfoTool.App.Model
             get { return _isoSpeedRatings; }
             set { _isoSpeedRatings = value; }
         }
+
+        public bool HasISOSpeedRatings { get; private set; }
 
         private string _model;
 
@@ -149,29 +182,7 @@ namespace ImageInfoTool.App.Model
             set { _model = value; }
         }
 
-        private ushort _orientation;
-
-        public ushort Orientation
-        {
-            get { return _orientation; }
-            set { _orientation = value; }
-        }
-
-        private string _sharpness;
-
-        public string Sharpness
-        {
-            get { return _sharpness; }
-            set { _sharpness = value; }
-        }
-
-        private double _shutterSpeedValue;
-
-        public double ShutterSpeedValue
-        {
-            get { return _shutterSpeedValue; }
-            set { _shutterSpeedValue = value; }
-        }
+        public bool HasModel { get; private set; }
 
         private ushort _whiteBalance;
 
@@ -180,5 +191,7 @@ namespace ImageInfoTool.App.Model
             get { return _whiteBalance; }
             set { _whiteBalance = value; }
         }
+
+        public bool HasWhiteBalance { get; private set; }
     }
 }

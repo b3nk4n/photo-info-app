@@ -232,4 +232,91 @@ Das würde uns sehr motivieren um die App noch besser zu machen!</value>
     <value>hilfe und feedback</value>
     <comment>About Page</comment>
   </data>
+  <data name="FlashFired" xml:space="preserve">
+    <value>aktiviert</value>
+  </data>
+  <data name="FlashFiredAuto" xml:space="preserve">
+    <value>aktiviert (automatisch)</value>
+  </data>
+  <data name="FlashNotFired" xml:space="preserve">
+    <value>deaktiviert</value>
+  </data>
+  <data name="FlashNotFiredAuto" xml:space="preserve">
+    <value>deaktiviert (automatisch)</value>
+  </data>
+  <data name="InfoAlbumName" xml:space="preserve">
+    <value>album name</value>
+  </data>
+  <data name="InfoAltitude" xml:space="preserve">
+    <value>höhe:</value>
+  </data>
+  <data name="InfoCreationDate" xml:space="preserve">
+    <value>erstellungsdatum</value>
+  </data>
+  <data name="InfoDigitalZoom" xml:space="preserve">
+    <value>digitaler zoom</value>
+  </data>
+  <data name="InfoExifVersion" xml:space="preserve">
+    <value>exif version</value>
+  </data>
+  <data name="InfoExposureTime" xml:space="preserve">
+    <value>Verschlusszeit</value>
+  </data>
+  <data name="InfoFileName" xml:space="preserve">
+    <value>dateiname</value>
+  </data>
+  <data name="InfoFileSize" xml:space="preserve">
+    <value>dateigröße</value>
+  </data>
+  <data name="InfoFlash" xml:space="preserve">
+    <value>blitz</value>
+  </data>
+  <data name="InfoFocalRatio" xml:space="preserve">
+    <value>blendenzahl</value>
+  </data>
+  <data name="InfoGPS" xml:space="preserve">
+    <value>gps</value>
+  </data>
+  <data name="InfoISO" xml:space="preserve">
+    <value>iso</value>
+  </data>
+  <data name="InfoLatitude" xml:space="preserve">
+    <value>breitengrad:</value>
+  </data>
+  <data name="InfoLongitude" xml:space="preserve">
+    <value>längengrad:</value>
+  </data>
+  <data name="InfoModel" xml:space="preserve">
+    <value>modell</value>
+  </data>
+  <data name="InfoOrientation" xml:space="preserve">
+    <value>orientierung</value>
+  </data>
+  <data name="InfoResolution" xml:space="preserve">
+    <value>auflösung</value>
+  </data>
+  <data name="InfoTitleExtended" xml:space="preserve">
+    <value>erweitert</value>
+  </data>
+  <data name="InfoTitleBasic" xml:space="preserve">
+    <value>informationen</value>
+  </data>
+  <data name="InfoWhiteBalance" xml:space="preserve">
+    <value>weißabgleich</value>
+  </data>
+  <data name="OrientationLandscape" xml:space="preserve">
+    <value>quer (Landscape)</value>
+  </data>
+  <data name="OrientationPortrait" xml:space="preserve">
+    <value>hoch (Portrait)</value>
+  </data>
+  <data name="OrientationSquare" xml:space="preserve">
+    <value>quadratisch</value>
+  </data>
+  <data name="WhiteBalanceAuto" xml:space="preserve">
+    <value>automatisch</value>
+  </data>
+  <data name="WhiteBalanceManual" xml:space="preserve">
+    <value>manuell</value>
+  </data>
 </root>

@@ -228,4 +228,91 @@ Showing us some love on the store helps us to continue to work on the app and ma
     <value>support and feedback</value>
     <comment>About Page</comment>
   </data>
+  <data name="FlashFired" xml:space="preserve">
+    <value>enabled</value>
+  </data>
+  <data name="FlashFiredAuto" xml:space="preserve">
+    <value>enabled (auto mode)</value>
+  </data>
+  <data name="FlashNotFired" xml:space="preserve">
+    <value>disabled</value>
+  </data>
+  <data name="FlashNotFiredAuto" xml:space="preserve">
+    <value>disabled (auto mode)</value>
+  </data>
+  <data name="InfoAlbumName" xml:space="preserve">
+    <value>album name</value>
+  </data>
+  <data name="InfoAltitude" xml:space="preserve">
+    <value>altitude:</value>
+  </data>
+  <data name="InfoCreationDate" xml:space="preserve">
+    <value>creation date</value>
+  </data>
+  <data name="InfoDigitalZoom" xml:space="preserve">
+    <value>digital zoom</value>
+  </data>
+  <data name="InfoExifVersion" xml:space="preserve">
+    <value>exif version</value>
+  </data>
+  <data name="InfoExposureTime" xml:space="preserve">
+    <value>exposure time</value>
+  </data>
+  <data name="InfoFileName" xml:space="preserve">
+    <value>file name</value>
+  </data>
+  <data name="InfoFileSize" xml:space="preserve">
+    <value>file size</value>
+  </data>
+  <data name="InfoFlash" xml:space="preserve">
+    <value>flash</value>
+  </data>
+  <data name="InfoFocalRatio" xml:space="preserve">
+    <value>focal ratio</value>
+  </data>
+  <data name="InfoGPS" xml:space="preserve">
+    <value>gps</value>
+  </data>
+  <data name="InfoISO" xml:space="preserve">
+    <value>iso</value>
+  </data>
+  <data name="InfoLatitude" xml:space="preserve">
+    <value>latitude:</value>
+  </data>
+  <data name="InfoLongitude" xml:space="preserve">
+    <value>longitude:</value>
+  </data>
+  <data name="InfoModel" xml:space="preserve">
+    <value>model</value>
+  </data>
+  <data name="InfoOrientation" xml:space="preserve">
+    <value>orientation</value>
+  </data>
+  <data name="InfoResolution" xml:space="preserve">
+    <value>resolution</value>
+  </data>
+  <data name="InfoTitleExtended" xml:space="preserve">
+    <value>extended</value>
+  </data>
+  <data name="InfoTitleBasic" xml:space="preserve">
+    <value>information</value>
+  </data>
+  <data name="InfoWhiteBalance" xml:space="preserve">
+    <value>white balance</value>
+  </data>
+  <data name="OrientationLandscape" xml:space="preserve">
+    <value>landscape</value>
+  </data>
+  <data name="OrientationPortrait" xml:space="preserve">
+    <value>portrait</value>
+  </data>
+  <data name="OrientationSquare" xml:space="preserve">
+    <value>square</value>
+  </data>
+  <data name="WhiteBalanceAuto" xml:space="preserve">
+    <value>auto</value>
+  </data>
+  <data name="WhiteBalanceManual" xml:space="preserve">
+    <value>manual</value>
+  </data>
 </root>

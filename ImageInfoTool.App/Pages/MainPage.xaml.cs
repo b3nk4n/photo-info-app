@@ -4,6 +4,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using ImageInfoTool.App.Resources;
 using PhoneKit.Framework.Support;
+using ImageInfoTool.App.ViewModels;
 
 namespace ImageInfoTool.App
 {
@@ -28,6 +29,8 @@ namespace ImageInfoTool.App
             {
                 FeedbackManager.Instance.StartSecond();
             });
+
+            DataContext = ImageLibraryViewModel.Instance; // TODO: load the data not here, because there is a slow start time! move load().
 
             BuildLocalizedApplicationBar();
         }

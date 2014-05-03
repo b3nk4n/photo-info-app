@@ -234,6 +234,15 @@ namespace ImageInfoTool.App.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Hide file name ähnelt.
+        /// </summary>
+        public static string HideFileNameTitle {
+            get {
+                return ResourceManager.GetString("HideFileNameTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die album name ähnelt.
         /// </summary>
         public static string InfoAlbumName {
@@ -540,6 +549,15 @@ namespace ImageInfoTool.App.Resources {
         public static string ResourceLanguage {
             get {
                 return ResourceManager.GetString("ResourceLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die settings ähnelt.
+        /// </summary>
+        public static string SettingsTitle {
+            get {
+                return ResourceManager.GetString("SettingsTitle", resourceCulture);
             }
         }
         

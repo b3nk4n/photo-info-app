@@ -117,25 +117,20 @@
                     <TextBlock Text="{Binding Path=LocalizedResources.InfoTitleBasic, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionGroupTitleStyle}"
                                toolkit:TurnstileFeatherEffect.FeatheringIndex="0"/>
 
-                    <StackPanel toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
+                    <StackPanel toolkit:TurnstileFeatherEffect.FeatheringIndex="1" Visibility="{Binding HasName, Converter={StaticResource boolToVis}}">
                         <TextBlock Text="{Binding Path=LocalizedResources.InfoFileName, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}" />
                         <TextBlock Text="{Binding Name}" Style="{StaticResource DesciptionStyle}" />
-                    </StackPanel>
-
-                    <StackPanel toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
-                        <TextBlock Text="{Binding Path=LocalizedResources.InfoFileType, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}" />
-                        <TextBlock Text="{Binding FileType}" Style="{StaticResource DesciptionStyle}" />
-                    </StackPanel>
-
-                    <StackPanel toolkit:TurnstileFeatherEffect.FeatheringIndex="2">
-                        <TextBlock Text="{Binding Path=LocalizedResources.InfoFileSize, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}" />
-                        <TextBlock Text="{Binding FileSize}" Style="{StaticResource DesciptionStyle}" />
                     </StackPanel>
 
                     <StackPanel toolkit:TurnstileFeatherEffect.FeatheringIndex="3">
                         <TextBlock Text="{Binding Path=LocalizedResources.InfoCreationDate, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}" />
                         <TextBlock Text="{Binding CreationDate}" Style="{StaticResource DesciptionStyle}" />
                         <TextBlock Text="{Binding CreationTime}" Style="{StaticResource DesciptionStyle}" />
+                    </StackPanel>
+
+                    <StackPanel toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
+                        <TextBlock Text="{Binding Path=LocalizedResources.InfoFileType, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}" />
+                        <TextBlock Text="{Binding FileType}" Style="{StaticResource DesciptionStyle}" />
                     </StackPanel>
 
                     <StackPanel toolkit:TurnstileFeatherEffect.FeatheringIndex="3">
@@ -148,6 +143,11 @@
                         <TextBlock Text="{Binding Orientation}" Style="{StaticResource DesciptionStyle}" />
                     </StackPanel>
 
+                    <StackPanel toolkit:TurnstileFeatherEffect.FeatheringIndex="2">
+                        <TextBlock Text="{Binding Path=LocalizedResources.InfoFileSize, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}" />
+                        <TextBlock Text="{Binding FileSize}" Style="{StaticResource DesciptionStyle}" />
+                    </StackPanel>
+
                     <StackPanel toolkit:TurnstileFeatherEffect.FeatheringIndex="5">
                         <TextBlock Text="{Binding Path=LocalizedResources.InfoAlbumName, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}" />
                         <TextBlock Text="{Binding Album}" Style="{StaticResource DesciptionStyle}" />
@@ -156,11 +156,20 @@
                     <!-- EXIF -->
                     <TextBlock Text="{Binding Path=LocalizedResources.InfoTitleExtended, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionGroupTitleStyle}"
                                toolkit:TurnstileFeatherEffect.FeatheringIndex="7"/>
-                    
-                    
-                    <StackPanel toolkit:TurnstileFeatherEffect.FeatheringIndex="8" Visibility="{Binding ExifData.HasExifVersion, Converter={StaticResource boolToVis}}">
-                        <TextBlock Text="{Binding Path=LocalizedResources.InfoExifVersion, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}" />
-                        <TextBlock Text="{Binding ExifVersion}" Style="{StaticResource DesciptionStyle}" />
+
+                    <StackPanel toolkit:TurnstileFeatherEffect.FeatheringIndex="12" Visibility="{Binding ExifData.HasExposureTime, Converter={StaticResource boolToVis}}">
+                        <TextBlock Text="{Binding Path=LocalizedResources.InfoExposureTime, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}"/>
+                        <TextBlock Text="{Binding ExposureTime}" Style="{StaticResource DesciptionStyle}" />
+                    </StackPanel>
+
+                    <StackPanel toolkit:TurnstileFeatherEffect.FeatheringIndex="13" Visibility="{Binding ExifData.HasFNumber, Converter={StaticResource boolToVis}}">
+                        <TextBlock Text="{Binding Path=LocalizedResources.InfoFocalRatio, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}"/>
+                        <TextBlock Text="{Binding FNumber}" Style="{StaticResource DesciptionStyle}" />
+                    </StackPanel>
+
+                    <StackPanel toolkit:TurnstileFeatherEffect.FeatheringIndex="14" Visibility="{Binding ExifData.HasISOSpeedRatings, Converter={StaticResource boolToVis}}">
+                        <TextBlock Text="{Binding Path=LocalizedResources.InfoISO, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}" />
+                        <TextBlock Text="{Binding ExifData.ISOSpeedRatings}" Style="{StaticResource DesciptionStyle}" />
                     </StackPanel>
 
                     <StackPanel toolkit:TurnstileFeatherEffect.FeatheringIndex="9" Visibility="{Binding ExifData.HasDigitalZoom, Converter={StaticResource boolToVis}}">
@@ -169,9 +178,24 @@
                         </TextBlock>
                     </StackPanel>
 
+                    <StackPanel toolkit:TurnstileFeatherEffect.FeatheringIndex="16" Visibility="{Binding ExifData.HasWhiteBalance, Converter={StaticResource boolToVis}}">
+                        <TextBlock Text="{Binding Path=LocalizedResources.InfoWhiteBalance, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}" />
+                        <TextBlock Text="{Binding WhiteBalance}" Style="{StaticResource DesciptionStyle}" />
+                    </StackPanel>
+
                     <StackPanel toolkit:TurnstileFeatherEffect.FeatheringIndex="10" Visibility="{Binding ExifData.HasFlash, Converter={StaticResource boolToVis}}">
                         <TextBlock Text="{Binding Path=LocalizedResources.InfoFlash, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}" />
                         <TextBlock Text="{Binding Flash}" Style="{StaticResource DesciptionStyle}" />
+                    </StackPanel>
+
+                    <StackPanel toolkit:TurnstileFeatherEffect.FeatheringIndex="15" Visibility="{Binding ExifData.HasModel, Converter={StaticResource boolToVis}}">
+                        <TextBlock Text="{Binding Path=LocalizedResources.InfoModel, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}" />
+                        <TextBlock Text="{Binding ExifData.Model}" Style="{StaticResource DesciptionStyle}" />
+                    </StackPanel>
+
+                    <StackPanel toolkit:TurnstileFeatherEffect.FeatheringIndex="8" Visibility="{Binding ExifData.HasExifVersion, Converter={StaticResource boolToVis}}">
+                        <TextBlock Text="{Binding Path=LocalizedResources.InfoExifVersion, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}" />
+                        <TextBlock Text="{Binding ExifVersion}" Style="{StaticResource DesciptionStyle}" />
                     </StackPanel>
 
                     <StackPanel toolkit:TurnstileFeatherEffect.FeatheringIndex="11">
@@ -204,31 +228,6 @@
                                 <Image Source="{Binding AddWithGeoPhotoImagePath}" Height="48" />
                             </StackPanel>
                         </Button>
-                    </StackPanel>
-
-                    <StackPanel toolkit:TurnstileFeatherEffect.FeatheringIndex="12" Visibility="{Binding ExifData.HasExposureTime, Converter={StaticResource boolToVis}}">
-                        <TextBlock Text="{Binding Path=LocalizedResources.InfoExposureTime, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}"/>
-                        <TextBlock Text="{Binding ExposureTime}" Style="{StaticResource DesciptionStyle}" />
-                    </StackPanel>
-
-                    <StackPanel toolkit:TurnstileFeatherEffect.FeatheringIndex="13" Visibility="{Binding ExifData.HasFNumber, Converter={StaticResource boolToVis}}">
-                        <TextBlock Text="{Binding Path=LocalizedResources.InfoFocalRatio, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}"/>
-                        <TextBlock Text="{Binding FNumber}" Style="{StaticResource DesciptionStyle}" />
-                    </StackPanel>
-
-                    <StackPanel toolkit:TurnstileFeatherEffect.FeatheringIndex="14" Visibility="{Binding ExifData.HasISOSpeedRatings, Converter={StaticResource boolToVis}}">
-                        <TextBlock Text="{Binding Path=LocalizedResources.InfoISO, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}" />
-                        <TextBlock Text="{Binding ExifData.ISOSpeedRatings}" Style="{StaticResource DesciptionStyle}" />
-                    </StackPanel>
-
-                    <StackPanel toolkit:TurnstileFeatherEffect.FeatheringIndex="15" Visibility="{Binding ExifData.HasModel, Converter={StaticResource boolToVis}}">
-                        <TextBlock Text="{Binding Path=LocalizedResources.InfoModel, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}" />
-                        <TextBlock Text="{Binding ExifData.Model}" Style="{StaticResource DesciptionStyle}" />
-                    </StackPanel>
-
-                    <StackPanel toolkit:TurnstileFeatherEffect.FeatheringIndex="16" Visibility="{Binding ExifData.HasWhiteBalance, Converter={StaticResource boolToVis}}">
-                        <TextBlock Text="{Binding Path=LocalizedResources.InfoWhiteBalance, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}" />
-                        <TextBlock Text="{Binding WhiteBalance}" Style="{StaticResource DesciptionStyle}" />
                     </StackPanel>
 
                     <Rectangle Height="120" />

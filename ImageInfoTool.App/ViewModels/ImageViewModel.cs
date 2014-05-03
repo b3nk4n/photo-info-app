@@ -66,6 +66,14 @@ namespace ImageInfoTool.App.ViewModels
             }
         }
 
+        public bool HasName
+        {
+            get
+            {
+                return !AppSettings.HideFileName.Value;
+            }
+        }
+
         public string FileType
         {
             get

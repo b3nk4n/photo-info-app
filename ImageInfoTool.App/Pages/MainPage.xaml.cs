@@ -71,6 +71,14 @@ namespace ImageInfoTool.App
             ApplicationBar.Mode = ApplicationBarMode.Minimized;
             ApplicationBar.Opacity = 0.99f;
 
+            // settings
+            ApplicationBarMenuItem appBarSettingsMenuItem = new ApplicationBarMenuItem(AppResources.SettingsTitle);
+            appBarSettingsMenuItem.Click += (s, e) =>
+            {
+                NavigationService.Navigate(new Uri("/Pages/SettingsPage.xaml", UriKind.Relative));
+            };
+            ApplicationBar.MenuItems.Add(appBarSettingsMenuItem);
+
             // about
             ApplicationBarMenuItem appBarAboutMenuItem = new ApplicationBarMenuItem(AppResources.AboutTitle);
             appBarAboutMenuItem.Click += (s, e) =>

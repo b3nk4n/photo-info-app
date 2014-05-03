@@ -318,7 +318,15 @@ Showing us some love on the store helps us to continue to work on the app and ma
   <data name="AddWithGeoPhoto" xml:space="preserve">
     <value>add with GeoPhoto</value>
   </data>
+  <data name="HideFileNameTitle" xml:space="preserve">
+    <value>Hide file name</value>
+    <comment>SettingsPage</comment>
+  </data>
   <data name="InfoFileType" xml:space="preserve">
     <value>file type</value>
+  </data>
+  <data name="SettingsTitle" xml:space="preserve">
+    <value>settings</value>
+    <comment>SettingsPage</comment>
   </data>
 </root>

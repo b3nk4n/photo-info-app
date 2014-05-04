@@ -13,6 +13,7 @@ using System.Collections;
 using System.Windows.Media;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
+using System.Diagnostics;
 
 namespace ImageInfoTool.App
 {
@@ -21,7 +22,10 @@ namespace ImageInfoTool.App
     /// </summary>
     public partial class MainPage : PhoneApplicationPage
     {
-        private const int LOADED_IMAGES_PER_INTERVAL = 40;
+        private const int BOTTOM_OF_LIST = 9999999;
+
+        private const int INITIAL_LOADED_IMAGES_ = 40;
+        private const int LOADED_IMAGES_PER_INTERVAL = 80;
 
         /// <summary>
         /// Creates the MainPage instance.
@@ -33,10 +37,13 @@ namespace ImageInfoTool.App
             Loaded += async (s, e) =>
             {
                 // load data
-                await ImageLibraryViewModel.Instance.LoadNext(LOADED_IMAGES_PER_INTERVAL);
+                await ImageLibraryViewModel.Instance.LoadNext(INITIAL_LOADED_IMAGES_);
+                await Task.Delay(200);
+                ImageScrollViewer.ScrollToVerticalOffset(BOTTOM_OF_LIST);
 
                 InitializeEndlessScrolling();
 
+                HideSplashScreenAnimation.Begin();
                 ShowBackgroundImageAnimation.Begin();
                 ImagesSlideIn.Begin();
             };
@@ -109,13 +116,31 @@ namespace ImageInfoTool.App
             ApplicationBar.Mode = ApplicationBarMode.Minimized;
             ApplicationBar.Opacity = 0.99f;
 
+            // refresh
+            ApplicationBarIconButton appBarRefreshIconButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/refresh.png", UriKind.Relative));
+            appBarRefreshIconButton.Text = AppResources.AppBarRefresh;
+            appBarRefreshIconButton.Click += async (s, e) =>
+            {
+                ImageLibraryViewModel.Instance.Clear();
+
+                ProgressBar.IsIndeterminate = true;
+                ProgressBar.Visibility = System.Windows.Visibility.Visible;
+                int loadedCount = await ImageLibraryViewModel.Instance.LoadNext(LOADED_IMAGES_PER_INTERVAL);
+                await Task.Delay(500);
+                ImageScrollViewer.ScrollToVerticalOffset(Math.Round(loadedCount / 4.0, 0) * (102 + 12));
+                ProgressBar.Visibility = System.Windows.Visibility.Collapsed;
+                ProgressBar.IsIndeterminate = false;
+            };
+            ApplicationBar.Buttons.Add(appBarRefreshIconButton);
+
             // settings
-            ApplicationBarMenuItem appBarSettingsMenuItem = new ApplicationBarMenuItem(AppResources.SettingsTitle);
-            appBarSettingsMenuItem.Click += (s, e) =>
+            ApplicationBarIconButton appBarSettingsIconButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/feature.settings.png", UriKind.Relative));
+            appBarSettingsIconButton.Text = AppResources.AppBarSettings;
+            appBarSettingsIconButton.Click += (s, e) =>
             {
                 NavigationService.Navigate(new Uri("/Pages/SettingsPage.xaml", UriKind.Relative));
             };
-            ApplicationBar.MenuItems.Add(appBarSettingsMenuItem);
+            ApplicationBar.Buttons.Add(appBarSettingsIconButton);
 
             // in-app store
             ApplicationBarMenuItem appBarStoreMenuItem = new ApplicationBarMenuItem(AppResources.InAppStoreTitle);
@@ -134,8 +159,8 @@ namespace ImageInfoTool.App
             ApplicationBar.MenuItems.Add(appBarAboutMenuItem);
         }
 
-        private void ImageTapped(object sender, System.Windows.Input.GestureEventArgs e)
-        {
+        private void ImageClicked(object sender, RoutedEventArgs e)
+       {
             var image = sender as Image;
 
             if (image != null)
@@ -144,10 +169,9 @@ namespace ImageInfoTool.App
 
                 if (vm != null)
                 {
-                    NavigateToImageInfoPageByInstanceId(vm.InstanceId); 
+                    NavigateToImageInfoPageByInstanceId(vm.InstanceId);
                 }
             }
-
         }
 
         #region ENDLESS SCROLLING
@@ -222,11 +246,20 @@ namespace ImageInfoTool.App
         {
             if (e.NewState.Name == "CompressionTop")
             {
+                if (!ImageLibraryViewModel.Instance.CanLoadNext)
+                    return;
+
+                ProgressBar.IsIndeterminate = true;
+                ProgressBar.Visibility = System.Windows.Visibility.Visible;
+                int loadedCount = await ImageLibraryViewModel.Instance.LoadNext(LOADED_IMAGES_PER_INTERVAL);
+                await Task.Delay(500);
+                ImageScrollViewer.ScrollToVerticalOffset(Math.Round(loadedCount / 4.0, 0) * (102 + 12));
+                ProgressBar.Visibility = System.Windows.Visibility.Collapsed;
+                ProgressBar.IsIndeterminate = false;
             }
 
             if (e.NewState.Name == "CompressionBottom")
             {
-                await ImageLibraryViewModel.Instance.LoadNext(LOADED_IMAGES_PER_INTERVAL);
             }
             if (e.NewState.Name == "NoVerticalCompression")
             {

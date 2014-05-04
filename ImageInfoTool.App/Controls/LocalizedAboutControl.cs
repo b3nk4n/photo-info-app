@@ -13,7 +13,7 @@ namespace ImageInfoTool.App.Controls
         protected override void LocalizeContent()
         {
             // app
-            ApplicationIconSource = new Uri("/Assets/ApplicationIcon.png", UriKind.Relative);
+            ApplicationIconSource = new Uri("/Assets/Images/176.png", UriKind.Relative);
             ApplicationTitle = AppResources.ApplicationTitle;
             ApplicationVersion = AppResources.ApplicationVersion;
             ApplicationAuthor = AppResources.ApplicationAuthor;

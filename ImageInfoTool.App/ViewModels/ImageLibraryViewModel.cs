@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Media;
 using PhoneKit.Framework.Core.MVVM;
+using PhoneKit.Framework.Core.OS;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,49 +24,8 @@ namespace ImageInfoTool.App.ViewModels
 
         ObservableCollection<ImageViewModel> _images = new ObservableCollection<ImageViewModel>();
 
-        private bool _isAllDataLoaded;
-
         public ImageLibraryViewModel()
         {
-            //LoadAll();
-            _isAllDataLoaded = false;
-        }
-
-
-        /// <summary>
-        /// Loads all images from the library.
-        /// </summary>
-        /// <param name="startIndex">The start index.</param>
-        /// <param name="endIndex">The end index inclusive.</param>
-        public async Task LoadPart(int startIndex, int endIndex)
-        {
-            if (_isAllDataLoaded)
-                return;
-
-            List<ImageViewModel> tempList = new List<ImageViewModel>();
-            var currentCount = _images.Count;
-            var start = Math.Max(currentCount, startIndex);
-
-            await Task.Run(() =>
-            {
-                var end = Math.Min(endIndex, MediaLibrary.Pictures.Count - 1);
-
-                for (int i = start; i <= end; ++i)
-                {
-                    var picture = MediaLibrary.Pictures[i];
-                    tempList.Add(new ImageViewModel(picture));
-                }
-
-                if (end == MediaLibrary.Pictures.Count - 1)
-                    _isAllDataLoaded = true;
-            });
-
-            // add all afterwards to get no cross-thread exception
-            foreach (var tempImage in tempList)
-            {
-                _images.Add(tempImage);
-                //_images.Insert(start, tempImage);
-            }
         }
 
         /// <summary>
@@ -73,10 +33,11 @@ namespace ImageInfoTool.App.ViewModels
         /// </summary>
         /// <param name="startIndex">The start index.</param>
         /// <param name="endIndex">The end index inclusive.</param>
-        public async Task LoadNext(int count)
+        /// <returns>The number of loaded elements.</returns>
+        public async Task<int> LoadNext(int count)
         {
-            if (_isAllDataLoaded)
-                return;
+            if (!CanLoadNext)
+                return 0;
 
             List<ImageViewModel> tempList = new List<ImageViewModel>();
             var currentCount = _images.Count;
@@ -91,39 +52,34 @@ namespace ImageInfoTool.App.ViewModels
                     var picture = MediaLibrary.Pictures[i];
                     tempList.Add(new ImageViewModel(picture));
                 }
-
-                if (end == MediaLibrary.Pictures.Count - 1)
-                    _isAllDataLoaded = true;
             });
 
             // add all afterwards to get no cross-thread exception
             foreach (var tempImage in tempList)
             {
-                _images.Add(tempImage);
-                //_images.Insert(start, tempImage);
+                _images.Insert(0, tempImage);
             }
+
+            return tempList.Count;
         }
 
         /// <summary>
-        /// Loads all images from the library.
+        /// Clears all images.
         /// </summary>
-        public void LoadAll()
+        public void Clear()
         {
-            if (_isAllDataLoaded)
-                return;
-
-            foreach (var image in MediaLibrary.Pictures)
-            {
-                _images.Add(new ImageViewModel(image));
-                //_images.Insert(0, new ImageViewModel(image));
-            }
-
-            _isAllDataLoaded = true;
+            _images.Clear();
         }
 
-        public void InserImage(ImageViewModel image)
+        /// <summary>
+        /// Gets whether there are more images to load.
+        /// </summary>
+        public bool CanLoadNext
         {
-            //_images.Insert(0, image);
+            get
+            {
+                return _images.Count < MediaLibrary.Pictures.Count;
+            }
         }
 
         /// <summary>
@@ -219,6 +175,21 @@ namespace ImageInfoTool.App.ViewModels
                 if (_mediaLibrary == null)
                     _mediaLibrary = new MediaLibrary();
                 return _mediaLibrary;
+            }
+        }
+
+        /// <summary>
+        /// Gets the show image path.
+        /// </summary>
+        public string LogoImagePath
+        {
+            get
+            {
+                const string imageName = "logo200.png";
+                if (PhoneThemeHelper.IsLightThemeActive)
+                    return AppConstants.THEME_LIGHT_BASEPATH + imageName;
+                else
+                    return AppConstants.THEME_DARK_BASEPATH + imageName;
             }
         }
     }

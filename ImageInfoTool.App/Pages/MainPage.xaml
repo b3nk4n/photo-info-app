@@ -48,11 +48,6 @@ Storyboard.TargetProperty="Opacity" To="1" Duration="0"/>
                                     <VisualState x:Name="CompressionTop"/>
                                     <VisualState x:Name="CompressionBottom"/>
                                 </VisualStateGroup>
-                                <!--<VisualStateGroup x:Name="HorizontalCompression">
-                                    <VisualState x:Name="NoHorizontalCompression"/>
-                                    <VisualState x:Name="CompressionLeft"/>
-                                    <VisualState x:Name="CompressionRight"/>
-                                </VisualStateGroup>-->
                             </VisualStateManager.VisualStateGroups>
                             <Grid Margin="{TemplateBinding Padding}">
                                 <ScrollContentPresenter x:Name="ScrollContentPresenter" Content="{TemplateBinding Content}" 
@@ -73,7 +68,7 @@ Orientation="Horizontal" ViewportSize="{TemplateBinding ViewportWidth}" />
         </Style>
 
         <Storyboard x:Name="ShowBackgroundImageAnimation">
-            <DoubleAnimation Duration="0:0:3" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="BackgroundImage" d:IsOptimized="True">
+            <DoubleAnimation Duration="0:0:2" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="BackgroundImage" d:IsOptimized="True">
                 <DoubleAnimation.EasingFunction>
                     <CubicEase EasingMode="EaseInOut"/>
                 </DoubleAnimation.EasingFunction>
@@ -81,13 +76,21 @@ Orientation="Horizontal" ViewportSize="{TemplateBinding ViewportWidth}" />
         </Storyboard>
 
         <Storyboard x:Name="ImagesSlideIn">
-            <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.66" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="ImageScrollViewer">
+            <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.2" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="ImageScrollViewer">
                 <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0">
                     <EasingDoubleKeyFrame.EasingFunction>
                         <QuarticEase EasingMode="EaseInOut"/>
                     </EasingDoubleKeyFrame.EasingFunction>
                 </EasingDoubleKeyFrame>
             </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        
+        <Storyboard x:Name="HideSplashScreenAnimation">
+        	<DoubleAnimation BeginTime="0:0:0.66" Duration="0:0:0.5" To="-1000" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="SplashImage" d:IsOptimized="True">
+        		<DoubleAnimation.EasingFunction>
+        			<QuadraticEase EasingMode="EaseInOut"/>
+        		</DoubleAnimation.EasingFunction>
+        	</DoubleAnimation>
         </Storyboard>
 
     </phone:PhoneApplicationPage.Resources>
@@ -115,16 +118,12 @@ Orientation="Horizontal" ViewportSize="{TemplateBinding ViewportWidth}" />
 
     <!--LayoutRoot ist das Stammraster, in dem alle anderen Seiteninhalte platziert werden-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
 
-        <Image x:Name="BackgroundImage" Grid.RowSpan="2" Stretch="UniformToFill" Width="480" Height="800" VerticalAlignment="Center" Opacity="0">
+        <Image x:Name="BackgroundImage" Stretch="UniformToFill" Width="480" Height="800" VerticalAlignment="Center" Opacity="0">
             <Image.OpacityMask>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                    <GradientStop Offset="0" Color="#DDFFFFFF" />
-                    <GradientStop Offset="0.5" Color="#22FFFFFF" />
+                    <GradientStop Offset="0" Color="#EEFFFFFF" />
+                    <GradientStop Offset="0.5" Color="#33FFFFFF" />
                     <GradientStop Offset="1" Color="#11FFFFFF" />
                 </LinearGradientBrush>
             </Image.OpacityMask>
@@ -133,21 +132,19 @@ Orientation="Horizontal" ViewportSize="{TemplateBinding ViewportWidth}" />
             </Image.RenderTransform>
         </Image>
 
-        
-
         <!--ContentPanel - zusätzliche Inhalte hier platzieren-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,30">
+        <Grid x:Name="ContentPanel" Margin="0,0,0,30">
             <ScrollViewer x:Name="ImageScrollViewer">
                 <ScrollViewer.RenderTransform>
                     <CompositeTransform TranslateY="800" />
                 </ScrollViewer.RenderTransform>
-                <StackPanel>
-                    <!--TitlePanel enthält den Namen der Anwendung und den Seitentitel-->
-                    <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="-8,17,-12,28" Orientation="Horizontal">
-                        <Image Source="/Assets/logo200.png" Height="120" />
-                        <TextBlock Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Margin="0,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" FontSize="92"/>
-                    </StackPanel>
-                    <ItemsControl x:Name="ImageList" ItemsSource="{Binding Images}" >
+                <StackPanel Margin="12,0,12,12">
+                    <Border Width="400" Height="24" HorizontalAlignment="Center">
+                        <ProgressBar x:Name="ProgressBar"  Width="400" Height="24" IsEnabled="False" VerticalAlignment="Center"
+                                 IsIndeterminate="False" Foreground="{StaticResource ThemeBrush}"/>
+                    </Border>
+                    <ItemsControl x:Name="ImageList" ItemsSource="{Binding Images}" 
+                                  VerticalContentAlignment="Bottom">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <toolkit:WrapPanel />
@@ -155,16 +152,24 @@ Orientation="Horizontal" ViewportSize="{TemplateBinding ViewportWidth}" />
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Border Margin="6">
-                                    <Image Source="{Binding ThumbnailImage}" Width="102" Height="102" Tag="{Binding ImagePath}"
-                                           Tap="ImageTapped"/>
-                                </Border>
+                                <Button Template="{StaticResource EmptyControlTemplate}" Click="ImageClicked" Margin="6">
+                                    <StackPanel Orientation="Horizontal" toolkit:TiltEffect.IsTiltEnabled="True">
+                                        <Image Source="{Binding ThumbnailImage}" Width="102" Height="102" Tag="{Binding ImagePath}"/>
+                                    </StackPanel>
+                                </Button>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </StackPanel>
             </ScrollViewer>
         </Grid>
+
+        <Image x:Name="SplashImage" Width="480" Height="800" Source="/SplashScreenImage.screen-WXGA.jpg" RenderTransformOrigin="0.5,0.5">
+        	<Image.RenderTransform>
+        		<CompositeTransform/>
+        	</Image.RenderTransform>
+            
+        </Image>
 
         <!-- Feedback dialog -->
         <local:LocalizedFeedbackDialogControl Grid.RowSpan="2" EnableAnimation="True" />

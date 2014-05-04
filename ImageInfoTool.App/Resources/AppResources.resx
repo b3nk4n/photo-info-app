@@ -376,4 +376,12 @@ Showing us some love on the store helps us to continue to work on the app and ma
     <value>show with GeoPhoto</value>
     <comment>ImageInfoPage</comment>
   </data>
+  <data name="AppBarRefresh" xml:space="preserve">
+    <value>reload</value>
+    <comment>AppBar</comment>
+  </data>
+  <data name="AppBarSettings" xml:space="preserve">
+    <value>settings</value>
+    <comment>AppBar</comment>
+  </data>
 </root>

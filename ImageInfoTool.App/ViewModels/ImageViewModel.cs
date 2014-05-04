@@ -261,7 +261,7 @@ namespace ImageInfoTool.App.ViewModels
                 if (_exifData == null || !_exifData.HasGPSLatitude)
                     return AppConstants.PLACEHOLDER_STRING;
 
-                return GeoLocationHelper.ToDegreeString(_exifData.GPSLatitude);
+                return GeoLocationHelper.ToDegreeString(_exifData.GPSLatitude, _exifData.GPSLatitudeRef);
             }
         }
 
@@ -272,7 +272,7 @@ namespace ImageInfoTool.App.ViewModels
                 if (_exifData == null || !_exifData.HasGPSLongitude)
                     return AppConstants.PLACEHOLDER_STRING;
 
-                return GeoLocationHelper.ToDegreeString(_exifData.GPSLongitude);
+                return GeoLocationHelper.ToDegreeString(_exifData.GPSLongitude, _exifData.GPSLongitudeRef);
             }
         }
 

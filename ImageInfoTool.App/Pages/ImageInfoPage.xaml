@@ -113,7 +113,8 @@
                 </Border>
             </Grid>
 
-            <maps:Map Grid.Row="1" x:Name="MapControl" Height="450" Width="480" VerticalAlignment="Bottom" Margin="0,0,0,-50"/>
+            <maps:Map Grid.Row="1" x:Name="MapControl" Height="450" Width="480" VerticalAlignment="Bottom" Margin="0,0,0,-50"
+                      Opacity="0" Visibility="Collapsed"/>
 
             <Rectangle VerticalAlignment="Center" Height="800" Grid.RowSpan="2" Fill="{StaticResource PhoneBackgroundBrush}">
                 <Rectangle.OpacityMask>

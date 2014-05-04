@@ -7,6 +7,10 @@
 
     <!--Anwendungsressourcen-->
     <Application.Resources>
+
+        <Color x:Key="ThemeColor">#00ABA9</Color>
+        <SolidColorBrush x:Key="ThemeBrush" Color="{StaticResource ThemeColor}" />
+
         <local:LocalizedStrings xmlns:local="clr-namespace:ImageInfoTool.App" x:Key="LocalizedStrings"/>
 
         <ControlTemplate x:Key="EmptyControlTemplate">

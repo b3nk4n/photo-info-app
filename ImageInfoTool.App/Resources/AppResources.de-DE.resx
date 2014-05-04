@@ -380,4 +380,12 @@ Das würde uns sehr motivieren um die App noch besser zu machen!</value>
     <value>in GeoPhoto anzeigen</value>
     <comment>ImageInfoPage</comment>
   </data>
+  <data name="AppBarRefresh" xml:space="preserve">
+    <value>neuladen</value>
+    <comment>AppBar</comment>
+  </data>
+  <data name="AppBarSettings" xml:space="preserve">
+    <value>einstell.</value>
+    <comment>AppBar</comment>
+  </data>
 </root>

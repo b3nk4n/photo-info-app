@@ -43,7 +43,9 @@ namespace ImageInfoTool.App.Model
                     HasFlash = exifReader.GetTagValue<ushort>(ExifTags.Flash, out _flash);
                     HasFNumber = exifReader.GetTagValue<double>(ExifTags.FNumber, out _fNumber);
                     HasGPSAltitude = exifReader.GetTagValue<double>(ExifTags.GPSAltitude, out _gpsAltitude);
+                    HasGPSLatitudeRef = exifReader.GetTagValue<string>(ExifTags.GPSLatitudeRef, out _gpsLatitudeRef); // N (pos) / S (neg)
                     HasGPSLatitude = exifReader.GetTagValue<double[]>(ExifTags.GPSLatitude, out _gpsLatitude);
+                    HasGPSLongitudeRef = exifReader.GetTagValue<string>(ExifTags.GPSLongitudeRef, out _gpsLongitudeRef); // E (pos) / W (neg)
                     HasGPSLongitude = exifReader.GetTagValue<double[]>(ExifTags.GPSLongitude, out _gpsLongitude);
                     HasExposureTime = exifReader.GetTagValue<double>(ExifTags.ExposureTime, out _exposureTime);
                     HasISOSpeedRatings = exifReader.GetTagValue<ushort>(ExifTags.ISOSpeedRatings, out _isoSpeedRatings);
@@ -136,6 +138,16 @@ namespace ImageInfoTool.App.Model
 
         public bool HasGPSLatitude { get; private set; }
 
+        private string _gpsLatitudeRef;
+
+        public string GPSLatitudeRef
+        {
+            get { return _gpsLatitudeRef; }
+            set { _gpsLatitudeRef = value; }
+        }
+
+        public bool HasGPSLatitudeRef { get; private set; }
+
         private double[] _gpsLongitude;
 
         public double[] GPSLongitude
@@ -145,6 +157,16 @@ namespace ImageInfoTool.App.Model
         }
 
         public bool HasGPSLongitude { get; private set; }
+
+        private string _gpsLongitudeRef;
+
+        public string GPSLongitudeRef
+        {
+            get { return _gpsLongitudeRef; }
+            set { _gpsLongitudeRef = value; }
+        }
+
+        public bool HasGPSLongitudeRef { get; private set; }
 
         public bool HasGPS
         {

@@ -32,19 +32,18 @@ namespace ImageInfoTool.App.Pages
                 
                 if (vm != null)
                 {
-                    MapControl.Visibility = System.Windows.Visibility.Visible;
-
                     var exif = vm.ExifData;
                     if (vm.HasExifData && exif.HasGPSLatitude && exif.HasGPSLongitude)
                     {
-                        var lat = GeoLocationHelper.ToDouble(exif.GPSLatitude);
-                        var lng = GeoLocationHelper.ToDouble(exif.GPSLongitude);
+                        var lat = GeoLocationHelper.ToDouble(exif.GPSLatitude, exif.GPSLatitudeRef);
+                        var lng = GeoLocationHelper.ToDouble(exif.GPSLongitude, exif.GPSLongitudeRef);
                         MapControl.ZoomLevel = 11;
                         MapControl.CartographicMode = AppSettings.MapType.Value;
                         var photoPosition = new GeoCoordinate(lat, lng);
                         var centerPosition = new GeoCoordinate(photoPosition.Latitude + 0.0175, photoPosition.Longitude);
                         MapControl.Center = centerPosition;
                         UpdateOverlayAtCenter(photoPosition);
+                        MapControl.Visibility = System.Windows.Visibility.Visible;
                         ShowMapAnimation.Begin();
                     }
                 }
@@ -58,6 +57,44 @@ namespace ImageInfoTool.App.Pages
                 Microsoft.Phone.Maps.MapsSettings.ApplicationContext.ApplicationId = "ac39aa30-c9b1-4dc6-af2d-1cc17d9807cc";
                 Microsoft.Phone.Maps.MapsSettings.ApplicationContext.AuthenticationToken = "QTKCtAtxfOx_XsQs4Ox1Rg";
             };
+
+            BuildLocalizedApplicationBar();
+        }
+
+        /// <summary>
+        /// Builds the localized application bar.
+        /// </summary>
+        private void BuildLocalizedApplicationBar()
+        {
+            // ApplicationBar der Seite einer neuen Instanz von ApplicationBar zuweisen
+            ApplicationBar = new ApplicationBar();
+            ApplicationBar.Mode = ApplicationBarMode.Minimized;
+            ApplicationBar.Opacity = 0.99f;
+
+            // settings
+            ApplicationBarIconButton appBarSettingsIconButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/feature.settings.png", UriKind.Relative));
+            appBarSettingsIconButton.Text = AppResources.AppBarSettings;
+            appBarSettingsIconButton.Click += (s, e) =>
+            {
+                NavigationService.Navigate(new Uri("/Pages/SettingsPage.xaml", UriKind.Relative));
+            };
+            ApplicationBar.Buttons.Add(appBarSettingsIconButton);
+
+            // in-app store
+            ApplicationBarMenuItem appBarStoreMenuItem = new ApplicationBarMenuItem(AppResources.InAppStoreTitle);
+            ApplicationBar.MenuItems.Add(appBarStoreMenuItem);
+            appBarStoreMenuItem.Click += (s, e) =>
+            {
+                NavigationService.Navigate(new Uri("/Pages/InAppStorePage.xaml", UriKind.Relative));
+            };
+
+            // about
+            ApplicationBarMenuItem appBarAboutMenuItem = new ApplicationBarMenuItem(AppResources.AboutTitle);
+            appBarAboutMenuItem.Click += (s, e) =>
+            {
+                NavigationService.Navigate(new Uri("/Pages/AboutPage.xaml", UriKind.Relative));
+            };
+            ApplicationBar.MenuItems.Add(appBarAboutMenuItem);
         }
 
         private void UpdateImageTranslation(ImageViewModel image)
@@ -102,12 +139,20 @@ namespace ImageInfoTool.App.Pages
         {
             var innerCircle = new Ellipse
             {
-                Fill = new SolidColorBrush((Color)App.Current.Resources["PhoneAccentColor"]),
+                Fill = new SolidColorBrush((Color)App.Current.Resources["ThemeColor"]),
                 Height = 14,
                 Width = 14,
-                Opacity = 0.8f
+                Opacity = 0.9f
             };
             var outerCircle = new Ellipse
+            {
+                Stroke = new SolidColorBrush((Color)App.Current.Resources["PhoneBackgroundColor"]),
+                StrokeThickness = 3,
+                Height = 21,
+                Width = 21,
+                Opacity = 0.66f
+            };
+            var outer2Circle = new Ellipse
             {
                 Stroke = new SolidColorBrush((Color)App.Current.Resources["PhoneForegroundColor"]),
                 StrokeThickness = 3,
@@ -123,6 +168,7 @@ namespace ImageInfoTool.App.Pages
             };
             container.Children.Add(innerCircle);
             container.Children.Add(outerCircle);
+            container.Children.Add(outer2Circle);
             return container;
         }
 
@@ -133,9 +179,6 @@ namespace ImageInfoTool.App.Pages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-
-            // hide map
-            MapControl.Opacity = 0.0f;
 
             // query string lookup
             if (NavigationContext.QueryString != null)

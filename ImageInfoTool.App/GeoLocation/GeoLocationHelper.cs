@@ -13,27 +13,31 @@ namespace ImageInfoTool.App.GeoLocation
         /// <summary>
         /// Converts a exif geo data to a double value.
         /// </summary>
-        /// <param name="geoData"></param>
-        /// <returns></returns>
-        public static double ToDouble(double[] geoData)
+        /// <param name="geoData">The geo data.</param>
+        /// <param name="posRef">The positin reference.</param>
+        /// <returns>The numeric position.</returns>
+        public static double ToDouble(double[] geoData, string posRef)
         {
             if (geoData == null || geoData.Length != 3)
                 return NO_COORDINATE;
 
-            return geoData[0] + geoData[1] / 60.0 + geoData[2] / 3600.0;
+            int factor = (posRef == "S" || posRef == "W") ? -1 : 1;
+
+            return (geoData[0] + geoData[1] / 60.0 + geoData[2] / 3600.0) * factor;
         }
 
         /// <summary>
         /// Converts a exif geo data to a double value.
         /// </summary>
-        /// <param name="geoData"></param>
-        /// <returns></returns>
-        public static string ToDegreeString(double[] geoData)
+        /// <param name="geoData">The geo data.</param>
+        /// <param name="posRef">The positin reference.</param>
+        /// <returns>The position text.</returns>
+        public static string ToDegreeString(double[] geoData, string posRef)
         {
             if (geoData == null || geoData.Length != 3)
                 return AppConstants.PLACEHOLDER_STRING;
 
-            return string.Format("{0}°{1}\'{2}\"", geoData[0], geoData[1], geoData[2]);
+            return string.Format("{0}°{1}\'{2}\"{3}", geoData[0], geoData[1], geoData[2], posRef);
         }
     }
 }

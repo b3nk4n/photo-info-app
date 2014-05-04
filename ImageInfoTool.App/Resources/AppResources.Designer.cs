@@ -79,6 +79,24 @@ namespace ImageInfoTool.App.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die reload ähnelt.
+        /// </summary>
+        public static string AppBarRefresh {
+            get {
+                return ResourceManager.GetString("AppBarRefresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die settings ähnelt.
+        /// </summary>
+        public static string AppBarSettings {
+            get {
+                return ResourceManager.GetString("AppBarSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die by Benjamin Sautermeister ähnelt.
         /// </summary>
         public static string ApplicationAuthor {

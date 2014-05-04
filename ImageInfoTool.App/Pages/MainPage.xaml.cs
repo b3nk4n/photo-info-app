@@ -6,6 +6,13 @@ using ImageInfoTool.App.Resources;
 using PhoneKit.Framework.Support;
 using ImageInfoTool.App.ViewModels;
 using System.Windows.Controls;
+using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
+using System.Windows;
+using System.Collections;
+using System.Windows.Media;
+using System.Windows.Controls.Primitives;
+using System.Windows.Input;
 
 namespace ImageInfoTool.App
 {
@@ -14,6 +21,8 @@ namespace ImageInfoTool.App
     /// </summary>
     public partial class MainPage : PhoneApplicationPage
     {
+        private const int LOADED_IMAGES_PER_INTERVAL = 40;
+
         /// <summary>
         /// Creates the MainPage instance.
         /// </summary>
@@ -21,10 +30,15 @@ namespace ImageInfoTool.App
         {
             InitializeComponent();
 
-            Loaded += (s, e) =>
+            Loaded += async (s, e) =>
             {
-                ImageLibraryViewModel.Instance.LoadAll();
-                DataContext = ImageLibraryViewModel.Instance; // TODO: load the data not here, because there is a slow start time! move load().
+                // load data
+                await ImageLibraryViewModel.Instance.LoadNext(LOADED_IMAGES_PER_INTERVAL);
+
+                InitializeEndlessScrolling();
+
+                ShowBackgroundImageAnimation.Begin();
+                ImagesSlideIn.Begin();
             };
 
             // register startup actions
@@ -50,7 +64,14 @@ namespace ImageInfoTool.App
             var backImage = ImageLibraryViewModel.Instance.GetRandomFromLibrary();
 
             if (backImage != null)
+            {
                 BackgroundImage.Source = backImage.Image;
+            }
+            else
+            {
+                // use a fallback image
+                BackgroundImage.Source = new BitmapImage(new Uri("/Assets/Images/fallback_back.jpg", UriKind.Relative));
+            }
         }
 
         //private void NavigateToImageInfoPageByLibraryIndex(int index)
@@ -74,7 +95,8 @@ namespace ImageInfoTool.App
             // fire startup events
             StartupActionManager.Instance.Fire();
 
-            
+            //await ImageLibraryViewModel.Instance.LoadPart(0, 50);
+            DataContext = ImageLibraryViewModel.Instance;
         }
 
         /// <summary>
@@ -125,7 +147,101 @@ namespace ImageInfoTool.App
                     NavigateToImageInfoPageByInstanceId(vm.InstanceId); 
                 }
             }
-            
+
         }
+
+        #region ENDLESS SCROLLING
+
+        private ScrollViewer sv = null;
+        private bool alreadyHookedScrollEvents = false;
+
+        private void InitializeEndlessScrolling()
+        {
+            if (alreadyHookedScrollEvents)
+                return;
+
+            alreadyHookedScrollEvents = true;
+            sv = ImageScrollViewer;
+            if (sv != null)
+            {
+                // Visual States are always on the first child of the control template 
+                FrameworkElement element = VisualTreeHelper.GetChild(sv, 0) as FrameworkElement;
+                if (element != null)
+                {
+                    VisualStateGroup group = FindVisualState(element, "ScrollStates");
+                    if (group != null)
+                    {
+                        group.CurrentStateChanging += new EventHandler<VisualStateChangedEventArgs>(group_CurrentStateChanging);
+                    }
+                    VisualStateGroup vgroup = FindVisualState(element, "VerticalCompression");
+                    if (vgroup != null)
+                    {
+                        vgroup.CurrentStateChanging += new EventHandler<VisualStateChangedEventArgs>(vgroup_CurrentStateChanging);
+                    }
+                }
+            }
+        }
+
+        private UIElement FindElementRecursive(FrameworkElement parent, Type targetType)
+        {
+            int childCount = VisualTreeHelper.GetChildrenCount(parent);
+            UIElement returnElement = null;
+            if (childCount > 0)
+            {
+                for (int i = 0; i < childCount; i++)
+                {
+                    Object element = VisualTreeHelper.GetChild(parent, i);
+                    if (element.GetType() == targetType)
+                    {
+                        return element as UIElement;
+                    }
+                    else
+                    {
+                        returnElement = FindElementRecursive(VisualTreeHelper.GetChild(parent, i) as FrameworkElement, targetType);
+                    }
+                }
+            }
+            return returnElement;
+        }
+
+
+        private VisualStateGroup FindVisualState(FrameworkElement element, string name)
+        {
+            if (element == null)
+                return null;
+
+            IList groups = VisualStateManager.GetVisualStateGroups(element);
+            foreach (VisualStateGroup group in groups)
+                if (group.Name == name)
+                    return group;
+
+            return null;
+        }
+
+        private async void vgroup_CurrentStateChanging(object sender, VisualStateChangedEventArgs e)
+        {
+            if (e.NewState.Name == "CompressionTop")
+            {
+            }
+
+            if (e.NewState.Name == "CompressionBottom")
+            {
+                await ImageLibraryViewModel.Instance.LoadNext(LOADED_IMAGES_PER_INTERVAL);
+            }
+            if (e.NewState.Name == "NoVerticalCompression")
+            {
+            }
+        }
+        private void group_CurrentStateChanging(object sender, VisualStateChangedEventArgs e)
+        {
+            if (e.NewState.Name == "Scrolling")
+            {
+            }
+            else
+            {
+            }
+        }
+
+        #endregion
     }
 }

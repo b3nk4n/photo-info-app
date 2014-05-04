@@ -1,11 +1,13 @@
 ﻿using Microsoft.Xna.Framework.Media;
 using PhoneKit.Framework.Core.MVVM;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ImageInfoTool.App.ViewModels
@@ -29,6 +31,79 @@ namespace ImageInfoTool.App.ViewModels
             _isAllDataLoaded = false;
         }
 
+
+        /// <summary>
+        /// Loads all images from the library.
+        /// </summary>
+        /// <param name="startIndex">The start index.</param>
+        /// <param name="endIndex">The end index inclusive.</param>
+        public async Task LoadPart(int startIndex, int endIndex)
+        {
+            if (_isAllDataLoaded)
+                return;
+
+            List<ImageViewModel> tempList = new List<ImageViewModel>();
+            var currentCount = _images.Count;
+            var start = Math.Max(currentCount, startIndex);
+
+            await Task.Run(() =>
+            {
+                var end = Math.Min(endIndex, MediaLibrary.Pictures.Count - 1);
+
+                for (int i = start; i <= end; ++i)
+                {
+                    var picture = MediaLibrary.Pictures[i];
+                    tempList.Add(new ImageViewModel(picture));
+                }
+
+                if (end == MediaLibrary.Pictures.Count - 1)
+                    _isAllDataLoaded = true;
+            });
+
+            // add all afterwards to get no cross-thread exception
+            foreach (var tempImage in tempList)
+            {
+                _images.Add(tempImage);
+                //_images.Insert(start, tempImage);
+            }
+        }
+
+        /// <summary>
+        /// Loads all images from the library.
+        /// </summary>
+        /// <param name="startIndex">The start index.</param>
+        /// <param name="endIndex">The end index inclusive.</param>
+        public async Task LoadNext(int count)
+        {
+            if (_isAllDataLoaded)
+                return;
+
+            List<ImageViewModel> tempList = new List<ImageViewModel>();
+            var currentCount = _images.Count;
+            var start = currentCount;
+
+            await Task.Run(() =>
+            {
+                var end = Math.Min(currentCount + count - 1, MediaLibrary.Pictures.Count - 1);
+
+                for (int i = start; i <= end; ++i)
+                {
+                    var picture = MediaLibrary.Pictures[i];
+                    tempList.Add(new ImageViewModel(picture));
+                }
+
+                if (end == MediaLibrary.Pictures.Count - 1)
+                    _isAllDataLoaded = true;
+            });
+
+            // add all afterwards to get no cross-thread exception
+            foreach (var tempImage in tempList)
+            {
+                _images.Add(tempImage);
+                //_images.Insert(start, tempImage);
+            }
+        }
+
         /// <summary>
         /// Loads all images from the library.
         /// </summary>
@@ -39,7 +114,8 @@ namespace ImageInfoTool.App.ViewModels
 
             foreach (var image in MediaLibrary.Pictures)
             {
-                _images.Insert(0, new ImageViewModel(image));
+                _images.Add(new ImageViewModel(image));
+                //_images.Insert(0, new ImageViewModel(image));
             }
 
             _isAllDataLoaded = true;
@@ -47,7 +123,7 @@ namespace ImageInfoTool.App.ViewModels
 
         public void InserImage(ImageViewModel image)
         {
-            _images.Insert(0, image);
+            //_images.Insert(0, image);
         }
 
         /// <summary>
@@ -84,7 +160,10 @@ namespace ImageInfoTool.App.ViewModels
 
                 retryCounter--;
 
-                if (photo.Width > 480 && photo.Height > 800 && photo.Album.Name.ToUpper() != "WHATSAPP" && photo.Album.Name.ToUpper() != "SCREENSHOTS")
+                if (photo.Width > 480 && photo.Height > 800 &&
+                    photo.Album.Name.ToUpper() != "WHATSAPP" && 
+                    photo.Album.Name.ToUpper() != "SCREENSHOTS" && 
+                    photo.Album.Name.ToUpper() != "PICTURES")
                     break;
 
                 photo = null;
@@ -125,7 +204,7 @@ namespace ImageInfoTool.App.ViewModels
             }
         }
 
-        public IList<ImageViewModel> Images
+        public ObservableCollection<ImageViewModel> Images
         {
             get
             {

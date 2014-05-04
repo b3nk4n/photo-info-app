@@ -661,6 +661,15 @@ namespace ImageInfoTool.App.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die show with GeoPhoto ähnelt.
+        /// </summary>
+        public static string ShowWithGeoPhoto {
+            get {
+                return ResourceManager.GetString("ShowWithGeoPhoto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die support and feedback ähnelt.
         /// </summary>
         public static string SupportAndFeedback {

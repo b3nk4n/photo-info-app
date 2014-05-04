@@ -13,6 +13,84 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait">
+    
+    <phone:PhoneApplicationPage.Resources>
+        <Style TargetType="ScrollViewer">
+            <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
+            <!--<Setter Property="HorizontalScrollBarVisibility" Value="Auto"/>-->
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ScrollViewer">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" 
+Background="{TemplateBinding Background}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="ScrollStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="00:00:00.5"/>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Scrolling">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="VerticalScrollBar" 
+Storyboard.TargetProperty="Opacity" To="1" Duration="0"/>
+                                            <DoubleAnimation Storyboard.TargetName="HorizontalScrollBar" 
+Storyboard.TargetProperty="Opacity" To="1" Duration="0"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="NotScrolling">
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="VerticalCompression">
+                                    <VisualState x:Name="NoVerticalCompression"/>
+                                    <VisualState x:Name="CompressionTop"/>
+                                    <VisualState x:Name="CompressionBottom"/>
+                                </VisualStateGroup>
+                                <!--<VisualStateGroup x:Name="HorizontalCompression">
+                                    <VisualState x:Name="NoHorizontalCompression"/>
+                                    <VisualState x:Name="CompressionLeft"/>
+                                    <VisualState x:Name="CompressionRight"/>
+                                </VisualStateGroup>-->
+                            </VisualStateManager.VisualStateGroups>
+                            <Grid Margin="{TemplateBinding Padding}">
+                                <ScrollContentPresenter x:Name="ScrollContentPresenter" Content="{TemplateBinding Content}" 
+ContentTemplate="{TemplateBinding ContentTemplate}"/>
+                                <ScrollBar x:Name="VerticalScrollBar" IsHitTestVisible="False" Height="Auto" Width="5" 
+HorizontalAlignment="Right" VerticalAlignment="Stretch" Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" 
+IsTabStop="False" Maximum="{TemplateBinding ScrollableHeight}" Minimum="0" Value="{TemplateBinding VerticalOffset}" 
+Orientation="Vertical" ViewportSize="{TemplateBinding ViewportHeight}" />
+                                <ScrollBar x:Name="HorizontalScrollBar" IsHitTestVisible="False" Width="Auto" Height="5" 
+HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" 
+IsTabStop="False" Maximum="{TemplateBinding ScrollableWidth}" Minimum="0" Value="{TemplateBinding HorizontalOffset}" 
+Orientation="Horizontal" ViewportSize="{TemplateBinding ViewportWidth}" />
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Storyboard x:Name="ShowBackgroundImageAnimation">
+            <DoubleAnimation Duration="0:0:3" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="BackgroundImage" d:IsOptimized="True">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseInOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+
+        <Storyboard x:Name="ImagesSlideIn">
+            <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.66" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="ImageScrollViewer">
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <QuarticEase EasingMode="EaseInOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+    </phone:PhoneApplicationPage.Resources>
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -42,25 +120,32 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Image x:Name="BackgroundImage" Grid.RowSpan="2" Stretch="UniformToFill" Width="480" Height="800" VerticalAlignment="Center">
+        <Image x:Name="BackgroundImage" Grid.RowSpan="2" Stretch="UniformToFill" Width="480" Height="800" VerticalAlignment="Center" Opacity="0">
             <Image.OpacityMask>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                    <GradientStop Offset="0" Color="#88FFFFFF" />
-                    <GradientStop Offset="0.66" Color="Transparent" />
-                    <GradientStop Offset="1" Color="Transparent" />
+                    <GradientStop Offset="0" Color="#DDFFFFFF" />
+                    <GradientStop Offset="0.5" Color="#22FFFFFF" />
+                    <GradientStop Offset="1" Color="#11FFFFFF" />
                 </LinearGradientBrush>
             </Image.OpacityMask>
+            <Image.RenderTransform>
+                <CompositeTransform />
+            </Image.RenderTransform>
         </Image>
 
         
 
         <!--ContentPanel - zusätzliche Inhalte hier platzieren-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,30">
-            <ScrollViewer>
+            <ScrollViewer x:Name="ImageScrollViewer">
+                <ScrollViewer.RenderTransform>
+                    <CompositeTransform TranslateY="800" />
+                </ScrollViewer.RenderTransform>
                 <StackPanel>
                     <!--TitlePanel enthält den Namen der Anwendung und den Seitentitel-->
-                    <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-                        <TextBlock Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+                    <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="-8,17,-12,28" Orientation="Horizontal">
+                        <Image Source="/Assets/logo200.png" Height="120" />
+                        <TextBlock Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Margin="0,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" FontSize="92"/>
                     </StackPanel>
                     <ItemsControl x:Name="ImageList" ItemsSource="{Binding Images}" >
                         <ItemsControl.ItemsPanel>

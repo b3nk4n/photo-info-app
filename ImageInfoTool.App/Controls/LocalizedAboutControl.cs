@@ -32,6 +32,7 @@ namespace ImageInfoTool.App.Controls
             ContributorsListVisibility = System.Windows.Visibility.Visible;
             IList<ContributorModel> contributors = new List<ContributorModel>();
             contributors.Add(new ContributorModel("/Assets/Images/icon.png", "Johanna from The Noun Project"));
+            contributors.Add(new ContributorModel("/Assets/Images/geophoto.png", "Timo Partl for GeoPhoto benefits"));
             SetContributorsList(contributors);
         }
     }

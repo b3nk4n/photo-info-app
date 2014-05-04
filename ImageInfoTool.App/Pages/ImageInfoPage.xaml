@@ -91,9 +91,9 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Grid Height="500" Visibility="{Binding HasAttachement, Converter={StaticResource boolToVis}}">
+            <Grid Height="800" Margin="0,-200,0,0" Visibility="{Binding HasAttachement, Converter={StaticResource boolToVis}}">
                 <Grid.Clip>
-                    <RectangleGeometry Rect="0,0,480,500" />
+                    <RectangleGeometry Rect="0,0,480,800" />
                 </Grid.Clip>
                 <Grid.OpacityMask>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
@@ -118,10 +118,10 @@
             <Rectangle VerticalAlignment="Center" Height="800" Grid.RowSpan="2" Fill="{StaticResource PhoneBackgroundBrush}">
                 <Rectangle.OpacityMask>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Offset="0" Color="#88FFFFFF" />
+                        <GradientStop Offset="0" Color="#66FFFFFF" />
                         <GradientStop Offset="0.5" Color="White" />
                         <GradientStop Offset="0.55" Color="White" />
-                        <GradientStop Offset="1" Color="#88FFFFFF" />
+                        <GradientStop Offset="1" Color="#66FFFFFF" />
                     </LinearGradientBrush>
                 </Rectangle.OpacityMask>
             </Rectangle>
@@ -235,16 +235,20 @@
                             <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding GPSAltitude}" Style="{StaticResource DesciptionStyle}" Visibility="{Binding ExifData.HasGPSAltitude, Converter={StaticResource boolToVis}}" />
                         </Grid>
                     </StackPanel>
-                    <StackPanel Visibility="{Binding ExifData.HasGPS, Converter={StaticResource boolToVis}, ConverterParameter=!}">
-                        <Button Command="{Binding OpenInGeoPhotoCommand}" HorizontalAlignment="Left"
-                                    Template="{StaticResource EmptyControlTemplate}">
-                            <StackPanel Orientation="Horizontal" toolkit:TiltEffect.IsTiltEnabled="True">
-                                <TextBlock Text="{Binding Path=LocalizedResources.AddWithGeoPhoto, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextLargeStyle}" VerticalAlignment="Center" />
-                                <Image Source="{Binding AddWithGeoPhotoImagePath}" Height="48" />
-                            </StackPanel>
-                        </Button>
-                    </StackPanel>
-
+                    <Button Command="{Binding OpenInGeoPhotoCommand}" HorizontalAlignment="Left" Template="{StaticResource EmptyControlTemplate}"
+                            Visibility="{Binding ExifData.HasGPS, Converter={StaticResource boolToVis}, ConverterParameter=!}">
+                        <StackPanel Orientation="Horizontal" toolkit:TiltEffect.IsTiltEnabled="True">
+                            <TextBlock Text="{Binding Path=LocalizedResources.AddWithGeoPhoto, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextLargeStyle}" VerticalAlignment="Center" />
+                            <Image Source="{Binding AddWithGeoPhotoImagePath}" Height="48" />
+                        </StackPanel>
+                    </Button>
+                    <Button Command="{Binding OpenInGeoPhotoCommand}" HorizontalAlignment="Left" Template="{StaticResource EmptyControlTemplate}"
+                            Visibility="{Binding ExifData.HasGPS, Converter={StaticResource boolToVis}}">
+                        <StackPanel Orientation="Horizontal" toolkit:TiltEffect.IsTiltEnabled="True">
+                            <TextBlock Text="{Binding Path=LocalizedResources.ShowWithGeoPhoto, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextLargeStyle}" VerticalAlignment="Center" />
+                            <Image Source="{Binding ShowWithGeoPhotoImagePath}" Height="48" />
+                        </StackPanel>
+                    </Button>
                 </StackPanel>
             </ScrollViewer>
         </Grid>

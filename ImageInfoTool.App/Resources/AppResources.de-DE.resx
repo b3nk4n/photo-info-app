@@ -321,6 +321,7 @@ Das würde uns sehr motivieren um die App noch besser zu machen!</value>
   </data>
   <data name="AddWithGeoPhoto" xml:space="preserve">
     <value>mit GeoPhoto hinzufügen</value>
+    <comment>ImageInfoPage</comment>
   </data>
   <data name="HideFileNameTitle" xml:space="preserve">
     <value>Dateinamen ausblenden</value>
@@ -374,5 +375,9 @@ Das würde uns sehr motivieren um die App noch besser zu machen!</value>
   <data name="SettingsMapTypeTitle" xml:space="preserve">
     <value>Kartentyp</value>
     <comment>SettingsPage</comment>
+  </data>
+  <data name="ShowWithGeoPhoto" xml:space="preserve">
+    <value>in GeoPhoto anzeigen</value>
+    <comment>ImageInfoPage</comment>
   </data>
 </root>

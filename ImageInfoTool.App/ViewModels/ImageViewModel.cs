@@ -330,13 +330,28 @@ namespace ImageInfoTool.App.ViewModels
 
 
         /// <summary>
-        /// Gets the email button image path.
+        /// Gets the add image path.
         /// </summary>
         public string AddWithGeoPhotoImagePath
         {
             get
             {
                 const string imageName = "add.png";
+                if (PhoneThemeHelper.IsLightThemeActive)
+                    return AppConstants.THEME_LIGHT_BASEPATH + imageName;
+                else
+                    return AppConstants.THEME_DARK_BASEPATH + imageName;
+            }
+        }
+
+        /// <summary>
+        /// Gets the show image path.
+        /// </summary>
+        public string ShowWithGeoPhotoImagePath
+        {
+            get
+            {
+                const string imageName = "show.png";
                 if (PhoneThemeHelper.IsLightThemeActive)
                     return AppConstants.THEME_LIGHT_BASEPATH + imageName;
                 else

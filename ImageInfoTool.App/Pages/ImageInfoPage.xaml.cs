@@ -41,9 +41,10 @@ namespace ImageInfoTool.App.Pages
                         var lng = GeoLocationHelper.ToDouble(exif.GPSLongitude);
                         MapControl.ZoomLevel = 11;
                         MapControl.CartographicMode = AppSettings.MapType.Value;
-                        var center = new GeoCoordinate(lat, lng);
-                        MapControl.Center = center;
-                        UpdateOverlayAtCenter(center);
+                        var photoPosition = new GeoCoordinate(lat, lng);
+                        var centerPosition = new GeoCoordinate(photoPosition.Latitude + 0.0175, photoPosition.Longitude);
+                        MapControl.Center = centerPosition;
+                        UpdateOverlayAtCenter(photoPosition);
                         ShowMapAnimation.Begin();
                     }
                 }

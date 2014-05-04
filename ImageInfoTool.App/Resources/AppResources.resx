@@ -317,6 +317,7 @@ Showing us some love on the store helps us to continue to work on the app and ma
   </data>
   <data name="AddWithGeoPhoto" xml:space="preserve">
     <value>add with GeoPhoto</value>
+    <comment>ImageInfoPage</comment>
   </data>
   <data name="HideFileNameTitle" xml:space="preserve">
     <value>Hide file name</value>
@@ -370,5 +371,9 @@ Showing us some love on the store helps us to continue to work on the app and ma
   <data name="SettingsMapTypeTitle" xml:space="preserve">
     <value>Map type</value>
     <comment>SettingsPage</comment>
+  </data>
+  <data name="ShowWithGeoPhoto" xml:space="preserve">
+    <value>show with GeoPhoto</value>
+    <comment>ImageInfoPage</comment>
   </data>
 </root>

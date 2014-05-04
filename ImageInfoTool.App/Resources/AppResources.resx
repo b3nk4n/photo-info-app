@@ -384,4 +384,12 @@ Showing us some love on the store helps us to continue to work on the app and ma
     <value>settings</value>
     <comment>AppBar</comment>
   </data>
+  <data name="MessageBoxRemoveAdContent" xml:space="preserve">
+    <value>We love to get user feedback. Each review helps us to make each app even better. As a thank-you gif, all adverts will disappear for two weeks! Do you want to rate the app now?</value>
+    <comment>MessageBox</comment>
+  </data>
+  <data name="MessageBoxRemoveAdTitle" xml:space="preserve">
+    <value>Annoyed by adverts?</value>
+    <comment>MessageBox</comment>
+  </data>
 </root>

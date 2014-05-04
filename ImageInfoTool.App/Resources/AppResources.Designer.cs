@@ -495,6 +495,24 @@ namespace ImageInfoTool.App.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die We love to get user feedback. Each review helps us to make each app even better. As a thank-you gif, all adverts will disappear for two weeks! Do you want to rate the app now? ähnelt.
+        /// </summary>
+        public static string MessageBoxRemoveAdContent {
+            get {
+                return ResourceManager.GetString("MessageBoxRemoveAdContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Annoyed by adverts? ähnelt.
+        /// </summary>
+        public static string MessageBoxRemoveAdTitle {
+            get {
+                return ResourceManager.GetString("MessageBoxRemoveAdTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Warning ähnelt.
         /// </summary>
         public static string MessageBoxWarning {

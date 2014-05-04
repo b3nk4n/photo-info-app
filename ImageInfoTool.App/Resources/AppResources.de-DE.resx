@@ -388,4 +388,12 @@ Das würde uns sehr motivieren um die App noch besser zu machen!</value>
     <value>einstell.</value>
     <comment>AppBar</comment>
   </data>
+  <data name="MessageBoxRemoveAdContent" xml:space="preserve">
+    <value>Wir lieben Feedback. Jeder Kommentar hilft uns unsere Apps noch besser zu machen. Als Dankeschön wird die Werbung für 2 Wochen verschwinden! Willst du die App jetzt bewerten?</value>
+    <comment>MessageBox</comment>
+  </data>
+  <data name="MessageBoxRemoveAdTitle" xml:space="preserve">
+    <value>Genervt von Werbung?</value>
+    <comment>MessageBox</comment>
+  </data>
 </root>

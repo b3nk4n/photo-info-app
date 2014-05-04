@@ -170,9 +170,16 @@
     <Content Include="Assets\ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Banners\GeoPhoto_adduplex.png" />
+    <Content Include="Assets\Banners\pocketBRAIN_adduplex.png" />
+    <Content Include="Assets\Banners\powernAPP_adduplex.png" />
+    <Content Include="Assets\Banners\ScribbleHunter_adduplex.png" />
+    <Content Include="Assets\Banners\SpacepiXX_adduplex.png" />
+    <Content Include="Assets\Banners\SpaceScribble_adduplex.png" />
     <Content Include="Assets\Images\176.png" />
     <Content Include="Assets\Images\33.png" />
     <Content Include="Assets\Images\69.png" />
+    <Content Include="Assets\Images\close.png" />
     <Content Include="Assets\Images\dark\add.png" />
     <Content Include="Assets\Images\dark\logo200.png" />
     <Content Include="Assets\Images\dark\show.png" />

@@ -51,11 +51,13 @@ namespace ImageInfoTool.App
             // register startup actions
             StartupActionManager.Instance.Register(5, ActionExecutionRule.Equals, () =>
             {
-                FeedbackManager.Instance.StartFirst();
+                if (!AppSettings.HasReviewed.Value)
+                    FeedbackManager.Instance.StartFirst();
             });
             StartupActionManager.Instance.Register(10, ActionExecutionRule.Equals, () =>
             {
-                FeedbackManager.Instance.StartSecond();
+                if (!AppSettings.HasReviewed.Value)
+                    FeedbackManager.Instance.StartSecond();
             }); 
 
             InitializeBackgroundImage();

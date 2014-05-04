@@ -9,6 +9,7 @@
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:maps="clr-namespace:Microsoft.Phone.Maps.Controls;assembly=Microsoft.Phone.Maps"
     xmlns:conv="clr-namespace:PhoneKit.Framework.Conversion;assembly=PhoneKit.Framework"
+    xmlns:adverts="clr-namespace:PhoneKit.Framework.Advertising;assembly=PhoneKit.Framework"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -56,6 +57,14 @@
                     </EasingDoubleKeyFrame.EasingFunction>
                 </EasingDoubleKeyFrame>
             </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Name="ShowBannerAnimation">
+            <DoubleAnimation BeginTime="0:0:5" Duration="0:0:2" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="BannerContainer" d:IsOptimized="True">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseInOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
         </Storyboard>
 
     </phone:PhoneApplicationPage.Resources>
@@ -252,6 +261,23 @@
                     </Button>
                 </StackPanel>
             </ScrollViewer>
+
+            <!-- Banner -->
+            <Grid x:Name="BannerContainer" toolkit:TiltEffect.IsTiltEnabled="True" VerticalAlignment="Top" Height="80" Width="480" Opacity="0">
+                <adverts:OfflineAdControl x:Name="BannerControl" Width="480" Height="80" Visibility="Collapsed">
+                    <adverts:OfflineAdControl.OpacityMask>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Offset="0" Color="#FFFFFFFF" />
+                            <GradientStop Offset="0.95" Color="#DDFFFFFF" />
+                            <GradientStop Offset="1" Color="#66FFFFFF" />
+                        </LinearGradientBrush>
+                    </adverts:OfflineAdControl.OpacityMask>
+                </adverts:OfflineAdControl>
+                <Border x:Name="RemoveAdButton" Background="{StaticResource PhoneAccentBrush}" Width="32" Height="32" Opacity="0.9"
+                    VerticalAlignment="Top" HorizontalAlignment="Right">
+                    <Image Source="/Assets/Images/close.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </Border>
+            </Grid>
         </Grid>
     </Grid>
 

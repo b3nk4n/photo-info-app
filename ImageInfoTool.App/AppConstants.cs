@@ -44,6 +44,11 @@ namespace ImageInfoTool.App
         /// <summary>
         /// The in-app key "no adverts".
         /// </summary>
-        public const string NO_ADVERTS_IN_APP_KEY = "imageInfoNoAdverts";
+        public const string PRO_VERSION_IN_APP_KEY = "imageInfoPro";
+
+        /// <summary>
+        /// The time interval of the ad free version in days.
+        /// </summary>
+        public const int AD_FREE_TRIAL_TIME_IN_DAYS = 14;
     }
 }

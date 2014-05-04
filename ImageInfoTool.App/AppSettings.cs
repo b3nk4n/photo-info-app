@@ -19,5 +19,15 @@ namespace ImageInfoTool.App
         /// Setting for whether the file name should be hidden.
         /// </summary>
         public static StoredObject<MapCartographicMode> MapType = new StoredObject<MapCartographicMode>("_mapType_", MapCartographicMode.Road);
+
+        /// <summary>
+        /// Indicates whether the user has reviewed the app.
+        /// </summary>
+        public static StoredObject<bool> HasReviewed = new StoredObject<bool>("_hasReviewed_", false);
+
+        /// <summary>
+        /// Indicates the deadline for the removed add when the user has reviewed the app.
+        /// </summary>
+        public static StoredObject<DateTime> AddFreeDateDeadline = new StoredObject<DateTime>("_hasReviewedAddFreeDeadline_", DateTime.MinValue);
     }
 }

@@ -18,7 +18,7 @@ namespace ImageInfoTool.App.Controls
             InAppStoreLoadingText = AppResources.InAppStoreLoading;
             InAppStoreNoProductsText = AppResources.InAppStoreNoProducts;
             InAppStorePurchasedText = AppResources.InAppStorePurchased;
-            SupportedProductIds = AppConstants.NO_ADVERTS_IN_APP_KEY;
+            SupportedProductIds = AppConstants.PRO_VERSION_IN_APP_KEY;
         }
     }
 }

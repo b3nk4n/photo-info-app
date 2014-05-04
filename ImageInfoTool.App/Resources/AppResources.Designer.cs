@@ -243,6 +243,42 @@ namespace ImageInfoTool.App.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die loading... ähnelt.
+        /// </summary>
+        public static string InAppStoreLoading {
+            get {
+                return ResourceManager.GetString("InAppStoreLoading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die There are currently no in-app purchases available. Please try again later. ähnelt.
+        /// </summary>
+        public static string InAppStoreNoProducts {
+            get {
+                return ResourceManager.GetString("InAppStoreNoProducts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die purchased ähnelt.
+        /// </summary>
+        public static string InAppStorePurchased {
+            get {
+                return ResourceManager.GetString("InAppStorePurchased", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die in-app store ähnelt.
+        /// </summary>
+        public static string InAppStoreTitle {
+            get {
+                return ResourceManager.GetString("InAppStoreTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die album name ähnelt.
         /// </summary>
         public static string InfoAlbumName {

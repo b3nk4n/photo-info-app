@@ -79,6 +79,14 @@ namespace ImageInfoTool.App
             };
             ApplicationBar.MenuItems.Add(appBarSettingsMenuItem);
 
+            // in-app store
+            ApplicationBarMenuItem appBarStoreMenuItem = new ApplicationBarMenuItem(AppResources.InAppStoreTitle);
+            ApplicationBar.MenuItems.Add(appBarStoreMenuItem);
+            appBarStoreMenuItem.Click += (s, e) =>
+            {
+                NavigationService.Navigate(new Uri("/Pages/InAppStorePage.xaml", UriKind.Relative));
+            };
+
             // about
             ApplicationBarMenuItem appBarAboutMenuItem = new ApplicationBarMenuItem(AppResources.AboutTitle);
             appBarAboutMenuItem.Click += (s, e) =>

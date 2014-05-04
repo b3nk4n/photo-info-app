@@ -35,5 +35,10 @@ namespace ImageInfoTool.App
         /// The dark theme base path.
         /// </summary>
         public const string THEME_DARK_BASEPATH = "/Assets/Images/dark/";
+
+        /// <summary>
+        /// The in-app key "no adverts".
+        /// </summary>
+        public const string NO_ADVERTS_IN_APP_KEY = "imageInfoNoAdverts";
     }
 }

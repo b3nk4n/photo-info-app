@@ -335,6 +335,22 @@ Showing us some love on the store helps us to continue to work on the app and ma
   <data name="MessageBoxWarning" xml:space="preserve">
     <value>Warning</value>
   </data>
+  <data name="InAppStoreLoading" xml:space="preserve">
+    <value>loading...</value>
+    <comment>InAppStorePage</comment>
+  </data>
+  <data name="InAppStoreNoProducts" xml:space="preserve">
+    <value>There are currently no in-app purchases available. Please try again later.</value>
+    <comment>InAppStorePage</comment>
+  </data>
+  <data name="InAppStorePurchased" xml:space="preserve">
+    <value>purchased</value>
+    <comment>InAppStorePage</comment>
+  </data>
+  <data name="InAppStoreTitle" xml:space="preserve">
+    <value>in-app store</value>
+    <comment>InAppStorePage</comment>
+  </data>
   <data name="SettingsMapTypeAerial" xml:space="preserve">
     <value>Aerial</value>
     <comment>SettigsPage</comment>

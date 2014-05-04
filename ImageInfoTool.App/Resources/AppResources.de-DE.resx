@@ -339,6 +339,22 @@ Das würde uns sehr motivieren um die App noch besser zu machen!</value>
     <value>einstellungen</value>
     <comment>SettingsPage</comment>
   </data>
+  <data name="InAppStoreLoading" xml:space="preserve">
+    <value>lade...</value>
+    <comment>InAppStorePage</comment>
+  </data>
+  <data name="InAppStoreNoProducts" xml:space="preserve">
+    <value>Aktuell gibt es keine In-App-Käufe. Versuchen Sie es später noch einmal.</value>
+    <comment>InAppStorePage</comment>
+  </data>
+  <data name="InAppStorePurchased" xml:space="preserve">
+    <value>gekauft</value>
+    <comment>InAppStorePage</comment>
+  </data>
+  <data name="InAppStoreTitle" xml:space="preserve">
+    <value>erweiterungen</value>
+    <comment>InAppStorePage</comment>
+  </data>
   <data name="SettingsMapTypeAerial" xml:space="preserve">
     <value>Luftbild</value>
     <comment>SettigsPage</comment>

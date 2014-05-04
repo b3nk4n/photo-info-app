@@ -50,7 +50,7 @@
         </Storyboard>
 
         <Storyboard x:Name="ImageInfoSlideIn">
-            <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.66" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="ImageInfoScroller">
+            <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.1" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="ImageInfoScroller">
                 <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0">
                     <EasingDoubleKeyFrame.EasingFunction>
                         <QuarticEase EasingMode="EaseInOut"/>
@@ -69,7 +69,7 @@
 
     </phone:PhoneApplicationPage.Resources>
 
-    <toolkit:TransitionService.NavigationInTransition>
+    <!--<toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
             <toolkit:NavigationInTransition.Backward>
                 <toolkit:SlideTransition Mode="SlideUpFadeIn"/>
@@ -86,6 +86,27 @@
             </toolkit:NavigationOutTransition.Backward>
             <toolkit:NavigationOutTransition.Forward>
                 <toolkit:SlideTransition Mode="SlideDownFadeOut"/>
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>-->
+
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardIn" />
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardIn" />
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardOut" />
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardOut" />
             </toolkit:NavigationOutTransition.Forward>
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
@@ -125,13 +146,25 @@
             <maps:Map Grid.Row="1" x:Name="MapControl" Height="450" Width="480" VerticalAlignment="Bottom" Margin="0,0,0,-50"
                       Opacity="0" Visibility="Collapsed"/>
 
-            <Rectangle VerticalAlignment="Center" Height="800" Grid.RowSpan="2" Fill="{StaticResource PhoneBackgroundBrush}">
+            <!--<Rectangle VerticalAlignment="Center" Height="800" Grid.RowSpan="2" Fill="{StaticResource PhoneBackgroundBrush}">
                 <Rectangle.OpacityMask>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
                         <GradientStop Offset="0" Color="#66FFFFFF" />
                         <GradientStop Offset="0.5" Color="White" />
                         <GradientStop Offset="0.55" Color="White" />
                         <GradientStop Offset="1" Color="#66FFFFFF" />
+                    </LinearGradientBrush>
+                </Rectangle.OpacityMask>
+            </Rectangle>-->
+
+            <Rectangle VerticalAlignment="Center" Height="1600" Margin="0,-200,0,-200" Grid.RowSpan="2" Fill="{StaticResource PhoneBackgroundBrush}">
+                <Rectangle.OpacityMask>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Offset="0" Color="Transparent" />
+                        <GradientStop Offset="0.25" Color="#66FFFFFF" />
+                        <GradientStop Offset="0.5" Color="White" />
+                        <GradientStop Offset="0.525" Color="White" />
+                        <GradientStop Offset="1" Color="Transparent" />
                     </LinearGradientBrush>
                 </Rectangle.OpacityMask>
             </Rectangle>
@@ -245,14 +278,14 @@
                             <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding GPSAltitude}" Style="{StaticResource DesciptionStyle}" Visibility="{Binding ExifData.HasGPSAltitude, Converter={StaticResource boolToVis}}" />
                         </Grid>
                     </StackPanel>
-                    <Button Command="{Binding OpenInGeoPhotoCommand}" HorizontalAlignment="Left" Template="{StaticResource EmptyControlTemplate}"
+                    <Button Command="{Binding OpenInGeoPhotoCommand}" HorizontalAlignment="Left" Template="{StaticResource EmptyControlTemplate}" Margin="{StaticResource PhoneVerticalMargin}"
                             Visibility="{Binding ExifData.HasGPS, Converter={StaticResource boolToVis}, ConverterParameter=!}">
                         <StackPanel Orientation="Horizontal" toolkit:TiltEffect.IsTiltEnabled="True">
                             <TextBlock Text="{Binding Path=LocalizedResources.AddWithGeoPhoto, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextLargeStyle}" VerticalAlignment="Center" />
                             <Image Source="{Binding AddWithGeoPhotoImagePath}" Height="48" />
                         </StackPanel>
                     </Button>
-                    <Button Command="{Binding OpenInGeoPhotoCommand}" HorizontalAlignment="Left" Template="{StaticResource EmptyControlTemplate}"
+                    <Button Command="{Binding OpenInGeoPhotoCommand}" HorizontalAlignment="Left" Template="{StaticResource EmptyControlTemplate}" Margin="{StaticResource PhoneVerticalMargin}"
                             Visibility="{Binding ExifData.HasGPS, Converter={StaticResource boolToVis}}">
                         <StackPanel Orientation="Horizontal" toolkit:TiltEffect.IsTiltEnabled="True">
                             <TextBlock Text="{Binding Path=LocalizedResources.ShowWithGeoPhoto, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextLargeStyle}" VerticalAlignment="Center" />

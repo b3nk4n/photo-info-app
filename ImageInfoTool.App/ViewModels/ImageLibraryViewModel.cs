@@ -28,26 +28,21 @@ namespace ImageInfoTool.App.ViewModels
         {
         }
 
-        /// <summary>
-        /// Loads all images from the library.
-        /// </summary>
-        /// <param name="startIndex">The start index.</param>
-        /// <param name="endIndex">The end index inclusive.</param>
-        /// <returns>The number of loaded elements.</returns>
         public async Task<int> LoadNext(int count)
         {
             if (!CanLoadNext)
                 return 0;
 
             List<ImageViewModel> tempList = new List<ImageViewModel>();
+            var totalCount = MediaLibrary.Pictures.Count;
             var currentCount = _images.Count;
-            var start = currentCount;
+            var start = (totalCount - currentCount) - 1;
 
             await Task.Run(() =>
             {
-                var end = Math.Min(currentCount + count - 1, MediaLibrary.Pictures.Count - 1);
+                var end = Math.Max(start - count + 1, 0);
 
-                for (int i = start; i <= end; ++i)
+                for (int i = start; i >= end; --i)
                 {
                     var picture = MediaLibrary.Pictures[i];
                     tempList.Add(new ImageViewModel(picture));

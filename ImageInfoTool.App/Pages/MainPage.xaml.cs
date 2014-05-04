@@ -25,7 +25,7 @@ namespace ImageInfoTool.App
         private const int BOTTOM_OF_LIST = 9999999;
 
         private const int INITIAL_LOADED_IMAGES_ = 40;
-        private const int LOADED_IMAGES_PER_INTERVAL = 80;
+        private const int LOADED_IMAGES_PER_INTERVAL = 120;
 
         /// <summary>
         /// Creates the MainPage instance.
@@ -161,11 +161,11 @@ namespace ImageInfoTool.App
 
         private void ImageClicked(object sender, RoutedEventArgs e)
        {
-            var image = sender as Image;
+            var button = sender as Button;
 
-            if (image != null)
+            if (button != null)
             {
-                var vm = image.DataContext as ImageViewModel;
+                var vm = button.DataContext as ImageViewModel;
 
                 if (vm != null)
                 {

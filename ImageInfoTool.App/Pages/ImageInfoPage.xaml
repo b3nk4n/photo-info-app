@@ -131,7 +131,7 @@
                 <ScrollViewer.RenderTransform>
                     <CompositeTransform TranslateY="800" />
                 </ScrollViewer.RenderTransform>
-                <StackPanel Margin="12,180,12,240">
+                <StackPanel Margin="12,192,12,240">
 
                     <!-- GENERAL -->
                     <TextBlock Text="{Binding Path=LocalizedResources.InfoTitleBasic, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionGroupTitleStyle}"/>

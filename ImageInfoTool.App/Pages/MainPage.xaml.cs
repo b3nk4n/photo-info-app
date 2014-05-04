@@ -24,8 +24,8 @@ namespace ImageInfoTool.App
             {
                 if (e.AddedItems.Count == 1)
                 {
-                    //var image = e.AddedItems[0] as ImageViewModel;
                     var index = ImageList.SelectedIndex;
+                    ImageList.SelectedIndex = -1;
                     NavigateToImageInfoPage(index);
                 }
             };

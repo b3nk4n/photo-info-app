@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using Microsoft.Phone.Maps.Controls;
 
 namespace ImageInfoTool.App.Pages
 {
@@ -22,6 +23,7 @@ namespace ImageInfoTool.App.Pages
             base.OnNavigatedTo(e);
 
             ToggleHideFileName.IsChecked = AppSettings.HideFileName.Value;
+            SelectByTag(PickerMapType, AppSettings.MapType.Value.ToString());
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -30,6 +32,33 @@ namespace ImageInfoTool.App.Pages
 
             if (ToggleHideFileName.IsChecked.HasValue)
                 AppSettings.HideFileName.Value = ToggleHideFileName.IsChecked.Value;
+
+            AppSettings.MapType.Value = (MapCartographicMode)Enum.Parse(typeof(MapCartographicMode), (string)(PickerMapType.SelectedItem as ListPickerItem).Tag);
+        }
+
+        /// <summary>
+        /// Selects a item value by tag value.
+        /// </summary>
+        /// <param name="picker">The list picker.</param>
+        /// <param name="tagToSelect">The tag value of the item to select.</param>
+        private void SelectByTag(ListPicker picker, string tagToSelect)
+        {
+            if (picker == null || tagToSelect == null)
+                return;
+
+            foreach (var item in picker.Items)
+            {
+                var pickerItem = item as ListPickerItem;
+
+                if (pickerItem != null)
+                {
+                    if ((string)pickerItem.Tag == tagToSelect)
+                    {
+                        picker.SelectedItem = pickerItem;
+                        break;
+                    }
+                }
+            }
         }
     }
 }

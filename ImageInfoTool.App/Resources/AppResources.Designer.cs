@@ -432,6 +432,24 @@ namespace ImageInfoTool.App.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The image could not be opened. ähnelt.
+        /// </summary>
+        public static string MessageBoxNoImageFound {
+            get {
+                return ResourceManager.GetString("MessageBoxNoImageFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Warning ähnelt.
+        /// </summary>
+        public static string MessageBoxWarning {
+            get {
+                return ResourceManager.GetString("MessageBoxWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die more apps ähnelt.
         /// </summary>
         public static string MoreApps {
@@ -549,6 +567,51 @@ namespace ImageInfoTool.App.Resources {
         public static string ResourceLanguage {
             get {
                 return ResourceManager.GetString("ResourceLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Aerial ähnelt.
+        /// </summary>
+        public static string SettingsMapTypeAerial {
+            get {
+                return ResourceManager.GetString("SettingsMapTypeAerial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Hybrid ähnelt.
+        /// </summary>
+        public static string SettingsMapTypeHybrid {
+            get {
+                return ResourceManager.GetString("SettingsMapTypeHybrid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Road ähnelt.
+        /// </summary>
+        public static string SettingsMapTypeRoad {
+            get {
+                return ResourceManager.GetString("SettingsMapTypeRoad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Terrain ähnelt.
+        /// </summary>
+        public static string SettingsMapTypeTerrain {
+            get {
+                return ResourceManager.GetString("SettingsMapTypeTerrain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Map type ähnelt.
+        /// </summary>
+        public static string SettingsMapTypeTitle {
+            get {
+                return ResourceManager.GetString("SettingsMapTypeTitle", resourceCulture);
             }
         }
         

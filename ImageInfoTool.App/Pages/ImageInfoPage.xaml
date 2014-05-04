@@ -7,6 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:maps="clr-namespace:Microsoft.Phone.Maps.Controls;assembly=Microsoft.Phone.Maps"
     xmlns:conv="clr-namespace:PhoneKit.Framework.Conversion;assembly=PhoneKit.Framework"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -30,47 +31,51 @@
         <Style x:Key="DesciptionGroupTitleStyle" BasedOn="{StaticResource PhoneTextTitle1Style}" TargetType="TextBlock">
             <Setter Property="Margin" Value="12,18,12,0" />
         </Style>
+        <Storyboard x:Name="ShowMapAnimation">
+        	<DoubleAnimation BeginTime="0:0:1" Duration="0:0:3" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="MapControl" d:IsOptimized="True">
+        		<DoubleAnimation.EasingFunction>
+        			<CubicEase EasingMode="EaseInOut"/>
+        		</DoubleAnimation.EasingFunction>
+        	</DoubleAnimation>
+        </Storyboard>
+
+        <Storyboard x:Name="ShowImageAnimation">
+            <DoubleAnimation Duration="0:0:3" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ImageControl" d:IsOptimized="True">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseInOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+
+        <Storyboard x:Name="ImageInfoSlideIn">
+            <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.66" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="ImageInfoScroller">
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <QuarticEase EasingMode="EaseInOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
 
     </phone:PhoneApplicationPage.Resources>
-
-    <!--<toolkit:TransitionService.NavigationInTransition>
-        <toolkit:NavigationInTransition>
-            <toolkit:NavigationInTransition.Backward>
-                <toolkit:TurnstileTransition Mode="BackwardIn" />
-            </toolkit:NavigationInTransition.Backward>
-            <toolkit:NavigationInTransition.Forward>
-                <toolkit:TurnstileTransition Mode="ForwardIn" />
-            </toolkit:NavigationInTransition.Forward>
-        </toolkit:NavigationInTransition>
-    </toolkit:TransitionService.NavigationInTransition>
-    <toolkit:TransitionService.NavigationOutTransition>
-        <toolkit:NavigationOutTransition>
-            <toolkit:NavigationOutTransition.Backward>
-                <toolkit:TurnstileTransition Mode="BackwardOut" />
-            </toolkit:NavigationOutTransition.Backward>
-            <toolkit:NavigationOutTransition.Forward>
-                <toolkit:TurnstileTransition Mode="ForwardOut" />
-            </toolkit:NavigationOutTransition.Forward>
-        </toolkit:NavigationOutTransition>
-    </toolkit:TransitionService.NavigationOutTransition>-->
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
             <toolkit:NavigationInTransition.Backward>
-                <toolkit:TurnstileFeatherTransition Mode="BackwardIn" />
+                <toolkit:SlideTransition Mode="SlideUpFadeIn"/>
             </toolkit:NavigationInTransition.Backward>
             <toolkit:NavigationInTransition.Forward>
-                <toolkit:TurnstileFeatherTransition Mode="ForwardIn" />
+                <toolkit:SlideTransition Mode="SlideUpFadeIn"/>
             </toolkit:NavigationInTransition.Forward>
         </toolkit:NavigationInTransition>
     </toolkit:TransitionService.NavigationInTransition>
     <toolkit:TransitionService.NavigationOutTransition>
         <toolkit:NavigationOutTransition>
             <toolkit:NavigationOutTransition.Backward>
-                <toolkit:TurnstileFeatherTransition Mode="BackwardOut" />
+                <toolkit:SlideTransition Mode="SlideDownFadeOut"/>
             </toolkit:NavigationOutTransition.Backward>
             <toolkit:NavigationOutTransition.Forward>
-                <toolkit:TurnstileFeatherTransition Mode="ForwardOut" />
+                <toolkit:SlideTransition Mode="SlideDownFadeOut"/>
             </toolkit:NavigationOutTransition.Forward>
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
@@ -80,115 +85,136 @@
 
         <!--ContentPanel - zusätzliche Inhalte hier platzieren-->
         <Grid x:Name="ContentPanel">
-            <Image Source="{Binding Image}" Stretch="UniformToFill" Height="300" VerticalAlignment="Top">
-                <Image.OpacityMask>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid Height="500" Visibility="{Binding HasAttachement, Converter={StaticResource boolToVis}}">
+                <Grid.Clip>
+                    <RectangleGeometry Rect="0,0,480,500" />
+                </Grid.Clip>
+                <Grid.OpacityMask>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
                         <GradientStop Offset="0" Color="White" />
-                        <GradientStop Offset="0.9" Color="White" />
+                        <GradientStop Offset="0.8" Color="White" />
                         <GradientStop Offset="1" Color="Transparent" />
                     </LinearGradientBrush>
-                </Image.OpacityMask>
-            </Image>
-            <Rectangle Fill="{StaticResource PhoneBackgroundBrush}">
+                </Grid.OpacityMask>
+                <Border Grid.Row="0" VerticalAlignment="Top">
+
+                    <Image x:Name="ImageControl" Source="{Binding Image}" Stretch="UniformToFill"
+                            VerticalAlignment="Center" HorizontalAlignment="Center" Opacity="0">
+                        <Image.RenderTransform>
+                            <CompositeTransform />
+                        </Image.RenderTransform>
+                    </Image>
+                </Border>
+            </Grid>
+
+            <maps:Map Grid.Row="1" x:Name="MapControl" Height="450" Width="480" VerticalAlignment="Bottom" Margin="0,0,0,-50"/>
+
+            <Rectangle VerticalAlignment="Center" Height="800" Grid.RowSpan="2" Fill="{StaticResource PhoneBackgroundBrush}">
                 <Rectangle.OpacityMask>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Offset="0" Color="Transparent" />
-                        <GradientStop Offset="0.33" Color="White" />
-                        <GradientStop Offset="1" Color="White" />
+                        <GradientStop Offset="0" Color="#88FFFFFF" />
+                        <GradientStop Offset="0.5" Color="White" />
+                        <GradientStop Offset="0.55" Color="White" />
+                        <GradientStop Offset="1" Color="#88FFFFFF" />
                     </LinearGradientBrush>
                 </Rectangle.OpacityMask>
             </Rectangle>
-            <ScrollViewer>
-                <StackPanel Margin="{StaticResource PhoneHorizontalMargin}">
 
-                    <Rectangle Height="120" />
-                    
+            <ScrollViewer x:Name="ImageInfoScroller" Grid.RowSpan="2">
+                <ScrollViewer.RenderTransform>
+                    <CompositeTransform TranslateY="800" />
+                </ScrollViewer.RenderTransform>
+                <StackPanel Margin="12,180,12,240">
+
                     <!-- GENERAL -->
-                    <TextBlock Text="{Binding Path=LocalizedResources.InfoTitleBasic, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionGroupTitleStyle}"
-                               toolkit:TurnstileFeatherEffect.FeatheringIndex="0"/>
+                    <TextBlock Text="{Binding Path=LocalizedResources.InfoTitleBasic, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionGroupTitleStyle}"/>
 
-                    <StackPanel toolkit:TurnstileFeatherEffect.FeatheringIndex="1" Visibility="{Binding HasName, Converter={StaticResource boolToVis}}">
+                    <StackPanel Visibility="{Binding HasName, Converter={StaticResource boolToVis}}">
                         <TextBlock Text="{Binding Path=LocalizedResources.InfoFileName, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}" />
                         <TextBlock Text="{Binding Name}" Style="{StaticResource DesciptionStyle}" />
                     </StackPanel>
 
-                    <StackPanel toolkit:TurnstileFeatherEffect.FeatheringIndex="2">
+                    <StackPanel>
                         <TextBlock Text="{Binding Path=LocalizedResources.InfoCreationDate, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}" />
                         <TextBlock Text="{Binding CreationDate}" Style="{StaticResource DesciptionStyle}" />
                         <TextBlock Text="{Binding CreationTime}" Style="{StaticResource DesciptionStyle}" />
                     </StackPanel>
 
-                    <StackPanel toolkit:TurnstileFeatherEffect.FeatheringIndex="3">
+                    <StackPanel>
                         <TextBlock Text="{Binding Path=LocalizedResources.InfoFileType, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}" />
                         <TextBlock Text="{Binding FileType}" Style="{StaticResource DesciptionStyle}" />
                     </StackPanel>
 
-                    <StackPanel toolkit:TurnstileFeatherEffect.FeatheringIndex="4">
+                    <StackPanel>
                         <TextBlock Text="{Binding Path=LocalizedResources.InfoResolution, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}" />
                         <TextBlock Text="{Binding Resolution}" Style="{StaticResource DesciptionStyle}" />
                     </StackPanel>
 
-                    <StackPanel toolkit:TurnstileFeatherEffect.FeatheringIndex="5">
+                    <StackPanel>
                         <TextBlock Text="{Binding Path=LocalizedResources.InfoOrientation, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}" />
                         <TextBlock Text="{Binding Orientation}" Style="{StaticResource DesciptionStyle}" />
                     </StackPanel>
 
-                    <StackPanel toolkit:TurnstileFeatherEffect.FeatheringIndex="6">
+                    <StackPanel>
                         <TextBlock Text="{Binding Path=LocalizedResources.InfoFileSize, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}" />
                         <TextBlock Text="{Binding FileSize}" Style="{StaticResource DesciptionStyle}" />
                     </StackPanel>
 
-                    <StackPanel toolkit:TurnstileFeatherEffect.FeatheringIndex="7">
+                    <StackPanel>
                         <TextBlock Text="{Binding Path=LocalizedResources.InfoAlbumName, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}" />
                         <TextBlock Text="{Binding Album}" Style="{StaticResource DesciptionStyle}" />
                     </StackPanel>
 
                     <!-- EXIF -->
-                    <TextBlock Text="{Binding Path=LocalizedResources.InfoTitleExtended, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionGroupTitleStyle}"
-                               toolkit:TurnstileFeatherEffect.FeatheringIndex="8"/>
+                    <TextBlock Text="{Binding Path=LocalizedResources.InfoTitleExtended, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionGroupTitleStyle}"/>
 
-                    <StackPanel toolkit:TurnstileFeatherEffect.FeatheringIndex="9" Visibility="{Binding ExifData.HasExposureTime, Converter={StaticResource boolToVis}}">
+                    <StackPanel Visibility="{Binding ExifData.HasExposureTime, Converter={StaticResource boolToVis}}">
                         <TextBlock Text="{Binding Path=LocalizedResources.InfoExposureTime, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}"/>
                         <TextBlock Text="{Binding ExposureTime}" Style="{StaticResource DesciptionStyle}" />
                     </StackPanel>
 
-                    <StackPanel toolkit:TurnstileFeatherEffect.FeatheringIndex="10" Visibility="{Binding ExifData.HasFNumber, Converter={StaticResource boolToVis}}">
+                    <StackPanel Visibility="{Binding ExifData.HasFNumber, Converter={StaticResource boolToVis}}">
                         <TextBlock Text="{Binding Path=LocalizedResources.InfoFocalRatio, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}"/>
                         <TextBlock Text="{Binding FNumber}" Style="{StaticResource DesciptionStyle}" />
                     </StackPanel>
 
-                    <StackPanel toolkit:TurnstileFeatherEffect.FeatheringIndex="11" Visibility="{Binding ExifData.HasISOSpeedRatings, Converter={StaticResource boolToVis}}">
+                    <StackPanel Visibility="{Binding ExifData.HasISOSpeedRatings, Converter={StaticResource boolToVis}}">
                         <TextBlock Text="{Binding Path=LocalizedResources.InfoISO, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}" />
                         <TextBlock Text="{Binding ExifData.ISOSpeedRatings}" Style="{StaticResource DesciptionStyle}" />
                     </StackPanel>
 
-                    <StackPanel toolkit:TurnstileFeatherEffect.FeatheringIndex="12" Visibility="{Binding ExifData.HasDigitalZoom, Converter={StaticResource boolToVis}}">
+                    <StackPanel Visibility="{Binding ExifData.HasDigitalZoom, Converter={StaticResource boolToVis}}">
                         <TextBlock Text="{Binding Path=LocalizedResources.InfoDigitalZoom, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}" />
                         <TextBlock Text="{Binding DigitalZoom}" Style="{StaticResource DesciptionStyle}">
                         </TextBlock>
                     </StackPanel>
 
-                    <StackPanel toolkit:TurnstileFeatherEffect.FeatheringIndex="13" Visibility="{Binding ExifData.HasWhiteBalance, Converter={StaticResource boolToVis}}">
+                    <StackPanel Visibility="{Binding ExifData.HasWhiteBalance, Converter={StaticResource boolToVis}}">
                         <TextBlock Text="{Binding Path=LocalizedResources.InfoWhiteBalance, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}" />
                         <TextBlock Text="{Binding WhiteBalance}" Style="{StaticResource DesciptionStyle}" />
                     </StackPanel>
 
-                    <StackPanel toolkit:TurnstileFeatherEffect.FeatheringIndex="14" Visibility="{Binding ExifData.HasFlash, Converter={StaticResource boolToVis}}">
+                    <StackPanel Visibility="{Binding ExifData.HasFlash, Converter={StaticResource boolToVis}}">
                         <TextBlock Text="{Binding Path=LocalizedResources.InfoFlash, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}" />
                         <TextBlock Text="{Binding Flash}" Style="{StaticResource DesciptionStyle}" />
                     </StackPanel>
 
-                    <StackPanel toolkit:TurnstileFeatherEffect.FeatheringIndex="15" Visibility="{Binding ExifData.HasModel, Converter={StaticResource boolToVis}}">
+                    <StackPanel Visibility="{Binding ExifData.HasModel, Converter={StaticResource boolToVis}}">
                         <TextBlock Text="{Binding Path=LocalizedResources.InfoModel, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}" />
                         <TextBlock Text="{Binding ExifData.Model}" Style="{StaticResource DesciptionStyle}" />
                     </StackPanel>
 
-                    <StackPanel toolkit:TurnstileFeatherEffect.FeatheringIndex="16" Visibility="{Binding ExifData.HasExifVersion, Converter={StaticResource boolToVis}}">
+                    <StackPanel Visibility="{Binding ExifData.HasExifVersion, Converter={StaticResource boolToVis}}">
                         <TextBlock Text="{Binding Path=LocalizedResources.InfoExifVersion, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}" />
                         <TextBlock Text="{Binding ExifVersion}" Style="{StaticResource DesciptionStyle}" />
                     </StackPanel>
 
-                    <StackPanel toolkit:TurnstileFeatherEffect.FeatheringIndex="17">
+                    <StackPanel>
                         <TextBlock Text="{Binding Path=LocalizedResources.InfoGPS, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}"/>
                         <Grid Visibility="{Binding ExifData.HasGPS, Converter={StaticResource boolToVis}}">
                             <Grid.ColumnDefinitions>
@@ -207,19 +233,16 @@
                             <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding Path=LocalizedResources.InfoAltitude, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionStyle}" Visibility="{Binding ExifData.HasGPSAltitude, Converter={StaticResource boolToVis}}" />
                             <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding GPSAltitude}" Style="{StaticResource DesciptionStyle}" Visibility="{Binding ExifData.HasGPSAltitude, Converter={StaticResource boolToVis}}" />
                         </Grid>
-                    </StackPanel>                         <!-- same feathering index here is wished -->
-                    <StackPanel toolkit:TurnstileFeatherEffect.FeatheringIndex="17" Visibility="{Binding ExifData.HasGPS, Converter={StaticResource boolToVis}, ConverterParameter=!}">
+                    </StackPanel>
+                    <StackPanel Visibility="{Binding ExifData.HasGPS, Converter={StaticResource boolToVis}, ConverterParameter=!}">
                         <Button Command="{Binding OpenInGeoPhotoCommand}" HorizontalAlignment="Left"
                                     Template="{StaticResource EmptyControlTemplate}">
                             <StackPanel Orientation="Horizontal" toolkit:TiltEffect.IsTiltEnabled="True">
-                                <TextBlock Text="{Binding Path=LocalizedResources.AddWithGeoPhoto, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextLargeStyle}" VerticalAlignment="Center" 
-                                                       Foreground="White"/>
+                                <TextBlock Text="{Binding Path=LocalizedResources.AddWithGeoPhoto, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextLargeStyle}" VerticalAlignment="Center" />
                                 <Image Source="{Binding AddWithGeoPhotoImagePath}" Height="48" />
                             </StackPanel>
                         </Button>
                     </StackPanel>
-
-                    <Rectangle Height="120" />
 
                 </StackPanel>
             </ScrollViewer>

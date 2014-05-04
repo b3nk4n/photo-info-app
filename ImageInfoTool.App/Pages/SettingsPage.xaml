@@ -48,7 +48,18 @@
 
         <!--ContentPanel - zusätzliche Inhalte hier platzieren-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <toolkit:ToggleSwitch x:Name="ToggleHideFileName" Header="{Binding Path=LocalizedResources.HideFileNameTitle, Source={StaticResource LocalizedStrings}}" />
+            <StackPanel>
+                <toolkit:ToggleSwitch x:Name="ToggleHideFileName" Header="{Binding Path=LocalizedResources.HideFileNameTitle, Source={StaticResource LocalizedStrings}}" />
+                <StackPanel Margin="0,12">
+                    <TextBlock Text="{Binding Path=LocalizedResources.SettingsMapTypeTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                    <toolkit:ListPicker x:Name="PickerMapType" Margin="{StaticResource PhoneHorizontalMargin}">
+                        <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.SettingsMapTypeRoad, Source={StaticResource LocalizedStrings}}" Tag="Road" />
+                        <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.SettingsMapTypeAerial, Source={StaticResource LocalizedStrings}}" Tag="Aerial" />
+                        <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.SettingsMapTypeHybrid, Source={StaticResource LocalizedStrings}}" Tag="Hybrid" />
+                        <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.SettingsMapTypeTerrain, Source={StaticResource LocalizedStrings}}" Tag="Terrain" />
+                    </toolkit:ListPicker>
+                </StackPanel>
+            </StackPanel>
         </Grid>
     </Grid>
 

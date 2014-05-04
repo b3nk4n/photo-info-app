@@ -142,7 +142,7 @@
     <comment>AboutPage</comment>
   </data>
   <data name="ApplicationTitle" xml:space="preserve">
-    <value>Bildinformationen</value>
+    <value>Bildinfo</value>
     <comment>General</comment>
   </data>
   <data name="ApplicationVersion" xml:space="preserve">
@@ -329,8 +329,34 @@ Das würde uns sehr motivieren um die App noch besser zu machen!</value>
   <data name="InfoFileType" xml:space="preserve">
     <value>dateityp</value>
   </data>
+  <data name="MessageBoxNoImageFound" xml:space="preserve">
+    <value>Das Bild konnte nicht geöffnet werden.</value>
+  </data>
+  <data name="MessageBoxWarning" xml:space="preserve">
+    <value>Warnung</value>
+  </data>
   <data name="SettingsTitle" xml:space="preserve">
     <value>einstellungen</value>
+    <comment>SettingsPage</comment>
+  </data>
+  <data name="SettingsMapTypeAerial" xml:space="preserve">
+    <value>Luftbild</value>
+    <comment>SettigsPage</comment>
+  </data>
+  <data name="SettingsMapTypeHybrid" xml:space="preserve">
+    <value>Hybrid</value>
+    <comment>SettigsPage</comment>
+  </data>
+  <data name="SettingsMapTypeRoad" xml:space="preserve">
+    <value>Straße</value>
+    <comment>SettigsPage</comment>
+  </data>
+  <data name="SettingsMapTypeTerrain" xml:space="preserve">
+    <value>Gerlände</value>
+    <comment>SettigsPage</comment>
+  </data>
+  <data name="SettingsMapTypeTitle" xml:space="preserve">
+    <value>Kartentyp</value>
     <comment>SettingsPage</comment>
   </data>
 </root>

@@ -329,4 +329,30 @@ Showing us some love on the store helps us to continue to work on the app and ma
     <value>settings</value>
     <comment>SettingsPage</comment>
   </data>
+  <data name="MessageBoxNoImageFound" xml:space="preserve">
+    <value>The image could not be opened.</value>
+  </data>
+  <data name="MessageBoxWarning" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="SettingsMapTypeAerial" xml:space="preserve">
+    <value>Aerial</value>
+    <comment>SettigsPage</comment>
+  </data>
+  <data name="SettingsMapTypeHybrid" xml:space="preserve">
+    <value>Hybrid</value>
+    <comment>SettigsPage</comment>
+  </data>
+  <data name="SettingsMapTypeRoad" xml:space="preserve">
+    <value>Road</value>
+    <comment>SettigsPage</comment>
+  </data>
+  <data name="SettingsMapTypeTerrain" xml:space="preserve">
+    <value>Terrain</value>
+    <comment>SettigsPage</comment>
+  </data>
+  <data name="SettingsMapTypeTitle" xml:space="preserve">
+    <value>Map type</value>
+    <comment>SettingsPage</comment>
+  </data>
 </root>

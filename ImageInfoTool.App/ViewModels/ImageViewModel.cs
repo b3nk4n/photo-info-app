@@ -106,6 +106,22 @@ namespace ImageInfoTool.App.ViewModels
             }
         }
 
+        public int Heigth
+        {
+            get
+            {
+                return _image.Height;
+            }
+        }
+
+        public int Width
+        {
+            get
+            {
+                return _image.Width;
+            }
+        }
+
         public string Resolution
         {
             get

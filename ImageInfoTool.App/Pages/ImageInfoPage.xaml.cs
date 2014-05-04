@@ -161,6 +161,31 @@ namespace ImageInfoTool.App.Pages
 
                     }
                 }
+                else if (NavigationContext.QueryString.ContainsKey(AppConstants.PARAM_INSTANCE_ID))
+                {
+                    var totalImages = ImageLibraryViewModel.Instance.Images.Count;
+                    if (totalImages > 0)
+                    {
+                        var idString = NavigationContext.QueryString[AppConstants.PARAM_INSTANCE_ID];
+
+                        int id;
+                        if (int.TryParse(idString, out id))
+                        {
+                            var vm = ImageLibraryViewModel.Instance.GetByInstanceId(id);
+
+                            if (vm != null)
+                            {
+                                UpdateImageTranslation(vm);
+                                vm.LoadExifData();
+                                DataContext = vm;
+                                return;
+                            }
+                            
+                        }
+
+                    }
+                }
+
                 else if (NavigationContext.QueryString.ContainsKey(AppConstants.PARAM_FILE_TOKEN))
                 {
                     var token = NavigationContext.QueryString[AppConstants.PARAM_FILE_TOKEN];

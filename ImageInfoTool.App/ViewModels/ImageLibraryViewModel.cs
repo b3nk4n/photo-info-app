@@ -21,20 +21,33 @@ namespace ImageInfoTool.App.ViewModels
 
         ObservableCollection<ImageViewModel> _images = new ObservableCollection<ImageViewModel>();
 
+        private bool _isAllDataLoaded;
+
         public ImageLibraryViewModel()
         {
-            Load();
+            //LoadAll();
+            _isAllDataLoaded = false;
         }
 
         /// <summary>
         /// Loads all images from the library.
         /// </summary>
-        private void Load()
+        public void LoadAll()
         {
+            if (_isAllDataLoaded)
+                return;
+
             foreach (var image in MediaLibrary.Pictures)
             {
-                _images.Add(new ImageViewModel(image));
+                _images.Insert(0, new ImageViewModel(image));
             }
+
+            _isAllDataLoaded = true;
+        }
+
+        public void InserImage(ImageViewModel image)
+        {
+            _images.Insert(0, image);
         }
 
         /// <summary>
@@ -50,6 +63,53 @@ namespace ImageInfoTool.App.ViewModels
                 return null;
 
             return new ImageViewModel(photo);
+        }
+
+        public ImageViewModel GetRandomFromLibrary()
+        {
+            Picture photo;
+            Random rand = new Random();
+            var imagesCount = MediaLibrary.Pictures.Count;
+
+            if (imagesCount == 0)
+                return null;
+
+            var index = imagesCount / 2;
+            int retryCounter = 20;
+            do
+            {
+                // get one of the "new half"
+                index = rand.Next(imagesCount / 2, imagesCount - 1);
+                photo = MediaLibrary.Pictures[index];
+
+                retryCounter--;
+
+                if (photo.Width > 480 && photo.Height > 800 && photo.Album.Name.ToUpper() != "WHATSAPP" && photo.Album.Name.ToUpper() != "SCREENSHOTS")
+                    break;
+
+                photo = null;
+            } while (retryCounter > 0);
+
+            if (photo == null)
+                return null;
+
+            return new ImageViewModel(photo);
+        }
+
+        /// <summary>
+        /// Gets an image by its instance id.
+        /// </summary>
+        /// <param name="instanceId">The instance id</param>
+        /// <returns>The image viwe model or NULL.</returns>
+        public ImageViewModel GetByInstanceId(int instanceId)
+        {
+            foreach (var image in _images)
+            {
+                if (image.InstanceId == instanceId)
+                    return image;
+            }
+
+            return null;
         }
 
         /// <summary>

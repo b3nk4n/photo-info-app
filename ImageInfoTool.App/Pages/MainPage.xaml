@@ -42,27 +42,43 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!--TitlePanel enthält den Namen der Anwendung und den Seitentitel-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
-        </StackPanel>
+        <Image x:Name="BackgroundImage" Grid.RowSpan="2" Stretch="UniformToFill" Width="480" Height="800" VerticalAlignment="Center">
+            <Image.OpacityMask>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Offset="0" Color="#88FFFFFF" />
+                    <GradientStop Offset="0.66" Color="Transparent" />
+                    <GradientStop Offset="1" Color="Transparent" />
+                </LinearGradientBrush>
+            </Image.OpacityMask>
+        </Image>
+
+        
 
         <!--ContentPanel - zusätzliche Inhalte hier platzieren-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,30">
-            <ListBox x:Name="ImageList" ItemsSource="{Binding Images}" >
-                <ListBox.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <toolkit:WrapPanel />
-                    </ItemsPanelTemplate>
-                </ListBox.ItemsPanel>
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Border Margin="6">
-                            <Image Source="{Binding ThumbnailImage}" Width="102" Height="102" />
-                        </Border>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+            <ScrollViewer>
+                <StackPanel>
+                    <!--TitlePanel enthält den Namen der Anwendung und den Seitentitel-->
+                    <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+                        <TextBlock Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+                    </StackPanel>
+                    <ItemsControl x:Name="ImageList" ItemsSource="{Binding Images}" >
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <toolkit:WrapPanel />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Margin="6">
+                                    <Image Source="{Binding ThumbnailImage}" Width="102" Height="102" Tag="{Binding ImagePath}"
+                                           Tap="ImageTapped"/>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </ScrollViewer>
         </Grid>
 
         <!-- Feedback dialog -->

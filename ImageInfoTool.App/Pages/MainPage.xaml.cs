@@ -5,6 +5,7 @@ using Microsoft.Phone.Shell;
 using ImageInfoTool.App.Resources;
 using PhoneKit.Framework.Support;
 using ImageInfoTool.App.ViewModels;
+using System.Windows.Controls;
 
 namespace ImageInfoTool.App
 {
@@ -20,14 +21,10 @@ namespace ImageInfoTool.App
         {
             InitializeComponent();
 
-            ImageList.SelectionChanged += (s, e) =>
+            Loaded += (s, e) =>
             {
-                if (e.AddedItems.Count == 1)
-                {
-                    var index = ImageList.SelectedIndex;
-                    ImageList.SelectedIndex = -1;
-                    NavigateToImageInfoPage(index);
-                }
+                ImageLibraryViewModel.Instance.LoadAll();
+                DataContext = ImageLibraryViewModel.Instance; // TODO: load the data not here, because there is a slow start time! move load().
             };
 
             // register startup actions
@@ -38,16 +35,33 @@ namespace ImageInfoTool.App
             StartupActionManager.Instance.Register(10, ActionExecutionRule.Equals, () =>
             {
                 FeedbackManager.Instance.StartSecond();
-            });
+            }); 
 
-            DataContext = ImageLibraryViewModel.Instance; // TODO: load the data not here, because there is a slow start time! move load().
+            InitializeBackgroundImage();
 
             BuildLocalizedApplicationBar();
         }
 
-        private void NavigateToImageInfoPage(int index)
+        /// <summary>
+        /// Initializes the background image.
+        /// </summary>
+        private void InitializeBackgroundImage()
         {
-            string uriString = string.Format("/Pages/ImageInfoPage.xaml?{0}={1}", AppConstants.PARAM_MEDIA_LIB_INDEX, index);
+            var backImage = ImageLibraryViewModel.Instance.GetRandomFromLibrary();
+
+            if (backImage != null)
+                BackgroundImage.Source = backImage.Image;
+        }
+
+        //private void NavigateToImageInfoPageByLibraryIndex(int index)
+        //{
+        //    string uriString = string.Format("/Pages/ImageInfoPage.xaml?{0}={1}", AppConstants.PARAM_MEDIA_LIB_INDEX, index);
+        //    NavigationService.Navigate(new Uri(uriString, UriKind.Relative));
+        //}
+
+        private void NavigateToImageInfoPageByInstanceId(int id)
+        {
+            string uriString = string.Format("/Pages/ImageInfoPage.xaml?{0}={1}", AppConstants.PARAM_INSTANCE_ID, id);
             NavigationService.Navigate(new Uri(uriString, UriKind.Relative));
         }
 
@@ -59,6 +73,8 @@ namespace ImageInfoTool.App
         {
             // fire startup events
             StartupActionManager.Instance.Fire();
+
+            
         }
 
         /// <summary>
@@ -94,6 +110,22 @@ namespace ImageInfoTool.App
                     NavigationService.Navigate(new Uri("/Pages/AboutPage.xaml", UriKind.Relative));
                 };
             ApplicationBar.MenuItems.Add(appBarAboutMenuItem);
+        }
+
+        private void ImageTapped(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            var image = sender as Image;
+
+            if (image != null)
+            {
+                var vm = image.DataContext as ImageViewModel;
+
+                if (vm != null)
+                {
+                    NavigateToImageInfoPageByInstanceId(vm.InstanceId); 
+                }
+            }
+            
         }
     }
 }

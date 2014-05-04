@@ -31,6 +31,7 @@
         <Style x:Key="DesciptionGroupTitleStyle" BasedOn="{StaticResource PhoneTextTitle1Style}" TargetType="TextBlock">
             <Setter Property="Margin" Value="12,18,12,0" />
         </Style>
+        
         <Storyboard x:Name="ShowMapAnimation">
         	<DoubleAnimation BeginTime="0:0:1" Duration="0:0:3" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="MapControl" d:IsOptimized="True">
         		<DoubleAnimation.EasingFunction>

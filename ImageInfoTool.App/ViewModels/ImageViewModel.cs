@@ -14,21 +14,26 @@ using Windows.System;
 
 namespace ImageInfoTool.App.ViewModels
 {
-    class ImageViewModel
+    public class ImageViewModel
     {
         private Picture _image;
         private ExifData _exifData;
 
         ICommand _openInGeoPhotoCommand;
 
+        private static int instanceCounter = 0;
+
+        public int InstanceId { get; private set; }
+
         public ImageViewModel(Picture image)
         {
+            InstanceId = instanceCounter++;
             _image = image;
             _exifData = new ExifData(image);
 
             _openInGeoPhotoCommand = new DelegateCommand(async () =>
             {
-                string imagePath = _image.GetPath();
+                string imagePath = ImagePath;
                 await Launcher.LaunchUriAsync(new Uri("geophoto:ShowPicturePosition?PicturePath=" + imagePath, UriKind.Absolute));
             });
         }
@@ -58,11 +63,19 @@ namespace ImageInfoTool.App.ViewModels
             }
         }
 
+        public string ImagePath
+        {
+            get
+            {
+                return _image.GetPath();
+            }
+        }
+
         public string Name
         {
             get
             {
-                return Path.GetFileNameWithoutExtension(_image.GetPath());
+                return Path.GetFileNameWithoutExtension(ImagePath);
             }
         }
 

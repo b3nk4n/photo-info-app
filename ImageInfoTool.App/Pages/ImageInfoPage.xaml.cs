@@ -298,49 +298,45 @@ namespace ImageInfoTool.App.Pages
                 if (NavigationContext.QueryString.ContainsKey(AppConstants.PARAM_MEDIA_LIB_INDEX))
                 {
                     var totalImages = ImageLibraryViewModel.Instance.Images.Count;
-                    if (totalImages > 0)
-                    {
+                    //if (totalImages > 0)
+                    //{
                         var indexString = NavigationContext.QueryString[AppConstants.PARAM_MEDIA_LIB_INDEX];
 
                         int index;
                         if (int.TryParse(indexString, out index))
                         {
                             // ensure not out of range
-                            index = Math.Min(index, totalImages - 1);
-
-                            var vm = ImageLibraryViewModel.Instance.Images[index];
+                            //index = Math.Min(index, totalImages - 1);
+                            //
+                            //var vm = ImageLibraryViewModel.Instance.Images[index];
+                            var vm = ImageLibraryViewModel.Instance.GetByLibIndex(index);
                             UpdateImageTranslation(vm);
                             vm.LoadExifData();
                             DataContext = vm;
                             return;
                         }
-
-                    }
+                    //}
                 }
-                else if (NavigationContext.QueryString.ContainsKey(AppConstants.PARAM_INSTANCE_ID))
-                {
-                    var totalImages = ImageLibraryViewModel.Instance.Images.Count;
-                    if (totalImages > 0)
-                    {
-                        var idString = NavigationContext.QueryString[AppConstants.PARAM_INSTANCE_ID];
+                //else if (NavigationContext.QueryString.ContainsKey(AppConstants.PARAM_INSTANCE_ID))
+                //{
+                //    var totalImages = ImageLibraryViewModel.Instance.Images.Count;
 
-                        int id;
-                        if (int.TryParse(idString, out id))
-                        {
-                            var vm = ImageLibraryViewModel.Instance.GetByInstanceId(id);
+                //    var idString = NavigationContext.QueryString[AppConstants.PARAM_INSTANCE_ID];
 
-                            if (vm != null)
-                            {
-                                UpdateImageTranslation(vm);
-                                vm.LoadExifData();
-                                DataContext = vm;
-                                return;
-                            }
-                            
-                        }
+                //    int id;
+                //    if (int.TryParse(idString, out id))
+                //    {
+                //        var vm = ImageLibraryViewModel.Instance.GetByLibIndex(id);
 
-                    }
-                }
+                //        if (vm != null)
+                //        {
+                //            UpdateImageTranslation(vm);
+                //            vm.LoadExifData();
+                //            DataContext = vm;
+                //            return;
+                //        }
+                //    }
+                //}
 
                 else if (NavigationContext.QueryString.ContainsKey(AppConstants.PARAM_FILE_TOKEN))
                 {

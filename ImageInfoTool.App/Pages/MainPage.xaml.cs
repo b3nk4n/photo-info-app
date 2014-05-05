@@ -83,17 +83,17 @@ namespace ImageInfoTool.App
             }
         }
 
-        //private void NavigateToImageInfoPageByLibraryIndex(int index)
-        //{
-        //    string uriString = string.Format("/Pages/ImageInfoPage.xaml?{0}={1}", AppConstants.PARAM_MEDIA_LIB_INDEX, index);
-        //    NavigationService.Navigate(new Uri(uriString, UriKind.Relative));
-        //}
-
-        private void NavigateToImageInfoPageByInstanceId(int id)
+        private void NavigateToImageInfoPageByLibraryIndex(int index)
         {
-            string uriString = string.Format("/Pages/ImageInfoPage.xaml?{0}={1}", AppConstants.PARAM_INSTANCE_ID, id);
+            string uriString = string.Format("/Pages/ImageInfoPage.xaml?{0}={1}", AppConstants.PARAM_MEDIA_LIB_INDEX, index);
             NavigationService.Navigate(new Uri(uriString, UriKind.Relative));
         }
+
+        //private void NavigateToImageInfoPageByInstanceId(int id)
+        //{
+        //    string uriString = string.Format("/Pages/ImageInfoPage.xaml?{0}={1}", AppConstants.PARAM_INSTANCE_ID, id);
+        //    NavigationService.Navigate(new Uri(uriString, UriKind.Relative));
+        //}
 
         /// <summary>
         /// When the page is navigated to.
@@ -171,7 +171,7 @@ namespace ImageInfoTool.App
 
                 if (vm != null)
                 {
-                    NavigateToImageInfoPageByInstanceId(vm.InstanceId);
+                    NavigateToImageInfoPageByLibraryIndex(vm.LibIndex);
                 }
             }
         }

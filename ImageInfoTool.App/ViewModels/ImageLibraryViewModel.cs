@@ -45,7 +45,7 @@ namespace ImageInfoTool.App.ViewModels
                 for (int i = start; i >= end; --i)
                 {
                     var picture = MediaLibrary.Pictures[i];
-                    tempList.Add(new ImageViewModel(picture));
+                    tempList.Add(new ImageViewModel(i, picture));
                 }
             });
 
@@ -86,10 +86,22 @@ namespace ImageInfoTool.App.ViewModels
         {
             Picture photo = MediaLibrary.GetPictureFromToken(token);
 
+            var index = -1;
+
+            for (int i = 0; i < MediaLibrary.Pictures.Count; ++i)
+            {
+                if (photo == MediaLibrary.Pictures[i])
+                {
+                    index = i;
+                    break;
+                }
+            }
+
+
             if (photo == null)
                 return null;
 
-            return new ImageViewModel(photo);
+            return new ImageViewModel(index, photo);
         }
 
         public ImageViewModel GetRandomFromLibrary()
@@ -123,7 +135,7 @@ namespace ImageInfoTool.App.ViewModels
             if (photo == null)
                 return null;
 
-            return new ImageViewModel(photo);
+            return new ImageViewModel(index, photo);
         }
 
         /// <summary>
@@ -131,15 +143,30 @@ namespace ImageInfoTool.App.ViewModels
         /// </summary>
         /// <param name="instanceId">The instance id</param>
         /// <returns>The image viwe model or NULL.</returns>
-        public ImageViewModel GetByInstanceId(int instanceId)
-        {
-            foreach (var image in _images)
-            {
-                if (image.InstanceId == instanceId)
-                    return image;
-            }
+        //public ImageViewModel GetByInstanceId(int instanceId)
+        //{
+        //    foreach (var image in _images)
+        //    {
+        //        if (image.InstanceId == instanceId)
+        //            return image;
+        //    }
 
-            return null;
+        //    // ensure data has loaded (in case of return from tombstone) fallback to ID.
+        //    var totalImagesCount = MediaLibrary.Pictures.Count;
+        //    if (_images.Count == 0 && instanceId < totalImagesCount) // FIXME this is just a hack. we mix index and instanceId here!
+        //    {
+        //        return new ImageViewModel(MediaLibrary.Pictures[totalImagesCount - instanceId]);
+        //    }
+
+        //    return null;
+        //}
+
+        public ImageViewModel GetByLibIndex(int index)
+        {
+            if (index >= MediaLibrary.Pictures.Count)
+                return null;
+
+            return new ImageViewModel(index, MediaLibrary.Pictures[index]);
         }
 
         /// <summary>

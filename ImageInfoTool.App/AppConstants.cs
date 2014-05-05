@@ -19,7 +19,7 @@ namespace ImageInfoTool.App
         /// <summary>
         /// The image instance id..
         /// </summary>
-        public const string PARAM_INSTANCE_ID = "instanceId";
+        //public const string PARAM_INSTANCE_ID = "instanceId";
 
         /// <summary>
         /// The placeholder string.

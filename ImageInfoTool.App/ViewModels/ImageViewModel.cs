@@ -21,13 +21,11 @@ namespace ImageInfoTool.App.ViewModels
 
         ICommand _openInGeoPhotoCommand;
 
-        private static int instanceCounter = 0;
+        public int LibIndex { get; private set; }
 
-        public int InstanceId { get; private set; }
-
-        public ImageViewModel(Picture image)
+        public ImageViewModel(int libIndex, Picture image)
         {
-            InstanceId = instanceCounter++;
+            LibIndex = libIndex;
             _image = image;
             _exifData = new ExifData(image);
 

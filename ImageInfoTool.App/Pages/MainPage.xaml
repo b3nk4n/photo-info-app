@@ -155,7 +155,6 @@ Orientation="Horizontal" ViewportSize="{TemplateBinding ViewportWidth}" />
                                 <Button Template="{StaticResource EmptyControlTemplate}" Click="ImageClicked" Margin="6">
                                     <StackPanel Orientation="Horizontal" toolkit:TiltEffect.IsTiltEnabled="True">
                                         <Image Source="{Binding ThumbnailImage}" Width="102" Height="102" Tag="{Binding ImagePath}"/>
-                                        <TextBlock Text="{Binding LibIndex}" />
                                     </StackPanel>
                                 </Button>
                             </DataTemplate>

@@ -53,7 +53,6 @@ namespace ImageInfoTool.App.Pages
 
                 ShowImageAnimation.Begin();
                 ImageInfoSlideIn.Begin();
-                InitializeBanner();
             };
 
             MapControl.Loaded += (s, e) =>
@@ -81,6 +80,8 @@ namespace ImageInfoTool.App.Pages
                     }
                 }
             };
+
+            InitializeBanner();
 
             BuildLocalizedApplicationBar();
         }

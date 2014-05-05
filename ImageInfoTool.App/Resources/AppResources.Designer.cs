@@ -115,7 +115,7 @@ namespace ImageInfoTool.App.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Image Info ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Photo-Info ähnelt.
         /// </summary>
         public static string ApplicationTitle {
             get {
@@ -189,7 +189,7 @@ namespace ImageInfoTool.App.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Image Info Customer Feedback  ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Photo-Info Customer Feedback  ähnelt.
         /// </summary>
         public static string FeedbackSubject {
             get {

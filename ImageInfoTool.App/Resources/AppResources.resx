@@ -138,7 +138,7 @@
     <comment>AboutPage</comment>
   </data>
   <data name="ApplicationTitle" xml:space="preserve">
-    <value>Image Info</value>
+    <value>Photo-Info</value>
     <comment>General</comment>
   </data>
   <data name="ApplicationVersion" xml:space="preserve">
@@ -177,7 +177,7 @@ Tell us about your experience or suggest how we can make it even better.</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="FeedbackSubject" xml:space="preserve">
-    <value>Image Info Customer Feedback </value>
+    <value>Photo-Info Customer Feedback </value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="FeedbackTitleText" xml:space="preserve">

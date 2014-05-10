@@ -23,6 +23,7 @@ namespace ImageInfoTool.App.Pages
             base.OnNavigatedTo(e);
 
             ToggleHideFileName.IsChecked = AppSettings.HideFileName.Value;
+            ToggleHideScreenshotAlbum.IsChecked = AppSettings.HideScreenshotsAlbum.Value;
             SelectByTag(PickerMapType, AppSettings.MapType.Value.ToString());
         }
 
@@ -32,6 +33,9 @@ namespace ImageInfoTool.App.Pages
 
             if (ToggleHideFileName.IsChecked.HasValue)
                 AppSettings.HideFileName.Value = ToggleHideFileName.IsChecked.Value;
+
+            if (ToggleHideScreenshotAlbum.IsChecked.HasValue)
+                AppSettings.HideScreenshotsAlbum.Value = ToggleHideScreenshotAlbum.IsChecked.Value;
 
             AppSettings.MapType.Value = (MapCartographicMode)Enum.Parse(typeof(MapCartographicMode), (string)(PickerMapType.SelectedItem as ListPickerItem).Tag);
         }

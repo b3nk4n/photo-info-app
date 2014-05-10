@@ -29,5 +29,10 @@ namespace ImageInfoTool.App
         /// Indicates the deadline for the removed add when the user has reviewed the app.
         /// </summary>
         public static StoredObject<DateTime> AddFreeDateDeadline = new StoredObject<DateTime>("_hasReviewedAddFreeDeadline_", DateTime.MinValue);
+
+        /// <summary>
+        /// Setting for whether the screenshots album should be hidden.
+        /// </summary>
+        public static StoredObject<bool> HideScreenshotsAlbum = new StoredObject<bool>("_hideScreenshots_", true);
     }
 }

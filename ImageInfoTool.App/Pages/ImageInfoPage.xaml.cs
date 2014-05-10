@@ -25,6 +25,9 @@ namespace ImageInfoTool.App.Pages
 {
     public partial class ImageInfoPage : PhoneApplicationPage
     {
+        /// <summary>
+        /// Creates a ImageInfoPage instance.
+        /// </summary>
         public ImageInfoPage()
         {
             InitializeComponent();
@@ -202,6 +205,10 @@ namespace ImageInfoTool.App.Pages
             }
         }
 
+        /// <summary>
+        /// Updates the image translation.
+        /// </summary>
+        /// <param name="image">The image.</param>
         private void UpdateImageTranslation(ImageViewModel image)
         {
             if (image != null)
@@ -227,12 +234,16 @@ namespace ImageInfoTool.App.Pages
             }
         }
 
+        /// <summary>
+        /// Updates the marker to the POI.
+        /// </summary>
+        /// <param name="center">The center POI.</param>
         private void UpdateOverlayAtCenter(GeoCoordinate center)
         {
             MapControl.Layers.Clear();
             
             var overlay = new MapOverlay();
-            overlay.Content = GetMarker();
+            overlay.Content = CreateMarker();
             overlay.GeoCoordinate = center;
             overlay.PositionOrigin = new Point(0.5, 0.5);
             var layer = new MapLayer();
@@ -240,7 +251,11 @@ namespace ImageInfoTool.App.Pages
             MapControl.Layers.Add(layer);
         }
 
-        private UIElement GetMarker()
+        /// <summary>
+        /// Creates a marker.
+        /// </summary>
+        /// <returns>The marker.</returns>
+        private UIElement CreateMarker()
         {
             var innerCircle = new Ellipse
             {
@@ -286,7 +301,6 @@ namespace ImageInfoTool.App.Pages
         /// <summary>
         /// When the page is navigated to, make a query string lookup and load the image and its information.
         /// </summary>
-        /// <param name="e">The event args.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
@@ -298,46 +312,18 @@ namespace ImageInfoTool.App.Pages
             {
                 if (NavigationContext.QueryString.ContainsKey(AppConstants.PARAM_MEDIA_LIB_INDEX))
                 {
-                    var totalImages = ImageLibraryViewModel.Instance.Images.Count;
-                    //if (totalImages > 0)
-                    //{
-                        var indexString = NavigationContext.QueryString[AppConstants.PARAM_MEDIA_LIB_INDEX];
+                    var indexString = NavigationContext.QueryString[AppConstants.PARAM_MEDIA_LIB_INDEX];
 
-                        int index;
-                        if (int.TryParse(indexString, out index))
-                        {
-                            // ensure not out of range
-                            //index = Math.Min(index, totalImages - 1);
-                            //
-                            //var vm = ImageLibraryViewModel.Instance.Images[index];
-                            var vm = ImageLibraryViewModel.Instance.GetByLibIndex(index);
-                            UpdateImageTranslation(vm);
-                            vm.LoadExifData();
-                            DataContext = vm;
-                            return;
-                        }
-                    //}
+                    int index;
+                    if (int.TryParse(indexString, out index))
+                    {
+                        var vm = ImageLibraryViewModel.Instance.GetByLibIndex(index);
+                        UpdateImageTranslation(vm);
+                        vm.LoadExifData();
+                        DataContext = vm;
+                        return;
+                    }
                 }
-                //else if (NavigationContext.QueryString.ContainsKey(AppConstants.PARAM_INSTANCE_ID))
-                //{
-                //    var totalImages = ImageLibraryViewModel.Instance.Images.Count;
-
-                //    var idString = NavigationContext.QueryString[AppConstants.PARAM_INSTANCE_ID];
-
-                //    int id;
-                //    if (int.TryParse(idString, out id))
-                //    {
-                //        var vm = ImageLibraryViewModel.Instance.GetByLibIndex(id);
-
-                //        if (vm != null)
-                //        {
-                //            UpdateImageTranslation(vm);
-                //            vm.LoadExifData();
-                //            DataContext = vm;
-                //            return;
-                //        }
-                //    }
-                //}
 
                 else if (NavigationContext.QueryString.ContainsKey(AppConstants.PARAM_FILE_TOKEN))
                 {

@@ -8,6 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:ImageInfoTool.App.Controls"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:converter="clr-namespace:PhoneKit.Framework.Conversion;assembly=PhoneKit.Framework"
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -36,69 +37,68 @@
     </toolkit:TransitionService.NavigationOutTransition>
 
     <phone:PhoneApplicationPage.Resources>
-        <Style TargetType="ScrollViewer">
-            <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
-            <!--<Setter Property="HorizontalScrollBarVisibility" Value="Auto"/>-->
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Padding" Value="0"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="BorderBrush" Value="Transparent"/>
-            <Setter Property="Template">
+
+        <phone:JumpListItemBackgroundConverter x:Key="BackgroundConverter"/>
+        <phone:JumpListItemForegroundConverter x:Key="ForegroundConverter"/>
+        <converter:BooleanToVisibilityConverter x:Key="BoolToVis" />
+        
+        <!-- Styles/Templates -->
+
+        <Style x:Key="JumpListStyle" TargetType="phone:LongListSelector">
+            <Setter Property="LayoutMode" Value="List" />
+            <Setter Property="Margin" Value="12,12,0,0"/>
+            <Setter Property="ItemTemplate">
                 <Setter.Value>
-                    <ControlTemplate TargetType="ScrollViewer">
-                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" 
-Background="{TemplateBinding Background}">
-                            <VisualStateManager.VisualStateGroups>
-                                <VisualStateGroup x:Name="ScrollStates">
-                                    <VisualStateGroup.Transitions>
-                                        <VisualTransition GeneratedDuration="00:00:00.5"/>
-                                    </VisualStateGroup.Transitions>
-                                    <VisualState x:Name="Scrolling">
-                                        <Storyboard>
-                                            <DoubleAnimation Storyboard.TargetName="VerticalScrollBar" 
-Storyboard.TargetProperty="Opacity" To="1" Duration="0"/>
-                                            <DoubleAnimation Storyboard.TargetName="HorizontalScrollBar" 
-Storyboard.TargetProperty="Opacity" To="1" Duration="0"/>
-                                        </Storyboard>
-                                    </VisualState>
-                                    <VisualState x:Name="NotScrolling">
-                                    </VisualState>
-                                </VisualStateGroup>
-                                <VisualStateGroup x:Name="VerticalCompression">
-                                    <VisualState x:Name="NoVerticalCompression"/>
-                                    <VisualState x:Name="CompressionTop"/>
-                                    <VisualState x:Name="CompressionBottom"/>
-                                </VisualStateGroup>
-                            </VisualStateManager.VisualStateGroups>
-                            <Grid Margin="{TemplateBinding Padding}">
-                                <ScrollContentPresenter x:Name="ScrollContentPresenter" Content="{TemplateBinding Content}" 
-ContentTemplate="{TemplateBinding ContentTemplate}"/>
-                                <ScrollBar x:Name="VerticalScrollBar" IsHitTestVisible="False" Height="Auto" Width="5" 
-HorizontalAlignment="Right" VerticalAlignment="Stretch" Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" 
-IsTabStop="False" Maximum="{TemplateBinding ScrollableHeight}" Minimum="0" Value="{TemplateBinding VerticalOffset}" 
-Orientation="Vertical" ViewportSize="{TemplateBinding ViewportHeight}" />
-                                <ScrollBar x:Name="HorizontalScrollBar" IsHitTestVisible="False" Width="Auto" Height="5" 
-HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" 
-IsTabStop="False" Maximum="{TemplateBinding ScrollableWidth}" Minimum="0" Value="{TemplateBinding HorizontalOffset}" 
-Orientation="Horizontal" ViewportSize="{TemplateBinding ViewportWidth}" />
-                            </Grid>
+                    <DataTemplate>
+                        <Border Background="{Binding Converter={StaticResource BackgroundConverter}}" 
+                                Width="470" 
+                                Height="62" 
+                                Margin="6"
+                                Visibility="{Binding IsEmptyKey, Converter={StaticResource BoolToVis}, ConverterParameter=!}"
+                                toolkit:TiltEffect.IsTiltEnabled="True">
+                            <TextBlock Text="{Binding Key}"
+                                       Foreground="{Binding Converter={StaticResource ForegroundConverter}}"
+                                       
+                                       FontFamily="{StaticResource PhoneFontFamilySemiBold}"
+                                       FontSize="28"
+                                       Margin="12,0,12,6"
+                                       VerticalAlignment="Bottom"/>
                         </Border>
-                    </ControlTemplate>
+                    </DataTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
 
-        <Storyboard x:Name="ShowBackgroundImageAnimation">
-            <DoubleAnimation Duration="0:0:2" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="BackgroundImage" d:IsOptimized="True">
-                <DoubleAnimation.EasingFunction>
-                    <CubicEase EasingMode="EaseInOut"/>
-                </DoubleAnimation.EasingFunction>
-            </DoubleAnimation>
-        </Storyboard>
+        <DataTemplate x:Key="GroupHeader">
+            <Border Background="Transparent">
+                <Border Background="Transparent" BorderBrush="Transparent" BorderThickness="1"	
+                        Width="400" Height="90" 				 
+                        HorizontalAlignment="Left"
+                        toolkit:TiltEffect.IsTiltEnabled="True">
+                    <TextBlock Text="{Binding Key}" 
+                               Foreground="{StaticResource PhoneAccentBrush}" 
+                               FontSize="28"
+                               Padding="2"                                
+                               FontFamily="{StaticResource PhoneFontFamilySemiLight}"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               Margin="0,24,12,0"/>
+                </Border>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ItemTemplate">
+            <StackPanel Height="108" Width="108" Margin="6,6"
+                        toolkit:TiltEffect.IsTiltEnabled="True">
+                <Image Width="108" Height="108" Stretch="UniformToFill" Source="{Binding ThumbnailImage}" />
+            </StackPanel>
+        </DataTemplate>
+
+        <!-- Animations -->
 
         <Storyboard x:Name="ImagesSlideIn">
-            <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.2" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="ImageScrollViewer">
-                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="ImageList">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0">
                     <EasingDoubleKeyFrame.EasingFunction>
                         <QuarticEase EasingMode="EaseInOut"/>
                     </EasingDoubleKeyFrame.EasingFunction>
@@ -107,7 +107,7 @@ Orientation="Horizontal" ViewportSize="{TemplateBinding ViewportWidth}" />
         </Storyboard>
         
         <Storyboard x:Name="HideSplashScreenAnimation">
-        	<DoubleAnimation BeginTime="0:0:0.66" Duration="0:0:0.5" To="-1000" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="SplashImage" d:IsOptimized="True">
+        	<DoubleAnimation BeginTime="0:0:0.1" Duration="0:0:0.9" To="-1000" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="SplashImage" d:IsOptimized="True">
         		<DoubleAnimation.EasingFunction>
         			<QuadraticEase EasingMode="EaseInOut"/>
         		</DoubleAnimation.EasingFunction>
@@ -119,10 +119,10 @@ Orientation="Horizontal" ViewportSize="{TemplateBinding ViewportWidth}" />
     <!--LayoutRoot ist das Stammraster, in dem alle anderen Seiteninhalte platziert werden-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
 
-        <Image x:Name="BackgroundImage" Stretch="UniformToFill" Width="480" Height="800" VerticalAlignment="Center" Opacity="0">
+        <Image x:Name="BackgroundImage" Stretch="UniformToFill" Width="480" Height="800" VerticalAlignment="Center">
             <Image.OpacityMask>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                    <GradientStop Offset="0" Color="#EEFFFFFF" />
+                    <GradientStop Offset="0" Color="#BBFFFFFF" />
                     <GradientStop Offset="0.5" Color="#33FFFFFF" />
                     <GradientStop Offset="1" Color="#11FFFFFF" />
                 </LinearGradientBrush>
@@ -134,41 +134,26 @@ Orientation="Horizontal" ViewportSize="{TemplateBinding ViewportWidth}" />
 
         <!--ContentPanel - zusätzliche Inhalte hier platzieren-->
         <Grid x:Name="ContentPanel" Margin="0,0,0,30">
-            <ScrollViewer x:Name="ImageScrollViewer">
-                <ScrollViewer.RenderTransform>
+            <phone:LongListSelector Name="ImageList" Margin="13,-30,0,0"
+                                    ItemsSource="{Binding GroupedImages}"
+                                    ItemTemplate="{StaticResource ItemTemplate}"                     
+                                    GroupHeaderTemplate="{StaticResource GroupHeader}"
+                                    JumpListStyle="{StaticResource JumpListStyle}" 
+                                    IsGroupingEnabled="True"
+                                    LayoutMode="Grid" 
+                                    GridCellSize="108,108"
+                                    SelectionChanged="ImageListSelectionChanged"
+                                    HideEmptyGroups="True">
+                <phone:LongListSelector.RenderTransform>
                     <CompositeTransform TranslateY="800" />
-                </ScrollViewer.RenderTransform>
-                <StackPanel Margin="12,0,12,12">
-                    <Border Width="400" Height="24" HorizontalAlignment="Center">
-                        <ProgressBar x:Name="ProgressBar"  Width="400" Height="24" VerticalAlignment="Center"
-                                 IsIndeterminate="True" Foreground="{StaticResource ThemeBrush}" Visibility="Collapsed"/>
-                    </Border>
-                    <ItemsControl x:Name="ImageList" ItemsSource="{Binding Images}" 
-                                  VerticalContentAlignment="Bottom">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <toolkit:WrapPanel />
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Button Template="{StaticResource EmptyControlTemplate}" Click="ImageClicked" Margin="6">
-                                    <StackPanel Orientation="Horizontal" toolkit:TiltEffect.IsTiltEnabled="True">
-                                        <Image Source="{Binding ThumbnailImage}" Width="102" Height="102" Tag="{Binding ImagePath}"/>
-                                    </StackPanel>
-                                </Button>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </StackPanel>
-            </ScrollViewer>
+                </phone:LongListSelector.RenderTransform>
+            </phone:LongListSelector>
         </Grid>
 
-        <Image x:Name="SplashImage" Width="480" Height="800" Source="/SplashScreenImage.screen-WXGA.jpg" RenderTransformOrigin="0.5,0.5">
-        	<Image.RenderTransform>
-        		<CompositeTransform/>
-        	</Image.RenderTransform>
-            
+        <Image x:Name="SplashImage" Width="480" Height="800" Source="/SplashScreenImage.screen-WXGA.jpg">
+            <Image.RenderTransform>
+                <CompositeTransform/>
+            </Image.RenderTransform>
         </Image>
 
         <!-- Feedback dialog -->

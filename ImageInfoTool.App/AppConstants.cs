@@ -17,11 +17,6 @@ namespace ImageInfoTool.App
         public const string PARAM_MEDIA_LIB_INDEX = "mediaLibIndex";
 
         /// <summary>
-        /// The image instance id..
-        /// </summary>
-        //public const string PARAM_INSTANCE_ID = "instanceId";
-
-        /// <summary>
         /// The placeholder string.
         /// </summary>
         public const string PARAM_FILE_TOKEN = "token";

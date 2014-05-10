@@ -29,6 +29,9 @@ namespace ImageInfoTool.App
             // Initialize BugSense
 #if !DEBUG
             BugSenseHandler.Instance.InitAndStartSession(new ExceptionManager(Current), RootFrame, "245f892e");
+#else
+            // Globaler Handler für nicht abgefangene Ausnahmen.
+            UnhandledException += Application_UnhandledException;
 #endif
 
             // Standard-XAML-Initialisierung
@@ -94,6 +97,17 @@ namespace ImageInfoTool.App
             if (Debugger.IsAttached)
             {
                 // Navigationsfehler. Unterbrechen und Debugger öffnen
+                Debugger.Break();
+            }
+        }
+
+        private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
+        {
+            ErrorReportingManager.Instance.Save(e.ExceptionObject, AppResources.ApplicationVersion, AppResources.ResourceLanguage);
+
+            if (Debugger.IsAttached)
+            {
+                // Ein Ausnahmefehler ist aufgetreten. Unterbrechen und Debugger öffnen
                 Debugger.Break();
             }
         }

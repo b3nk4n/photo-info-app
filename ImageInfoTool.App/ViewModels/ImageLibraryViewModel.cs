@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Media;
+using PhoneKit.Framework.Core.Collections;
 using PhoneKit.Framework.Core.MVVM;
-using PhoneKit.Framework.Core.OS;
+using PhoneKit.Framework.Core.Themeing;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,64 +18,78 @@ namespace ImageInfoTool.App.ViewModels
     {
         private MediaLibrary _mediaLibrary;
 
+        private const string SCREENSHOTS_ALBUM_NAME = "Screenshots";
+
         /// <summary>
         /// The singleton instance.
         /// </summary>
         private static ImageLibraryViewModel _instance;
 
-        ObservableCollection<ImageViewModel> _images = new ObservableCollection<ImageViewModel>();
+        IList<ImageViewModel> _images = new List<ImageViewModel>();
 
         public ImageLibraryViewModel()
         {
         }
 
-        public async Task<int> LoadNext(int count)
+        /// <summary>
+        /// Loads all images from the library.
+        /// </summary>
+        /// <returns>The async task.</returns>
+        public async Task LoadAll()
         {
-            if (!CanLoadNext)
-                return 0;
-
+            _images.Clear();
             List<ImageViewModel> tempList = new List<ImageViewModel>();
             var totalCount = MediaLibrary.Pictures.Count;
-            var currentCount = _images.Count;
-            var start = (totalCount - currentCount) - 1;
+
+            bool hideScreenshots = AppSettings.HideScreenshotsAlbum.Value;
 
             await Task.Run(() =>
             {
-                var end = Math.Max(start - count + 1, 0);
-
-                for (int i = start; i >= end; --i)
+                int i = 0;
+                foreach (var picture in MediaLibrary.Pictures)
                 {
-                    var picture = MediaLibrary.Pictures[i];
-                    tempList.Add(new ImageViewModel(i, picture));
+                    // skip screenshots
+                    if (hideScreenshots && picture.Album.Name == SCREENSHOTS_ALBUM_NAME)
+                    {
+                        ++i;
+                        continue;
+                    }
+
+                    tempList.Add(new ImageViewModel(i++, picture));
                 }
             });
 
             // add all afterwards to get no cross-thread exception
             foreach (var tempImage in tempList)
             {
-                _images.Insert(0, tempImage);
+                _images.Add(tempImage);
             }
 
-            return tempList.Count;
-        }
-
-        /// <summary>
-        /// Clears all images.
-        /// </summary>
-        public void Clear()
-        {
-            _images.Clear();
+            NotifyPropertyChanged("Images");
+            NotifyPropertyChanged("GroupedImages");
         }
 
         /// <summary>
         /// Gets whether there are more images to load.
         /// </summary>
-        public bool CanLoadNext
+        public bool HasLoadedAllImages
         {
             get
             {
-                return _images.Count < MediaLibrary.Pictures.Count;
+                return _images.Count >= GetFilteredImageCount();
             }
+        }
+
+        /// <summary>
+        /// Gets the number of visible images
+        /// </summary>
+        /// <returns></returns>
+        public int GetFilteredImageCount()
+        {
+            if (AppSettings.HideScreenshotsAlbum.Value)
+                return MediaLibrary.Pictures.Count(p => p.Album.Name != SCREENSHOTS_ALBUM_NAME);
+            else
+                return MediaLibrary.Pictures.Count;
         }
 
         /// <summary>
@@ -86,24 +101,16 @@ namespace ImageInfoTool.App.ViewModels
         {
             Picture photo = MediaLibrary.GetPictureFromToken(token);
 
-            var index = -1;
-
-            for (int i = 0; i < MediaLibrary.Pictures.Count; ++i)
-            {
-                if (photo == MediaLibrary.Pictures[i])
-                {
-                    index = i;
-                    break;
-                }
-            }
-
-
             if (photo == null)
                 return null;
 
-            return new ImageViewModel(index, photo);
+            return new ImageViewModel(0 /* id is not from interest here */, photo);
         }
 
+        /// <summary>
+        /// Gets a random "good" image from the library.
+        /// </summary>
+        /// <returns>The image view model.</returns>
         public ImageViewModel GetRandomFromLibrary()
         {
             Picture photo;
@@ -124,9 +131,9 @@ namespace ImageInfoTool.App.ViewModels
                 retryCounter--;
 
                 if (photo.Width > 480 && photo.Height > 800 &&
-                    photo.Album.Name.ToUpper() != "WHATSAPP" && 
-                    photo.Album.Name.ToUpper() != "SCREENSHOTS" && 
-                    photo.Album.Name.ToUpper() != "PICTURES")
+                    photo.Album.Name != "WhatsApp" &&
+                    photo.Album.Name != SCREENSHOTS_ALBUM_NAME && 
+                    photo.Album.Name != "Pictures")
                     break;
 
                 photo = null;
@@ -139,28 +146,10 @@ namespace ImageInfoTool.App.ViewModels
         }
 
         /// <summary>
-        /// Gets an image by its instance id.
+        /// Gets an image by the given library index.
         /// </summary>
-        /// <param name="instanceId">The instance id</param>
-        /// <returns>The image viwe model or NULL.</returns>
-        //public ImageViewModel GetByInstanceId(int instanceId)
-        //{
-        //    foreach (var image in _images)
-        //    {
-        //        if (image.InstanceId == instanceId)
-        //            return image;
-        //    }
-
-        //    // ensure data has loaded (in case of return from tombstone) fallback to ID.
-        //    var totalImagesCount = MediaLibrary.Pictures.Count;
-        //    if (_images.Count == 0 && instanceId < totalImagesCount) // FIXME this is just a hack. we mix index and instanceId here!
-        //    {
-        //        return new ImageViewModel(MediaLibrary.Pictures[totalImagesCount - instanceId]);
-        //    }
-
-        //    return null;
-        //}
-
+        /// <param name="index">The library index.</param>
+        /// <returns>The image view model.</returns>
         public ImageViewModel GetByLibIndex(int index)
         {
             if (index >= MediaLibrary.Pictures.Count)
@@ -182,11 +171,24 @@ namespace ImageInfoTool.App.ViewModels
             }
         }
 
-        public ObservableCollection<ImageViewModel> Images
+        /// <summary>
+        /// Gets the grouped images
+        /// </summary>
+        public IList<KeyedList<string, ImageViewModel>> GroupedImages
         {
             get
             {
-                return _images;
+                var groupedImages = from image in _images
+                                    orderby image.CreationDateTime
+                                    group image by image.CreationDateTime.ToString("y") into imagesByMonth
+                                    select new KeyedList<string, ImageViewModel>(imagesByMonth);
+                
+                var groupList = new List<KeyedList<string, ImageViewModel>>(groupedImages);
+
+                // add empty groupe to allow scrolling to the asolute bottom
+                groupList.Add(new KeyedList<string, ImageViewModel>("", new List<ImageViewModel>()));
+
+                return groupList;
             }
         }
 

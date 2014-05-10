@@ -5,11 +5,12 @@ using Microsoft.Phone;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Media.PhoneExtensions;
 using PhoneKit.Framework.Core.MVVM;
-using PhoneKit.Framework.Core.OS;
+using PhoneKit.Framework.Core.Themeing;
 using System;
 using System.IO;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using Windows.System;
 
 namespace ImageInfoTool.App.ViewModels
@@ -57,6 +58,14 @@ namespace ImageInfoTool.App.ViewModels
         {
             get
             {
+                return PictureDecoder.DecodeJpeg(_image.GetPreviewImage());
+            }
+        }
+
+        public ImageSource FullImage
+        {
+            get
+            {
                 return PictureDecoder.DecodeJpeg(_image.GetImage());
             }
         }
@@ -90,6 +99,14 @@ namespace ImageInfoTool.App.ViewModels
             get
             {
                 return Path.GetExtension(_image.GetPath()).Replace(".", string.Empty).ToUpper();
+            }
+        }
+
+        public DateTime CreationDateTime
+        {
+            get
+            {
+                return _image.Date;
             }
         }
 

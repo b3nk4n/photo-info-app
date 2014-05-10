@@ -24,8 +24,10 @@ namespace ImageInfoTool.App
     {
         private const int BOTTOM_OF_LIST = 9999999;
 
-        private const int INITIAL_LOADED_IMAGES_ = 40;
+        private const int INITIAL_LOADED_IMAGES_ = 99999;//40;
         private const int LOADED_IMAGES_PER_INTERVAL = 120;
+
+        private bool _doStartupAnimation;
 
         /// <summary>
         /// Creates the MainPage instance.
@@ -36,16 +38,19 @@ namespace ImageInfoTool.App
 
             Loaded += async (s, e) =>
             {
-                // load data
-                await ImageLibraryViewModel.Instance.LoadNext(INITIAL_LOADED_IMAGES_);
-                await Task.Delay(200);
-                ImageScrollViewer.ScrollToVerticalOffset(BOTTOM_OF_LIST);
+                if (!ImageLibraryViewModel.Instance.HasLoadedAllImages)
+                {
+                    
+                    await ImageLibraryViewModel.Instance.LoadAll();
+                    DataContext = ImageLibraryViewModel.Instance;
+                    ScrollListToBottom();
+                }
 
-                InitializeEndlessScrolling();
-
-                HideSplashScreenAnimation.Begin();
-                ShowBackgroundImageAnimation.Begin();
-                ImagesSlideIn.Begin();
+                if (_doStartupAnimation)
+                {
+                    HideSplashScreenAnimation.Begin();
+                    ImagesSlideIn.Begin();
+                }
             };
 
             // register startup actions
@@ -63,6 +68,21 @@ namespace ImageInfoTool.App
             InitializeBackgroundImage();
 
             BuildLocalizedApplicationBar();
+            
+        }
+
+        /// <summary>
+        /// Scrolls to the bottom of the page.
+        /// </summary>
+        private void ScrollListToBottom()
+        {
+            var index = ImageList.ItemsSource.Count - 1;
+
+            if (index > 0)
+            {
+                // scroll to the last group
+                ImageList.ScrollTo(ImageList.ItemsSource[ImageList.ItemsSource.Count - 1]);
+            }
         }
 
         /// <summary>
@@ -83,29 +103,34 @@ namespace ImageInfoTool.App
             }
         }
 
+        /// <summary>
+        /// Navigates to the image with the given lib index position.
+        /// </summary>
+        /// <param name="index">The library index.</param>
         private void NavigateToImageInfoPageByLibraryIndex(int index)
         {
             string uriString = string.Format("/Pages/ImageInfoPage.xaml?{0}={1}", AppConstants.PARAM_MEDIA_LIB_INDEX, index);
             NavigationService.Navigate(new Uri(uriString, UriKind.Relative));
         }
 
-        //private void NavigateToImageInfoPageByInstanceId(int id)
-        //{
-        //    string uriString = string.Format("/Pages/ImageInfoPage.xaml?{0}={1}", AppConstants.PARAM_INSTANCE_ID, id);
-        //    NavigationService.Navigate(new Uri(uriString, UriKind.Relative));
-        //}
-
         /// <summary>
         /// When the page is navigated to.
         /// </summary>
-        /// <param name="e">The event args.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             // fire startup events
             StartupActionManager.Instance.Fire();
 
-            //await ImageLibraryViewModel.Instance.LoadPart(0, 50);
-            DataContext = ImageLibraryViewModel.Instance;
+            if (e.IsNavigationInitiator)
+            {
+                _doStartupAnimation = false;
+                SplashImage.Visibility = System.Windows.Visibility.Collapsed;
+                ImageList.RenderTransform = new TranslateTransform();
+            }
+            else
+            {
+                _doStartupAnimation = true;
+            }
         }
 
         /// <summary>
@@ -123,15 +148,8 @@ namespace ImageInfoTool.App
             appBarRefreshIconButton.Text = AppResources.AppBarRefresh;
             appBarRefreshIconButton.Click += async (s, e) =>
             {
-                ImageLibraryViewModel.Instance.Clear();
-
-                ProgressBar.IsIndeterminate = true;
-                ProgressBar.Visibility = System.Windows.Visibility.Visible;
-                int loadedCount = await ImageLibraryViewModel.Instance.LoadNext(LOADED_IMAGES_PER_INTERVAL);
-                await Task.Delay(500);
-                ImageScrollViewer.ScrollToVerticalOffset(Math.Round(loadedCount / 4.0, 0) * (102 + 12));
-                ProgressBar.Visibility = System.Windows.Visibility.Collapsed;
-                ProgressBar.IsIndeterminate = false;
+                await ImageLibraryViewModel.Instance.LoadAll();
+                ScrollListToBottom();
             };
             ApplicationBar.Buttons.Add(appBarRefreshIconButton);
 
@@ -161,122 +179,18 @@ namespace ImageInfoTool.App
             ApplicationBar.MenuItems.Add(appBarAboutMenuItem);
         }
 
-        private void ImageClicked(object sender, RoutedEventArgs e)
-       {
-            var button = sender as Button;
-
-            if (button != null)
-            {
-                var vm = button.DataContext as ImageViewModel;
-
-                if (vm != null)
-                {
-                    NavigateToImageInfoPageByLibraryIndex(vm.LibIndex);
-                }
-            }
-        }
-
-        #region ENDLESS SCROLLING
-
-        private ScrollViewer sv = null;
-        private bool alreadyHookedScrollEvents = false;
-
-        private void InitializeEndlessScrolling()
+        /// <summary>
+        /// Called when an image got selected in the long list.
+        /// </summary>
+        private void ImageListSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (alreadyHookedScrollEvents)
+            var vm = ImageList.SelectedItem as ImageViewModel;
+
+            if (vm == null)
                 return;
 
-            alreadyHookedScrollEvents = true;
-            sv = ImageScrollViewer;
-            if (sv != null)
-            {
-                // Visual States are always on the first child of the control template 
-                FrameworkElement element = VisualTreeHelper.GetChild(sv, 0) as FrameworkElement;
-                if (element != null)
-                {
-                    VisualStateGroup group = FindVisualState(element, "ScrollStates");
-                    if (group != null)
-                    {
-                        group.CurrentStateChanging += new EventHandler<VisualStateChangedEventArgs>(group_CurrentStateChanging);
-                    }
-                    VisualStateGroup vgroup = FindVisualState(element, "VerticalCompression");
-                    if (vgroup != null)
-                    {
-                        vgroup.CurrentStateChanging += new EventHandler<VisualStateChangedEventArgs>(vgroup_CurrentStateChanging);
-                    }
-                }
-            }
+            NavigateToImageInfoPageByLibraryIndex(vm.LibIndex);
+            ImageList.SelectedItem = null;
         }
-
-        private UIElement FindElementRecursive(FrameworkElement parent, Type targetType)
-        {
-            int childCount = VisualTreeHelper.GetChildrenCount(parent);
-            UIElement returnElement = null;
-            if (childCount > 0)
-            {
-                for (int i = 0; i < childCount; i++)
-                {
-                    Object element = VisualTreeHelper.GetChild(parent, i);
-                    if (element.GetType() == targetType)
-                    {
-                        return element as UIElement;
-                    }
-                    else
-                    {
-                        returnElement = FindElementRecursive(VisualTreeHelper.GetChild(parent, i) as FrameworkElement, targetType);
-                    }
-                }
-            }
-            return returnElement;
-        }
-
-
-        private VisualStateGroup FindVisualState(FrameworkElement element, string name)
-        {
-            if (element == null)
-                return null;
-
-            IList groups = VisualStateManager.GetVisualStateGroups(element);
-            foreach (VisualStateGroup group in groups)
-                if (group.Name == name)
-                    return group;
-
-            return null;
-        }
-
-        private async void vgroup_CurrentStateChanging(object sender, VisualStateChangedEventArgs e)
-        {
-            if (e.NewState.Name == "CompressionTop")
-            {
-                if (!ImageLibraryViewModel.Instance.CanLoadNext)
-                    return;
-
-                ProgressBar.IsIndeterminate = true;
-                ProgressBar.Visibility = System.Windows.Visibility.Visible;
-                int loadedCount = await ImageLibraryViewModel.Instance.LoadNext(LOADED_IMAGES_PER_INTERVAL);
-                await Task.Delay(500);
-                ImageScrollViewer.ScrollToVerticalOffset(Math.Round(loadedCount / 4.0, 0) * (102 + 12));
-                ProgressBar.Visibility = System.Windows.Visibility.Collapsed;
-                ProgressBar.IsIndeterminate = false;
-            }
-
-            if (e.NewState.Name == "CompressionBottom")
-            {
-            }
-            if (e.NewState.Name == "NoVerticalCompression")
-            {
-            }
-        }
-        private void group_CurrentStateChanging(object sender, VisualStateChangedEventArgs e)
-        {
-            if (e.NewState.Name == "Scrolling")
-            {
-            }
-            else
-            {
-            }
-        }
-
-        #endregion
     }
 }

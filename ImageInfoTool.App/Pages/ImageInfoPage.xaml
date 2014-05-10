@@ -18,7 +18,7 @@
     
     <phone:PhoneApplicationPage.Resources>
         
-        <conv:BooleanToVisibilityConverter x:Key="boolToVis" />
+        <conv:BooleanToVisibilityConverter x:Key="BoolToVis" />
         
         <Style x:Key="DesciptionStyle" BasedOn="{StaticResource PhoneTextLargeStyle}" TargetType="TextBlock">
             <Setter Property="TextWrapping" Value="Wrap" />
@@ -60,7 +60,7 @@
         </Storyboard>
 
         <Storyboard x:Name="ShowBannerAnimation">
-            <DoubleAnimation BeginTime="0:0:5" Duration="0:0:2" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="BannerContainer" d:IsOptimized="True">
+            <DoubleAnimation BeginTime="0:0:10" Duration="0:0:2" To="0.95" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="BannerContainer" d:IsOptimized="True">
                 <DoubleAnimation.EasingFunction>
                     <CubicEase EasingMode="EaseInOut"/>
                 </DoubleAnimation.EasingFunction>
@@ -121,7 +121,7 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Grid Height="800" Margin="0,-200,0,0" Visibility="{Binding HasAttachement, Converter={StaticResource boolToVis}}">
+            <Grid Height="800" Margin="0,-200,0,0">
                 <Grid.Clip>
                     <RectangleGeometry Rect="0,0,480,800" />
                 </Grid.Clip>
@@ -178,7 +178,7 @@
                     <!-- GENERAL -->
                     <TextBlock Text="{Binding Path=LocalizedResources.InfoTitleBasic, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionGroupTitleStyle}"/>
 
-                    <StackPanel Visibility="{Binding HasName, Converter={StaticResource boolToVis}}">
+                    <StackPanel Visibility="{Binding HasName, Converter={StaticResource BoolToVis}}">
                         <TextBlock Text="{Binding Path=LocalizedResources.InfoFileName, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}" />
                         <TextBlock Text="{Binding Name}" Style="{StaticResource DesciptionStyle}" />
                     </StackPanel>
@@ -217,50 +217,50 @@
                     <!-- EXIF -->
                     <TextBlock Text="{Binding Path=LocalizedResources.InfoTitleExtended, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionGroupTitleStyle}"/>
 
-                    <StackPanel Visibility="{Binding ExifData.HasExposureTime, Converter={StaticResource boolToVis}}">
+                    <StackPanel Visibility="{Binding ExifData.HasExposureTime, Converter={StaticResource BoolToVis}}">
                         <TextBlock Text="{Binding Path=LocalizedResources.InfoExposureTime, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}"/>
                         <TextBlock Text="{Binding ExposureTime}" Style="{StaticResource DesciptionStyle}" />
                     </StackPanel>
 
-                    <StackPanel Visibility="{Binding ExifData.HasFNumber, Converter={StaticResource boolToVis}}">
+                    <StackPanel Visibility="{Binding ExifData.HasFNumber, Converter={StaticResource BoolToVis}}">
                         <TextBlock Text="{Binding Path=LocalizedResources.InfoFocalRatio, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}"/>
                         <TextBlock Text="{Binding FNumber}" Style="{StaticResource DesciptionStyle}" />
                     </StackPanel>
 
-                    <StackPanel Visibility="{Binding ExifData.HasISOSpeedRatings, Converter={StaticResource boolToVis}}">
+                    <StackPanel Visibility="{Binding ExifData.HasISOSpeedRatings, Converter={StaticResource BoolToVis}}">
                         <TextBlock Text="{Binding Path=LocalizedResources.InfoISO, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}" />
                         <TextBlock Text="{Binding ExifData.ISOSpeedRatings}" Style="{StaticResource DesciptionStyle}" />
                     </StackPanel>
 
-                    <StackPanel Visibility="{Binding ExifData.HasDigitalZoom, Converter={StaticResource boolToVis}}">
+                    <StackPanel Visibility="{Binding ExifData.HasDigitalZoom, Converter={StaticResource BoolToVis}}">
                         <TextBlock Text="{Binding Path=LocalizedResources.InfoDigitalZoom, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}" />
                         <TextBlock Text="{Binding DigitalZoom}" Style="{StaticResource DesciptionStyle}">
                         </TextBlock>
                     </StackPanel>
 
-                    <StackPanel Visibility="{Binding ExifData.HasWhiteBalance, Converter={StaticResource boolToVis}}">
+                    <StackPanel Visibility="{Binding ExifData.HasWhiteBalance, Converter={StaticResource BoolToVis}}">
                         <TextBlock Text="{Binding Path=LocalizedResources.InfoWhiteBalance, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}" />
                         <TextBlock Text="{Binding WhiteBalance}" Style="{StaticResource DesciptionStyle}" />
                     </StackPanel>
 
-                    <StackPanel Visibility="{Binding ExifData.HasFlash, Converter={StaticResource boolToVis}}">
+                    <StackPanel Visibility="{Binding ExifData.HasFlash, Converter={StaticResource BoolToVis}}">
                         <TextBlock Text="{Binding Path=LocalizedResources.InfoFlash, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}" />
                         <TextBlock Text="{Binding Flash}" Style="{StaticResource DesciptionStyle}" />
                     </StackPanel>
 
-                    <StackPanel Visibility="{Binding ExifData.HasModel, Converter={StaticResource boolToVis}}">
+                    <StackPanel Visibility="{Binding ExifData.HasModel, Converter={StaticResource BoolToVis}}">
                         <TextBlock Text="{Binding Path=LocalizedResources.InfoModel, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}" />
                         <TextBlock Text="{Binding ExifData.Model}" Style="{StaticResource DesciptionStyle}" />
                     </StackPanel>
 
-                    <StackPanel Visibility="{Binding ExifData.HasExifVersion, Converter={StaticResource boolToVis}}">
+                    <StackPanel Visibility="{Binding ExifData.HasExifVersion, Converter={StaticResource BoolToVis}}">
                         <TextBlock Text="{Binding Path=LocalizedResources.InfoExifVersion, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}" />
                         <TextBlock Text="{Binding ExifVersion}" Style="{StaticResource DesciptionStyle}" />
                     </StackPanel>
 
                     <StackPanel>
                         <TextBlock Text="{Binding Path=LocalizedResources.InfoGPS, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}"/>
-                        <Grid Visibility="{Binding ExifData.HasGPS, Converter={StaticResource boolToVis}}">
+                        <Grid Visibility="{Binding ExifData.HasGPS, Converter={StaticResource BoolToVis}}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
@@ -270,23 +270,23 @@
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
-                            <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Path=LocalizedResources.InfoLatitude, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionStyle}" Visibility="{Binding ExifData.HasGPSLatitude, Converter={StaticResource boolToVis}}" />
-                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding GPSLatitude}" Style="{StaticResource DesciptionStyle}" Visibility="{Binding ExifData.HasGPSLatitude, Converter={StaticResource boolToVis}}" />
-                            <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Path=LocalizedResources.InfoLongitude, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionStyle}" Visibility="{Binding ExifData.HasGPSLongitude, Converter={StaticResource boolToVis}}" />
-                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding GPSLongitude}" Style="{StaticResource DesciptionStyle}" Visibility="{Binding ExifData.HasGPSLongitude, Converter={StaticResource boolToVis}}" />
-                            <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding Path=LocalizedResources.InfoAltitude, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionStyle}" Visibility="{Binding ExifData.HasGPSAltitude, Converter={StaticResource boolToVis}}" />
-                            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding GPSAltitude}" Style="{StaticResource DesciptionStyle}" Visibility="{Binding ExifData.HasGPSAltitude, Converter={StaticResource boolToVis}}" />
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Path=LocalizedResources.InfoLatitude, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionStyle}" Visibility="{Binding ExifData.HasGPSLatitude, Converter={StaticResource BoolToVis}}" />
+                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding GPSLatitude}" Style="{StaticResource DesciptionStyle}" Visibility="{Binding ExifData.HasGPSLatitude, Converter={StaticResource BoolToVis}}" />
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Path=LocalizedResources.InfoLongitude, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionStyle}" Visibility="{Binding ExifData.HasGPSLongitude, Converter={StaticResource BoolToVis}}" />
+                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding GPSLongitude}" Style="{StaticResource DesciptionStyle}" Visibility="{Binding ExifData.HasGPSLongitude, Converter={StaticResource BoolToVis}}" />
+                            <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding Path=LocalizedResources.InfoAltitude, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionStyle}" Visibility="{Binding ExifData.HasGPSAltitude, Converter={StaticResource BoolToVis}}" />
+                            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding GPSAltitude}" Style="{StaticResource DesciptionStyle}" Visibility="{Binding ExifData.HasGPSAltitude, Converter={StaticResource BoolToVis}}" />
                         </Grid>
                     </StackPanel>
                     <Button Command="{Binding OpenInGeoPhotoCommand}" HorizontalAlignment="Left" Template="{StaticResource EmptyControlTemplate}" Margin="{StaticResource PhoneVerticalMargin}"
-                            Visibility="{Binding ExifData.HasGPS, Converter={StaticResource boolToVis}, ConverterParameter=!}">
+                            Visibility="{Binding ExifData.HasGPS, Converter={StaticResource BoolToVis}, ConverterParameter=!}">
                         <StackPanel Orientation="Horizontal" toolkit:TiltEffect.IsTiltEnabled="True">
                             <TextBlock Text="{Binding Path=LocalizedResources.AddWithGeoPhoto, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextLargeStyle}" VerticalAlignment="Center" />
                             <Image Source="{Binding AddWithGeoPhotoImagePath}" Height="48" />
                         </StackPanel>
                     </Button>
                     <Button Command="{Binding OpenInGeoPhotoCommand}" HorizontalAlignment="Left" Template="{StaticResource EmptyControlTemplate}" Margin="{StaticResource PhoneVerticalMargin}"
-                            Visibility="{Binding ExifData.HasGPS, Converter={StaticResource boolToVis}}">
+                            Visibility="{Binding ExifData.HasGPS, Converter={StaticResource BoolToVis}}">
                         <StackPanel Orientation="Horizontal" toolkit:TiltEffect.IsTiltEnabled="True">
                             <TextBlock Text="{Binding Path=LocalizedResources.ShowWithGeoPhoto, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextLargeStyle}" VerticalAlignment="Center" />
                             <Image Source="{Binding ShowWithGeoPhotoImagePath}" Height="48" />

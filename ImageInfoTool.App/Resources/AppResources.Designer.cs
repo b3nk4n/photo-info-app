@@ -124,7 +124,7 @@ namespace ImageInfoTool.App.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die 1.0 ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die 1.1 ähnelt.
         /// </summary>
         public static string ApplicationVersion {
             get {
@@ -257,6 +257,15 @@ namespace ImageInfoTool.App.Resources {
         public static string HideFileNameTitle {
             get {
                 return ResourceManager.GetString("HideFileNameTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Hide screenshots ähnelt.
+        /// </summary>
+        public static string HideScreenshotsAlbumTitle {
+            get {
+                return ResourceManager.GetString("HideScreenshotsAlbumTitle", resourceCulture);
             }
         }
         
@@ -495,7 +504,7 @@ namespace ImageInfoTool.App.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die We love to get user feedback. Each review helps us to make each app even better. As a thank-you gif, all adverts will disappear for two weeks! Do you want to rate the app now? ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die We love to get user feedback. Each review helps us to make each app even better. As a thank-you gift, all adverts will disappear for two weeks! Do you want to rate the app now? ähnelt.
         /// </summary>
         public static string MessageBoxRemoveAdContent {
             get {

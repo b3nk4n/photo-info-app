@@ -38,8 +38,8 @@
 
     <phone:PhoneApplicationPage.Resources>
 
-        <phone:JumpListItemBackgroundConverter x:Key="BackgroundConverter"/>
-        <phone:JumpListItemForegroundConverter x:Key="ForegroundConverter"/>
+        <!--<phone:JumpListItemBackgroundConverter x:Key="BackgroundConverter"/>
+        <phone:JumpListItemForegroundConverter x:Key="ForegroundConverter"/>-->
         <converter:BooleanToVisibilityConverter x:Key="BoolToVis" />
         
         <!-- Styles/Templates -->
@@ -50,15 +50,14 @@
             <Setter Property="ItemTemplate">
                 <Setter.Value>
                     <DataTemplate>
-                        <Border Background="{Binding Converter={StaticResource BackgroundConverter}}" 
+                        <Border Background="{StaticResource ThemeBrush}" 
                                 Width="470" 
                                 Height="62" 
                                 Margin="6"
                                 Visibility="{Binding IsEmptyKey, Converter={StaticResource BoolToVis}, ConverterParameter=!}"
                                 toolkit:TiltEffect.IsTiltEnabled="True">
                             <TextBlock Text="{Binding Key}"
-                                       Foreground="{Binding Converter={StaticResource ForegroundConverter}}"
-                                       
+                                       Foreground="White"
                                        FontFamily="{StaticResource PhoneFontFamilySemiBold}"
                                        FontSize="28"
                                        Margin="12,0,12,6"
@@ -76,7 +75,7 @@
                         HorizontalAlignment="Left"
                         toolkit:TiltEffect.IsTiltEnabled="True">
                     <TextBlock Text="{Binding Key}" 
-                               Foreground="{StaticResource PhoneAccentBrush}" 
+                               Foreground="{StaticResource PhoneSubtleBrush}" 
                                FontSize="28"
                                Padding="2"                                
                                FontFamily="{StaticResource PhoneFontFamilySemiLight}"
@@ -107,7 +106,7 @@
         </Storyboard>
         
         <Storyboard x:Name="HideSplashScreenAnimation">
-        	<DoubleAnimation BeginTime="0:0:0.1" Duration="0:0:0.9" To="-1000" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="SplashImage" d:IsOptimized="True">
+        	<DoubleAnimation BeginTime="0:0:0.05" Duration="0:0:0.9" To="-900" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="SplashImage" d:IsOptimized="True">
         		<DoubleAnimation.EasingFunction>
         			<QuadraticEase EasingMode="EaseInOut"/>
         		</DoubleAnimation.EasingFunction>
@@ -119,22 +118,9 @@
     <!--LayoutRoot ist das Stammraster, in dem alle anderen Seiteninhalte platziert werden-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
 
-        <Image x:Name="BackgroundImage" Stretch="UniformToFill" Width="480" Height="800" VerticalAlignment="Center">
-            <Image.OpacityMask>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                    <GradientStop Offset="0" Color="#BBFFFFFF" />
-                    <GradientStop Offset="0.5" Color="#33FFFFFF" />
-                    <GradientStop Offset="1" Color="#11FFFFFF" />
-                </LinearGradientBrush>
-            </Image.OpacityMask>
-            <Image.RenderTransform>
-                <CompositeTransform />
-            </Image.RenderTransform>
-        </Image>
-
         <!--ContentPanel - zusätzliche Inhalte hier platzieren-->
         <Grid x:Name="ContentPanel" Margin="0,0,0,30">
-            <phone:LongListSelector Name="ImageList" Margin="13,-30,0,0"
+            <phone:LongListSelector Name="ImageList" Margin="24,-30,0,0"
                                     ItemsSource="{Binding GroupedImages}"
                                     ItemTemplate="{StaticResource ItemTemplate}"                     
                                     GroupHeaderTemplate="{StaticResource GroupHeader}"

@@ -65,8 +65,6 @@ namespace ImageInfoTool.App
                     FeedbackManager.Instance.StartSecond();
             }); 
 
-            InitializeBackgroundImage();
-
             BuildLocalizedApplicationBar();
             
         }
@@ -82,24 +80,6 @@ namespace ImageInfoTool.App
             {
                 // scroll to the last group
                 ImageList.ScrollTo(ImageList.ItemsSource[ImageList.ItemsSource.Count - 1]);
-            }
-        }
-
-        /// <summary>
-        /// Initializes the background image.
-        /// </summary>
-        private void InitializeBackgroundImage()
-        {
-            var backImage = ImageLibraryViewModel.Instance.GetRandomFromLibrary();
-
-            if (backImage != null)
-            {
-                BackgroundImage.Source = backImage.Image;
-            }
-            else
-            {
-                // use a fallback image
-                BackgroundImage.Source = new BitmapImage(new Uri("/Assets/Images/fallback_back.jpg", UriKind.Relative));
             }
         }
 

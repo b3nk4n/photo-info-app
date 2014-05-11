@@ -99,6 +99,7 @@
     <Compile Include="Controls\LocalizedInAppStoreControl.cs" />
     <Compile Include="CustomUriMapper.cs" />
     <Compile Include="GeoLocation\GeoLocationHelper.cs" />
+    <Compile Include="Helpers\PurchaseHelper.cs" />
     <Compile Include="Model\ExifData.cs" />
     <Compile Include="Pages\ImageInfoPage.xaml.cs">
       <DependentUpon>ImageInfoPage.xaml</DependentUpon>
@@ -183,7 +184,6 @@
     <Content Include="Assets\Images\dark\add.png" />
     <Content Include="Assets\Images\dark\logo200.png" />
     <Content Include="Assets\Images\dark\show.png" />
-    <Content Include="Assets\Images\fallback_back.jpg" />
     <Content Include="Assets\Images\geophoto.png" />
     <Content Include="Assets\Images\icon.png" />
     <Content Include="Assets\Images\light\add.png" />

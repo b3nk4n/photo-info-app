@@ -25,7 +25,7 @@
         </Style>
 
         <Style x:Key="DesciptionTitleStyle" BasedOn="{StaticResource PhoneTextExtraLargeStyle}" TargetType="TextBlock">
-            <Setter Property="Foreground" Value="Gray" />
+            <Setter Property="Foreground" Value="{StaticResource PhoneSubtleBrush}" />
             <Setter Property="Margin" Value="12,6,12,0" />
         </Style>
 
@@ -34,23 +34,15 @@
         </Style>
         
         <Storyboard x:Name="ShowMapAnimation">
-        	<DoubleAnimation BeginTime="0:0:1" Duration="0:0:3" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="MapControl" d:IsOptimized="True">
+        	<DoubleAnimation BeginTime="0:0:1" Duration="0:0:2" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="MapControl" d:IsOptimized="True">
         		<DoubleAnimation.EasingFunction>
         			<CubicEase EasingMode="EaseInOut"/>
         		</DoubleAnimation.EasingFunction>
         	</DoubleAnimation>
         </Storyboard>
 
-        <Storyboard x:Name="ShowImageAnimation">
-            <DoubleAnimation Duration="0:0:3" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ImageControl" d:IsOptimized="True">
-                <DoubleAnimation.EasingFunction>
-                    <CubicEase EasingMode="EaseInOut"/>
-                </DoubleAnimation.EasingFunction>
-            </DoubleAnimation>
-        </Storyboard>
-
         <Storyboard x:Name="ImageInfoSlideIn">
-            <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.1" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="ImageInfoScroller">
+            <DoubleAnimationUsingKeyFrames BeginTime="0:0:0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="ImageInfoScroller">
                 <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0">
                     <EasingDoubleKeyFrame.EasingFunction>
                         <QuarticEase EasingMode="EaseInOut"/>
@@ -65,30 +57,11 @@
                     <CubicEase EasingMode="EaseInOut"/>
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
+            <DoubleAnimation BeginTime="0:0:10" Duration="0:0:1.5" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="BannerContainer">
+            </DoubleAnimation>
         </Storyboard>
 
     </phone:PhoneApplicationPage.Resources>
-
-    <!--<toolkit:TransitionService.NavigationInTransition>
-        <toolkit:NavigationInTransition>
-            <toolkit:NavigationInTransition.Backward>
-                <toolkit:SlideTransition Mode="SlideUpFadeIn"/>
-            </toolkit:NavigationInTransition.Backward>
-            <toolkit:NavigationInTransition.Forward>
-                <toolkit:SlideTransition Mode="SlideUpFadeIn"/>
-            </toolkit:NavigationInTransition.Forward>
-        </toolkit:NavigationInTransition>
-    </toolkit:TransitionService.NavigationInTransition>
-    <toolkit:TransitionService.NavigationOutTransition>
-        <toolkit:NavigationOutTransition>
-            <toolkit:NavigationOutTransition.Backward>
-                <toolkit:SlideTransition Mode="SlideDownFadeOut"/>
-            </toolkit:NavigationOutTransition.Backward>
-            <toolkit:NavigationOutTransition.Forward>
-                <toolkit:SlideTransition Mode="SlideDownFadeOut"/>
-            </toolkit:NavigationOutTransition.Forward>
-        </toolkit:NavigationOutTransition>
-    </toolkit:TransitionService.NavigationOutTransition>-->
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -135,7 +108,7 @@
                 <Border Grid.Row="0" VerticalAlignment="Top">
 
                     <Image x:Name="ImageControl" Source="{Binding Image}" Stretch="UniformToFill"
-                            VerticalAlignment="Center" HorizontalAlignment="Center" Opacity="0">
+                            VerticalAlignment="Center" HorizontalAlignment="Center">
                         <Image.RenderTransform>
                             <CompositeTransform />
                         </Image.RenderTransform>
@@ -146,24 +119,14 @@
             <maps:Map Grid.Row="1" x:Name="MapControl" Height="450" Width="480" VerticalAlignment="Bottom" Margin="0,0,0,-50"
                       Opacity="0" Visibility="Collapsed"/>
 
-            <!--<Rectangle VerticalAlignment="Center" Height="800" Grid.RowSpan="2" Fill="{StaticResource PhoneBackgroundBrush}">
-                <Rectangle.OpacityMask>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Offset="0" Color="#66FFFFFF" />
-                        <GradientStop Offset="0.5" Color="White" />
-                        <GradientStop Offset="0.55" Color="White" />
-                        <GradientStop Offset="1" Color="#66FFFFFF" />
-                    </LinearGradientBrush>
-                </Rectangle.OpacityMask>
-            </Rectangle>-->
-
-            <Rectangle VerticalAlignment="Center" Height="1600" Margin="0,-200,0,-200" Grid.RowSpan="2" Fill="{StaticResource PhoneBackgroundBrush}">
+            <Rectangle VerticalAlignment="Center" Height="1200" Margin="0,-200,0,-200" Grid.RowSpan="2" Fill="{StaticResource PhoneBackgroundBrush}">
                 <Rectangle.OpacityMask>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
                         <GradientStop Offset="0" Color="Transparent" />
-                        <GradientStop Offset="0.25" Color="#66FFFFFF" />
+                        <GradientStop Offset="0.20" Color="#44FFFFFF" />
                         <GradientStop Offset="0.5" Color="White" />
                         <GradientStop Offset="0.525" Color="White" />
+                        <GradientStop Offset="0.8" Color="#55FFFFFF" />
                         <GradientStop Offset="1" Color="Transparent" />
                     </LinearGradientBrush>
                 </Rectangle.OpacityMask>
@@ -297,6 +260,9 @@
 
             <!-- Banner -->
             <Grid x:Name="BannerContainer" toolkit:TiltEffect.IsTiltEnabled="True" VerticalAlignment="Top" Height="80" Width="480" Opacity="0">
+                <Grid.RenderTransform>
+                    <CompositeTransform TranslateY="-400"/>
+                </Grid.RenderTransform>
                 <adverts:OfflineAdControl x:Name="BannerControl" Width="480" Height="80" Visibility="Collapsed">
                     <adverts:OfflineAdControl.OpacityMask>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
@@ -305,6 +271,7 @@
                             <GradientStop Offset="1" Color="#66FFFFFF" />
                         </LinearGradientBrush>
                     </adverts:OfflineAdControl.OpacityMask>
+                    
                 </adverts:OfflineAdControl>
                 <Border x:Name="RemoveAdButton" Background="{StaticResource PhoneAccentBrush}" Width="32" Height="32" Opacity="0.9"
                     VerticalAlignment="Top" HorizontalAlignment="Right">

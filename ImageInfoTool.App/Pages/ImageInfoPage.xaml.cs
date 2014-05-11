@@ -19,7 +19,9 @@ using System.Threading.Tasks;
 using ImageInfoTool.App.Resources;
 using PhoneKit.Framework.Advertising;
 using PhoneKit.Framework.InAppPurchase;
+using PhoneKit.Framework.Core.Collections;
 using Microsoft.Phone.Tasks;
+using ImageInfoTool.App.Helpers;
 
 namespace ImageInfoTool.App.Pages
 {
@@ -54,7 +56,6 @@ namespace ImageInfoTool.App.Pages
                     }
                 }
 
-                ShowImageAnimation.Begin();
                 ImageInfoSlideIn.Begin();
             };
 
@@ -130,6 +131,12 @@ namespace ImageInfoTool.App.Pages
         /// </summary>
         private void InitializeBanner()
         {
+            if (PurchaseHelper.IsFreeTrialOrProVersion())
+                return;
+
+            if (BannerControl.AdvertsCount > 0)
+                return;
+
             List<AdvertData> advertsList = new List<AdvertData>();
             advertsList.Add(new AdvertData(new Uri("/Assets/Banners/pocketBRAIN_adduplex.png", UriKind.Relative), AdvertData.ActionTypes.AppId, "ad1227e4-9f80-4967-957f-6db140dc0c90"));
             advertsList.Add(new AdvertData(new Uri("/Assets/Banners/SpaceScribble_adduplex.png", UriKind.Relative), AdvertData.ActionTypes.AppId, "71fc4a5b-de12-4b28-88ec-8ac573ce9708"));
@@ -138,7 +145,7 @@ namespace ImageInfoTool.App.Pages
             advertsList.Add(new AdvertData(new Uri("/Assets/Banners/GeoPhoto_adduplex.png", UriKind.Relative), AdvertData.ActionTypes.AppId, "f10991b2-3e1a-4fb0-99bc-833338a33502"));
 
             //shuffle
-            ShuffleList<AdvertData>(advertsList);
+            advertsList.ShuffleList();
 
             foreach (var advert in advertsList)
             {
@@ -147,51 +154,11 @@ namespace ImageInfoTool.App.Pages
         }
 
         /// <summary>
-        /// Helper function to shuffle a list.
-        /// </summary>
-        /// <typeparam name="T"> The list type.</typeparam>
-        /// <param name="list">The list to shuffle.</param>
-        private static void ShuffleList<T>(IList<T> list) // TODO: shift to framework, also used in powernapp
-        {
-            Random rng = new Random();
-            int n = list.Count;
-            while (n > 1)
-            {
-                n--;
-                int k = rng.Next(n + 1);
-                T value = list[k];
-                list[k] = list[n];
-                list[n] = value;
-            }
-        }
-
-        /// <summary>
         /// Updates the banner visiblilty.
         /// </summary>
         private void UpdateBannerVisibility()
         {
-            // check add free trial
-            var isAddFreeTrial = false;
-            var deadlineDate = AppSettings.AddFreeDateDeadline.Value;
-            if (deadlineDate != DateTime.MinValue)
-            {
-                var remainingTrial = deadlineDate - DateTime.Now;
-
-                if (remainingTrial.TotalDays > AppConstants.AD_FREE_TRIAL_TIME_IN_DAYS)
-                {
-                    // cheat detected -> reset!
-                    AppSettings.AddFreeDateDeadline.Value = AppSettings.AddFreeDateDeadline.DefaultValue;
-                    AppSettings.HasReviewed.Value = false;
-                }
-                else if (remainingTrial.TotalDays >= 0)
-                {
-                    // is in trial
-                    isAddFreeTrial = true;
-                }
-            }
-
-
-            if (isAddFreeTrial || InAppPurchaseHelper.IsProductActive(AppConstants.PRO_VERSION_IN_APP_KEY))
+            if (PurchaseHelper.IsFreeTrialOrProVersion())
             {
                 BannerControl.Visibility = System.Windows.Visibility.Collapsed;
                 BannerContainer.Visibility = System.Windows.Visibility.Collapsed;
@@ -270,8 +237,8 @@ namespace ImageInfoTool.App.Pages
             {
                 Stroke = new SolidColorBrush((Color)App.Current.Resources["PhoneBackgroundColor"]),
                 StrokeThickness = 3,
-                Height = 21,
-                Width = 21,
+                Height = 22,
+                Width = 22,
                 VerticalAlignment = System.Windows.VerticalAlignment.Center,
                 HorizontalAlignment = System.Windows.HorizontalAlignment.Center,
                 Opacity = 0.66f
@@ -280,8 +247,8 @@ namespace ImageInfoTool.App.Pages
             {
                 Stroke = new SolidColorBrush((Color)App.Current.Resources["PhoneForegroundColor"]),
                 StrokeThickness = 3,
-                Height = 28,
-                Width = 28,
+                Height = 30,
+                Width = 30,
                 VerticalAlignment = System.Windows.VerticalAlignment.Center,
                 HorizontalAlignment = System.Windows.HorizontalAlignment.Center,
                 Opacity = 0.66f

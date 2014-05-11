@@ -108,44 +108,6 @@ namespace ImageInfoTool.App.ViewModels
         }
 
         /// <summary>
-        /// Gets a random "good" image from the library.
-        /// </summary>
-        /// <returns>The image view model.</returns>
-        public ImageViewModel GetRandomFromLibrary()
-        {
-            Picture photo;
-            Random rand = new Random();
-            var imagesCount = MediaLibrary.Pictures.Count;
-
-            if (imagesCount == 0)
-                return null;
-
-            var index = imagesCount / 2;
-            int retryCounter = 20;
-            do
-            {
-                // get one of the "new half"
-                index = rand.Next(imagesCount / 2, imagesCount - 1);
-                photo = MediaLibrary.Pictures[index];
-
-                retryCounter--;
-
-                if (photo.Width > 480 && photo.Height > 800 &&
-                    photo.Album.Name != "WhatsApp" &&
-                    photo.Album.Name != SCREENSHOTS_ALBUM_NAME && 
-                    photo.Album.Name != "Pictures")
-                    break;
-
-                photo = null;
-            } while (retryCounter > 0);
-
-            if (photo == null)
-                return null;
-
-            return new ImageViewModel(index, photo);
-        }
-
-        /// <summary>
         /// Gets an image by the given library index.
         /// </summary>
         /// <param name="index">The library index.</param>

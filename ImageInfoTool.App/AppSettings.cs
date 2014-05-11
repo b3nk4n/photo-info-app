@@ -18,7 +18,7 @@ namespace ImageInfoTool.App
         /// <summary>
         /// Setting for whether the file name should be hidden.
         /// </summary>
-        public static StoredObject<MapCartographicMode> MapType = new StoredObject<MapCartographicMode>("_mapType_", MapCartographicMode.Road);
+        public static StoredObject<MapCartographicMode> MapType = new StoredObject<MapCartographicMode>("_mapType_", MapCartographicMode.Aerial);
 
         /// <summary>
         /// Indicates whether the user has reviewed the app.

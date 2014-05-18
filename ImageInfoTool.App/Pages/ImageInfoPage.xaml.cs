@@ -192,6 +192,7 @@ namespace ImageInfoTool.App.Pages
                 return;
 
             List<AdvertData> advertsList = new List<AdvertData>();
+            advertsList.Add(new AdvertData(new Uri("/Assets/Banners/powernAPP_adduplex.png", UriKind.Relative), AdvertData.ActionTypes.AppId, "92740dff-b2e1-4813-b08b-c6429df03356"));
             advertsList.Add(new AdvertData(new Uri("/Assets/Banners/pocketBRAIN_adduplex.png", UriKind.Relative), AdvertData.ActionTypes.AppId, "ad1227e4-9f80-4967-957f-6db140dc0c90"));
             advertsList.Add(new AdvertData(new Uri("/Assets/Banners/SpaceScribble_adduplex.png", UriKind.Relative), AdvertData.ActionTypes.AppId, "71fc4a5b-de12-4b28-88ec-8ac573ce9708"));
             advertsList.Add(new AdvertData(new Uri("/Assets/Banners/SpacepiXX_adduplex.png", UriKind.Relative), AdvertData.ActionTypes.AppId, "cbe0dfa7-2879-4c2c-b7c6-3798781fba16"));

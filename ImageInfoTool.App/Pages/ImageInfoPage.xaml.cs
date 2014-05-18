@@ -50,19 +50,19 @@ namespace ImageInfoTool.App.Pages
                         var photoPosition = new GeoCoordinate(lat, lng);
                         var centerPosition = new GeoCoordinate(photoPosition.Latitude + 0.0175, photoPosition.Longitude);
                         MapControl.Center = centerPosition;
-                        UpdateOverlayAtCenter(photoPosition);
+                        UpdateOverlayAtCenter(MapControl, photoPosition);
                         MapControl.Visibility = System.Windows.Visibility.Visible;
                         ShowMapAnimation.Begin();
+
+                        // init full screen map
+                        FullMapControl.ZoomLevel = 11;
+                        FullMapControl.CartographicMode = AppSettings.MapType.Value;
+                        FullMapControl.Center = photoPosition;
+                        UpdateOverlayAtCenter(FullMapControl, photoPosition);
                     }
                 }
 
                 ImageInfoSlideIn.Begin();
-            };
-
-            MapControl.Loaded += (s, e) =>
-            {
-                Microsoft.Phone.Maps.MapsSettings.ApplicationContext.ApplicationId = "ac39aa30-c9b1-4dc6-af2d-1cc17d9807cc";
-                Microsoft.Phone.Maps.MapsSettings.ApplicationContext.AuthenticationToken = "QTKCtAtxfOx_XsQs4Ox1Rg";
             };
 
             RemoveAdButton.Tap += (s, e) =>
@@ -85,9 +85,20 @@ namespace ImageInfoTool.App.Pages
                 }
             };
 
+            InitializeMapApiKey();
+
             InitializeBanner();
 
             BuildLocalizedApplicationBar();
+        }
+
+        /// <summary>
+        /// Initializes the maps API key.
+        /// </summary>
+        private void InitializeMapApiKey()
+        {
+            Microsoft.Phone.Maps.MapsSettings.ApplicationContext.ApplicationId = "ac39aa30-c9b1-4dc6-af2d-1cc17d9807cc";
+            Microsoft.Phone.Maps.MapsSettings.ApplicationContext.AuthenticationToken = "QTKCtAtxfOx_XsQs4Ox1Rg";
         }
 
         /// <summary>
@@ -204,10 +215,11 @@ namespace ImageInfoTool.App.Pages
         /// <summary>
         /// Updates the marker to the POI.
         /// </summary>
+        /// <param name="mapControl">The map control.</param>
         /// <param name="center">The center POI.</param>
-        private void UpdateOverlayAtCenter(GeoCoordinate center)
+        private void UpdateOverlayAtCenter(Map mapControl, GeoCoordinate center)
         {
-            MapControl.Layers.Clear();
+            mapControl.Layers.Clear();
             
             var overlay = new MapOverlay();
             overlay.Content = CreateMarker();
@@ -215,7 +227,7 @@ namespace ImageInfoTool.App.Pages
             overlay.PositionOrigin = new Point(0.5, 0.5);
             var layer = new MapLayer();
             layer.Add(overlay);
-            MapControl.Layers.Add(layer);
+            mapControl.Layers.Add(layer);
         }
 
         /// <summary>
@@ -314,5 +326,94 @@ namespace ImageInfoTool.App.Pages
                     App.Current.Terminate();
             }
         }
+
+        #region Swipe transition
+
+        /// <summary>
+        /// The swipe sensitivity, where less is more sensitive.
+        /// </summary>
+        private const int SWIPE_SENSITIVITY_VALUE = 1500;
+
+        /// <summary>
+        /// The swipe gesture listener event for the content panel.
+        /// </summary>
+        private void ContentPanelSwipeManipulationCompleted(object sender, System.Windows.Input.ManipulationCompletedEventArgs e)
+        {
+            if (IsRotationAnimationActive)
+                return;
+
+            double flickX = e.FinalVelocities.LinearVelocity.X;
+
+            // right
+            if (flickX > SWIPE_SENSITIVITY_VALUE)
+            {
+                InfoToMapAnimation.Begin();
+            }
+            // left
+            else if (flickX < -SWIPE_SENSITIVITY_VALUE)
+            {
+                InfoToImageAnimation.Begin();
+            }
+        }
+
+        /// <summary>
+        /// The swipe gesture listener event for the full image panel.
+        /// </summary>
+        private void FullImagePanelSwipeManipulationCompleted(object sender, System.Windows.Input.ManipulationCompletedEventArgs e)
+        {
+            if (IsRotationAnimationActive)
+                return;
+
+            double flickX = e.FinalVelocities.LinearVelocity.X;
+
+            // right
+            if (flickX > SWIPE_SENSITIVITY_VALUE)
+            {
+                ImageToInfoAnimation.Begin();
+            }
+            // left
+            else if (flickX < -SWIPE_SENSITIVITY_VALUE)
+            {
+                ImageToMapAnimation.Begin();
+            }
+        }
+
+        /// <summary>
+        /// The swipe gesture listener event for the full map panel.
+        /// </summary>
+        private void FullMapPanelSwipeManipulationCompleted(object sender, System.Windows.Input.ManipulationCompletedEventArgs e)
+        {
+            if (IsRotationAnimationActive)
+                return;
+
+            double flickX = e.FinalVelocities.LinearVelocity.X;
+
+            // right
+            if (flickX > SWIPE_SENSITIVITY_VALUE)
+            {
+                MapToImageAnimation.Begin();
+            }
+            // left
+            else if (flickX < -SWIPE_SENSITIVITY_VALUE)
+            {
+                MapToInfoAnimation.Begin();
+            }
+        }
+
+        private bool IsRotationAnimationActive
+        {
+            get
+            {
+                return InfoToImageAnimation.GetCurrentState() == System.Windows.Media.Animation.ClockState.Active ||
+                    ImageToInfoAnimation.GetCurrentState() == System.Windows.Media.Animation.ClockState.Active ||
+                    InfoToMapAnimation.GetCurrentState() == System.Windows.Media.Animation.ClockState.Active ||
+                    MapToInfoAnimation.GetCurrentState() == System.Windows.Media.Animation.ClockState.Active ||
+                    ImageToMapAnimation.GetCurrentState() == System.Windows.Media.Animation.ClockState.Active ||
+                    MapToImageAnimation.GetCurrentState() == System.Windows.Media.Animation.ClockState.Active;
+
+            }
+        }
+
+        #endregion
     }
 }

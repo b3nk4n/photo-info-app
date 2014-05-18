@@ -59,7 +59,7 @@ namespace ImageInfoTool.App.Pages
                         var lng = GeoLocationHelper.ToDouble(exif.GPSLongitude, exif.GPSLongitudeRef);
                         MapControl.CartographicMode = AppSettings.MapType.Value;
                         var photoPosition = new GeoCoordinate(lat, lng);
-                        var centerPosition = new GeoCoordinate(photoPosition.Latitude + 0.0175, photoPosition.Longitude);
+                        var centerPosition = new GeoCoordinate(photoPosition.Latitude + 0.0275, photoPosition.Longitude);
                         MapControl.Center = centerPosition;
                         UpdateOverlayAtCenter(MapControl, photoPosition);
                         MapControl.Visibility = System.Windows.Visibility.Visible;

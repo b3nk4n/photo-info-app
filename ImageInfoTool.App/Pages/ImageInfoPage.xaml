@@ -369,7 +369,7 @@
                 </Border>
             </Grid>
 
-            <maps:Map Grid.Row="1" x:Name="MapControl" ZoomLevel="11" Height="450" Width="480" VerticalAlignment="Bottom" Margin="0,0,0,-50"
+            <maps:Map Grid.Row="1" x:Name="MapControl" ZoomLevel="11" Height="400" Width="480" VerticalAlignment="Bottom"
                       Opacity="0" Visibility="Collapsed"/>
 
             <Rectangle VerticalAlignment="Center" Height="1200" Margin="0,-200,0,-200" Grid.RowSpan="2" Fill="{StaticResource PhoneBackgroundBrush}">
@@ -510,27 +510,6 @@
                     </Button>
                 </StackPanel>
             </ScrollViewer>
-
-            <!-- Banner -->
-            <Grid x:Name="BannerContainer" toolkit:TiltEffect.IsTiltEnabled="True" VerticalAlignment="Top" Height="80" Width="480" Opacity="0">
-                <Grid.RenderTransform>
-                    <CompositeTransform TranslateY="-400"/>
-                </Grid.RenderTransform>
-                <adverts:OfflineAdControl x:Name="BannerControl" Width="480" Height="80" Visibility="Collapsed">
-                    <adverts:OfflineAdControl.OpacityMask>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                            <GradientStop Offset="0" Color="#FFFFFFFF" />
-                            <GradientStop Offset="0.95" Color="#DDFFFFFF" />
-                            <GradientStop Offset="1" Color="#66FFFFFF" />
-                        </LinearGradientBrush>
-                    </adverts:OfflineAdControl.OpacityMask>
-                    
-                </adverts:OfflineAdControl>
-                <Border x:Name="RemoveAdButton" Background="{StaticResource PhoneAccentBrush}" Width="32" Height="32" Opacity="0.9"
-                    VerticalAlignment="Top" HorizontalAlignment="Right">
-                    <Image Source="/Assets/Images/close.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                </Border>
-            </Grid>
         </Grid>
         
         <Grid x:Name="FullMapPanel" Visibility="Collapsed" Background="{StaticResource PhoneBackgroundBrush}"
@@ -548,6 +527,27 @@
                 <PlaneProjection/>
             </Grid.Projection>
             <Image x:Name="ImageFullControl" Stretch="Uniform" Source="{Binding Image}" />
+        </Grid>
+
+        <!-- Banner -->
+        <Grid x:Name="BannerContainer" toolkit:TiltEffect.IsTiltEnabled="True" VerticalAlignment="Top" Height="80" Width="480" Opacity="0">
+            <Grid.RenderTransform>
+                <CompositeTransform TranslateY="-400"/>
+            </Grid.RenderTransform>
+            <adverts:OfflineAdControl x:Name="BannerControl" Width="480" Height="80" Visibility="Collapsed">
+                <adverts:OfflineAdControl.OpacityMask>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Offset="0" Color="#FFFFFFFF" />
+                        <GradientStop Offset="0.95" Color="#DDFFFFFF" />
+                        <GradientStop Offset="1" Color="#66FFFFFF" />
+                    </LinearGradientBrush>
+                </adverts:OfflineAdControl.OpacityMask>
+
+            </adverts:OfflineAdControl>
+            <Border x:Name="RemoveAdButton" Background="{StaticResource PhoneAccentBrush}" Width="32" Height="32" Opacity="0.9"
+                    VerticalAlignment="Top" HorizontalAlignment="Right">
+                <Image Source="/Assets/Images/close.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Border>
         </Grid>
     </Grid>
 

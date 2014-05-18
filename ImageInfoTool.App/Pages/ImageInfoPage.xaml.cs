@@ -22,11 +22,21 @@ using PhoneKit.Framework.InAppPurchase;
 using PhoneKit.Framework.Core.Collections;
 using Microsoft.Phone.Tasks;
 using ImageInfoTool.App.Helpers;
+using PhoneKit.Framework.Storage;
 
 namespace ImageInfoTool.App.Pages
 {
     public partial class ImageInfoPage : PhoneApplicationPage
     {
+        private enum InfoPageViewState
+        {
+            Info,
+            Map,
+            Image
+        }
+
+        private InfoPageViewState _viewState = InfoPageViewState.Info;
+
         /// <summary>
         /// Creates a ImageInfoPage instance.
         /// </summary>
@@ -45,7 +55,6 @@ namespace ImageInfoTool.App.Pages
                     {
                         var lat = GeoLocationHelper.ToDouble(exif.GPSLatitude, exif.GPSLatitudeRef);
                         var lng = GeoLocationHelper.ToDouble(exif.GPSLongitude, exif.GPSLongitudeRef);
-                        MapControl.ZoomLevel = 11;
                         MapControl.CartographicMode = AppSettings.MapType.Value;
                         var photoPosition = new GeoCoordinate(lat, lng);
                         var centerPosition = new GeoCoordinate(photoPosition.Latitude + 0.0175, photoPosition.Longitude);
@@ -55,11 +64,19 @@ namespace ImageInfoTool.App.Pages
                         ShowMapAnimation.Begin();
 
                         // init full screen map
-                        FullMapControl.ZoomLevel = 11;
                         FullMapControl.CartographicMode = AppSettings.MapType.Value;
                         FullMapControl.Center = photoPosition;
                         UpdateOverlayAtCenter(FullMapControl, photoPosition);
                     }
+                }
+
+                // load scroll state
+                // note: can not be loaded in the OnNavigatedTo, because the scroller is not populated at that point
+                if (PhoneStateHelper.ValueExists(AppConstants.STATE_SCROLL_KEY))
+                {
+                    var scrollOffset = PhoneStateHelper.LoadValue<double>(AppConstants.STATE_SCROLL_KEY);
+                    ImageInfoScroller.ScrollToVerticalOffset(scrollOffset);
+                    PhoneStateHelper.DeleteValue(AppConstants.STATE_SCROLL_KEY);
                 }
 
                 ImageInfoSlideIn.Begin();
@@ -287,6 +304,7 @@ namespace ImageInfoTool.App.Pages
             UpdateBannerVisibility();
 
             // query string lookup
+            bool success = false;
             if (NavigationContext.QueryString != null)
             {
                 if (NavigationContext.QueryString.ContainsKey(AppConstants.PARAM_MEDIA_LIB_INDEX))
@@ -300,7 +318,7 @@ namespace ImageInfoTool.App.Pages
                         UpdateImageTranslation(vm);
                         vm.LoadExifData();
                         DataContext = vm;
-                        return;
+                        success = true;
                     }
                 }
 
@@ -314,16 +332,75 @@ namespace ImageInfoTool.App.Pages
                         UpdateImageTranslation(vm);
                         vm.LoadExifData();
                         DataContext = vm;
-                        return;
+                        success = true;
                     }
                 }
 
                 // error handling - warning and go back or exit
-                MessageBox.Show(AppResources.MessageBoxNoImageFound, AppResources.MessageBoxWarning, MessageBoxButton.OK);
-                if (NavigationService.CanGoBack)
-                    NavigationService.GoBack();
-                else
-                    App.Current.Terminate();
+                if (!success)
+                {
+                    MessageBox.Show(AppResources.MessageBoxNoImageFound, AppResources.MessageBoxWarning, MessageBoxButton.OK);
+                    if (NavigationService.CanGoBack)
+                        NavigationService.GoBack();
+                    else
+                        App.Current.Terminate();
+
+                    return;
+                }
+            }
+
+            // load state
+            if (PhoneStateHelper.ValueExists(AppConstants.STATE_INFO_VIEW_STATE))
+            {
+                var viewState = PhoneStateHelper.LoadValue<InfoPageViewState>(AppConstants.STATE_INFO_VIEW_STATE);
+                GoToStartupViewState(viewState);
+                PhoneStateHelper.DeleteValue(AppConstants.STATE_INFO_VIEW_STATE);
+            }
+            if (PhoneStateHelper.ValueExists(AppConstants.STATE_FULL_MAP_ZOOM))
+            {
+                var zoomLevel = PhoneStateHelper.LoadValue<double>(AppConstants.STATE_FULL_MAP_ZOOM);
+                FullMapControl.ZoomLevel = zoomLevel;
+                PhoneStateHelper.DeleteValue(AppConstants.STATE_FULL_MAP_ZOOM);
+            }
+        }
+
+        /// <summary>
+        /// Goes directrly to the given view state.
+        /// </summary>
+        private void GoToStartupViewState(InfoPageViewState viewState)
+        {
+            _viewState = viewState;
+
+            switch (_viewState)
+            {
+                case InfoPageViewState.Info:
+                    ContentPanel.Visibility = System.Windows.Visibility.Visible;
+                    FullMapPanel.Visibility = System.Windows.Visibility.Collapsed;
+                    FullImagePanel.Visibility = System.Windows.Visibility.Collapsed;
+                    break;
+                case InfoPageViewState.Map:
+                    ContentPanel.Visibility = System.Windows.Visibility.Collapsed;
+                    FullMapPanel.Visibility = System.Windows.Visibility.Visible;
+                    FullImagePanel.Visibility = System.Windows.Visibility.Collapsed;
+                    break;
+                case InfoPageViewState.Image:
+                    ContentPanel.Visibility = System.Windows.Visibility.Collapsed;
+                    FullMapPanel.Visibility = System.Windows.Visibility.Collapsed;
+                    FullImagePanel.Visibility = System.Windows.Visibility.Visible;
+                    break;
+            }
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+
+            // save state
+            if (e.NavigationMode != NavigationMode.Back || e.Uri.OriginalString == "app://external/")
+            {
+                PhoneStateHelper.SaveValue(AppConstants.STATE_SCROLL_KEY, ImageInfoScroller.VerticalOffset);
+                PhoneStateHelper.SaveValue(AppConstants.STATE_INFO_VIEW_STATE, _viewState);
+                PhoneStateHelper.SaveValue(AppConstants.STATE_FULL_MAP_ZOOM, FullMapControl.ZoomLevel);
             }
         }
 
@@ -356,14 +433,22 @@ namespace ImageInfoTool.App.Pages
             if (flickX > SWIPE_SENSITIVITY_VALUE)
             {
                 if (vm.HasExifData && vm.ExifData.HasGPSLatitude && vm.ExifData.HasGPSLongitude)
+                {
                     InfoToMapAnimation.Begin();
+                    _viewState = InfoPageViewState.Map;
+                }
+
                 else
+                {
                     InfoToImageSkipMapAnimation.Begin();
+                    _viewState = InfoPageViewState.Image;
+                }
             }
             // left
             else if (flickX < -SWIPE_SENSITIVITY_VALUE)
             {
                 InfoToImageAnimation.Begin();
+                _viewState = InfoPageViewState.Image;
             }
         }
 
@@ -384,14 +469,21 @@ namespace ImageInfoTool.App.Pages
             if (flickX > SWIPE_SENSITIVITY_VALUE)
             {
                 ImageToInfoAnimation.Begin();
+                _viewState = InfoPageViewState.Info;
             }
             // left
             else if (flickX < -SWIPE_SENSITIVITY_VALUE)
             {
                 if (vm.HasExifData && vm.ExifData.HasGPSLatitude && vm.ExifData.HasGPSLongitude)
+                {
                     ImageToMapAnimation.Begin();
+                    _viewState = InfoPageViewState.Map;
+                }
                 else
+                {
                     ImageToInfoSkipMapAnimation.Begin();
+                    _viewState = InfoPageViewState.Info;
+                }
             }
         }
 
@@ -414,11 +506,13 @@ namespace ImageInfoTool.App.Pages
             if (flickX > SWIPE_SENSITIVITY_VALUE)
             {
                 MapToImageAnimation.Begin();
+                _viewState = InfoPageViewState.Image;
             }
             // left
             else if (flickX < -SWIPE_SENSITIVITY_VALUE)
             {
                 MapToInfoAnimation.Begin();
+                _viewState = InfoPageViewState.Info;
             }
         }
 

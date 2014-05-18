@@ -45,5 +45,20 @@ namespace ImageInfoTool.App
         /// The time interval of the ad free version in days.
         /// </summary>
         public const int AD_FREE_TRIAL_TIME_IN_DAYS = 14;
+
+        /// <summary>
+        /// The phone state scroll key of the info scrollview.
+        /// </summary>
+        public const string STATE_SCROLL_KEY = "infoScrollState";
+
+        /// <summary>
+        /// The phone state key of the info page view state.
+        /// </summary>
+        public const string STATE_INFO_VIEW_STATE = "infoViewState";
+
+        /// <summary>
+        /// The phone state key of the full map zoom level.
+        /// </summary>
+        public const string STATE_FULL_MAP_ZOOM = "fullMapZoom";
     }
 }

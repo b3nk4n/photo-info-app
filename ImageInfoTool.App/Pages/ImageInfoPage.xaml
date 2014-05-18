@@ -34,11 +34,15 @@
         </Style>
         
         <Storyboard x:Name="ShowMapAnimation">
-        	<DoubleAnimation BeginTime="0:0:1" Duration="0:0:2" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="MapControl" d:IsOptimized="True">
-        		<DoubleAnimation.EasingFunction>
-        			<CubicEase EasingMode="EaseInOut"/>
-        		</DoubleAnimation.EasingFunction>
-        	</DoubleAnimation>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="MapControl" d:IsOptimized="True">
+                <EasingDoubleKeyFrame KeyTime="0:0:0" Value="0" />
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0.01" />
+                <EasingDoubleKeyFrame KeyTime="0:0:3" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseInOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
         </Storyboard>
 
         <Storyboard x:Name="ImageInfoSlideIn">
@@ -135,14 +139,20 @@
         		</DiscreteObjectKeyFrame>
         	</ObjectAnimationUsingKeyFrames>
             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="FullMapPanel">
-                <DiscreteObjectKeyFrame KeyTime="0:0:0.5">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.1">
                     <DiscreteObjectKeyFrame.Value>
                         <Visibility>Visible</Visibility>
                     </DiscreteObjectKeyFrame.Value>
                 </DiscreteObjectKeyFrame>
             </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="FullMapPanel">
+                <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0.01"/>
+                <DiscreteDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
+                <DiscreteDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationY)" Storyboard.TargetName="FullMapPanel">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="90"/>
+                <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="89" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="89"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0">
                     <EasingDoubleKeyFrame.EasingFunction>
                         <BackEase EasingMode="EaseOut"/>
@@ -529,7 +539,7 @@
             <Grid.Projection>
                 <PlaneProjection/>
             </Grid.Projection>
-            <maps:Map Grid.Row="1" x:Name="FullMapControl" IsHitTestVisible="False" ZoomLevel="11"/>
+            <maps:Map Grid.Row="1" x:Name="FullMapControl" IsHitTestVisible="False" ZoomLevel="9"/>
         </Grid>
 
         <Grid x:Name="FullImagePanel" Visibility="Collapsed" Background="{StaticResource PhoneBackgroundBrush}"

@@ -35,6 +35,8 @@ namespace ImageInfoTool.App.Pages
             Image
         }
 
+        private bool _infoMapAnimationPlayed = false;
+
         private InfoPageViewState _viewState = InfoPageViewState.Info;
 
         /// <summary>
@@ -61,7 +63,13 @@ namespace ImageInfoTool.App.Pages
                         MapControl.Center = centerPosition;
                         UpdateOverlayAtCenter(MapControl, photoPosition);
                         MapControl.Visibility = System.Windows.Visibility.Visible;
-                        ShowMapAnimation.Begin();
+
+                        if (_viewState == InfoPageViewState.Info)
+                        {
+                            ShowMapAnimation.Begin();
+                            _infoMapAnimationPlayed = true;
+                        }
+
 
                         // init full screen map
                         FullMapControl.CartographicMode = AppSettings.MapType.Value;
@@ -364,6 +372,21 @@ namespace ImageInfoTool.App.Pages
             }
         }
 
+        
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+
+            // save state
+            if (e.NavigationMode != NavigationMode.Back || e.Uri.OriginalString == "app://external/")
+            {
+                PhoneStateHelper.SaveValue(AppConstants.STATE_SCROLL_KEY, ImageInfoScroller.VerticalOffset);
+                PhoneStateHelper.SaveValue(AppConstants.STATE_INFO_VIEW_STATE, _viewState);
+                PhoneStateHelper.SaveValue(AppConstants.STATE_FULL_MAP_ZOOM, FullMapControl.ZoomLevel);
+            }
+        }
+
         /// <summary>
         /// Goes directrly to the given view state.
         /// </summary>
@@ -391,16 +414,18 @@ namespace ImageInfoTool.App.Pages
             }
         }
 
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        /// <summary>
+        /// Checks and plays unplayed animations.
+        /// </summary>
+        private void CheckForSwitchStateAnimations()
         {
-            base.OnNavigatedFrom(e);
-
-            // save state
-            if (e.NavigationMode != NavigationMode.Back || e.Uri.OriginalString == "app://external/")
+            if (!_infoMapAnimationPlayed)
             {
-                PhoneStateHelper.SaveValue(AppConstants.STATE_SCROLL_KEY, ImageInfoScroller.VerticalOffset);
-                PhoneStateHelper.SaveValue(AppConstants.STATE_INFO_VIEW_STATE, _viewState);
-                PhoneStateHelper.SaveValue(AppConstants.STATE_FULL_MAP_ZOOM, FullMapControl.ZoomLevel);
+                if (_viewState == InfoPageViewState.Info)
+                {
+                    ShowMapAnimation.Begin();
+                    _infoMapAnimationPlayed = true;
+                }
             }
         }
 
@@ -436,12 +461,14 @@ namespace ImageInfoTool.App.Pages
                 {
                     InfoToMapAnimation.Begin();
                     _viewState = InfoPageViewState.Map;
+                    CheckForSwitchStateAnimations();
                 }
 
                 else
                 {
                     InfoToImageSkipMapAnimation.Begin();
                     _viewState = InfoPageViewState.Image;
+                    CheckForSwitchStateAnimations();
                 }
             }
             // left
@@ -449,6 +476,7 @@ namespace ImageInfoTool.App.Pages
             {
                 InfoToImageAnimation.Begin();
                 _viewState = InfoPageViewState.Image;
+                CheckForSwitchStateAnimations();
             }
         }
 
@@ -470,6 +498,7 @@ namespace ImageInfoTool.App.Pages
             {
                 ImageToInfoAnimation.Begin();
                 _viewState = InfoPageViewState.Info;
+                CheckForSwitchStateAnimations();
             }
             // left
             else if (flickX < -SWIPE_SENSITIVITY_VALUE)
@@ -478,11 +507,13 @@ namespace ImageInfoTool.App.Pages
                 {
                     ImageToMapAnimation.Begin();
                     _viewState = InfoPageViewState.Map;
+                    CheckForSwitchStateAnimations();
                 }
                 else
                 {
                     ImageToInfoSkipMapAnimation.Begin();
                     _viewState = InfoPageViewState.Info;
+                    CheckForSwitchStateAnimations();
                 }
             }
         }
@@ -507,12 +538,14 @@ namespace ImageInfoTool.App.Pages
             {
                 MapToImageAnimation.Begin();
                 _viewState = InfoPageViewState.Image;
+                CheckForSwitchStateAnimations();
             }
             // left
             else if (flickX < -SWIPE_SENSITIVITY_VALUE)
             {
                 MapToInfoAnimation.Begin();
                 _viewState = InfoPageViewState.Info;
+                CheckForSwitchStateAnimations();
             }
         }
 

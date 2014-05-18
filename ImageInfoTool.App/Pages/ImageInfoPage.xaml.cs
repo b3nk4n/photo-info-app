@@ -335,19 +335,30 @@ namespace ImageInfoTool.App.Pages
         private const int SWIPE_SENSITIVITY_VALUE = 1500;
 
         /// <summary>
+        /// Represents no scale.
+        /// </summary>
+        private readonly Point ZERO_SCALE = new Point();
+
+        /// <summary>
         /// The swipe gesture listener event for the content panel.
         /// </summary>
-        private void ContentPanelSwipeManipulationCompleted(object sender, System.Windows.Input.ManipulationCompletedEventArgs e)
+        private void ContentPanelManipulationCompleted(object sender, System.Windows.Input.ManipulationCompletedEventArgs e)
         {
             if (IsRotationAnimationActive)
                 return;
 
             double flickX = e.FinalVelocities.LinearVelocity.X;
+            var vm = DataContext as ImageViewModel;
+            if (vm == null)
+                return;
 
             // right
             if (flickX > SWIPE_SENSITIVITY_VALUE)
             {
-                InfoToMapAnimation.Begin();
+                if (vm.HasExifData && vm.ExifData.HasGPSLatitude && vm.ExifData.HasGPSLongitude)
+                    InfoToMapAnimation.Begin();
+                else
+                    InfoToImageSkipMapAnimation.Begin();
             }
             // left
             else if (flickX < -SWIPE_SENSITIVITY_VALUE)
@@ -359,12 +370,15 @@ namespace ImageInfoTool.App.Pages
         /// <summary>
         /// The swipe gesture listener event for the full image panel.
         /// </summary>
-        private void FullImagePanelSwipeManipulationCompleted(object sender, System.Windows.Input.ManipulationCompletedEventArgs e)
+        private void FullImagePanelManipulationCompleted(object sender, System.Windows.Input.ManipulationCompletedEventArgs e)
         {
             if (IsRotationAnimationActive)
                 return;
 
             double flickX = e.FinalVelocities.LinearVelocity.X;
+            var vm = DataContext as ImageViewModel;
+            if (vm == null)
+                return;
 
             // right
             if (flickX > SWIPE_SENSITIVITY_VALUE)
@@ -374,19 +388,27 @@ namespace ImageInfoTool.App.Pages
             // left
             else if (flickX < -SWIPE_SENSITIVITY_VALUE)
             {
-                ImageToMapAnimation.Begin();
+                if (vm.HasExifData && vm.ExifData.HasGPSLatitude && vm.ExifData.HasGPSLongitude)
+                    ImageToMapAnimation.Begin();
+                else
+                    ImageToInfoSkipMapAnimation.Begin();
             }
         }
 
         /// <summary>
         /// The swipe gesture listener event for the full map panel.
         /// </summary>
-        private void FullMapPanelSwipeManipulationCompleted(object sender, System.Windows.Input.ManipulationCompletedEventArgs e)
+        private void FullMapPanelManipulationCompleted(object sender, System.Windows.Input.ManipulationCompletedEventArgs e)
         {
             if (IsRotationAnimationActive)
                 return;
 
+            // make sure ther was no pinch on the map
+            if (e.TotalManipulation.Scale != ZERO_SCALE)
+                return;
+
             double flickX = e.FinalVelocities.LinearVelocity.X;
+            double flickY = e.FinalVelocities.LinearVelocity.Y;
 
             // right
             if (flickX > SWIPE_SENSITIVITY_VALUE)
@@ -398,6 +420,22 @@ namespace ImageInfoTool.App.Pages
             {
                 MapToInfoAnimation.Begin();
             }
+        }
+
+        private void FullMapPanelManipulationDelta(object sender, System.Windows.Input.ManipulationDeltaEventArgs e)
+        {
+            // verify there was a pinch geasture
+            if (e.PinchManipulation == null)
+                return;
+
+            var scaleFactor = e.PinchManipulation.DeltaScale;
+
+            var newScaleFactor = FullMapControl.ZoomLevel * (scaleFactor + ((1 - scaleFactor) * 0.85));
+
+            newScaleFactor = Math.Max(4, newScaleFactor);
+            newScaleFactor = Math.Min(19, newScaleFactor);
+
+            FullMapControl.ZoomLevel = newScaleFactor;
         }
 
         private bool IsRotationAnimationActive

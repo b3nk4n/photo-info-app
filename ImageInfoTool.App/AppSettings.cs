@@ -34,5 +34,10 @@ namespace ImageInfoTool.App
         /// Setting for whether the screenshots album should be hidden.
         /// </summary>
         public static StoredObject<bool> HideScreenshotsAlbum = new StoredObject<bool>("_hideScreenshots_", true);
+
+        /// <summary>
+        /// Settings for whether the user has done the swipe tutorial, to show it only once.
+        /// </summary>
+        public static StoredObject<bool> HasDoneSwipeTutorial = new StoredObject<bool>("_swipeTutorial_", false);
     }
 }

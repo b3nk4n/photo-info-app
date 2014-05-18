@@ -34,10 +34,21 @@ namespace ImageInfoTool.App.Pages
             Map,
             Image
         }
+        
+        /// <summary>
+        /// The current view state.
+        /// </summary>
+        private InfoPageViewState _viewState = InfoPageViewState.Info;
 
+        /// <summary>
+        /// Indicates whether the map animation has already been played.
+        /// </summary>
         private bool _infoMapAnimationPlayed = false;
 
-        private InfoPageViewState _viewState = InfoPageViewState.Info;
+        /// <summary>
+        /// Indicates whether the tutorial popup is visible.
+        /// </summary>
+        private bool _isTutorialPopupVisible = false;
 
         /// <summary>
         /// Creates a ImageInfoPage instance.
@@ -88,6 +99,13 @@ namespace ImageInfoTool.App.Pages
                 }
 
                 ImageInfoSlideIn.Begin();
+
+                if (!AppSettings.HasDoneSwipeTutorial.Value)
+                {
+                    AppSettings.HasDoneSwipeTutorial.Value = true;
+                    ShowTutorialAnimation.Begin();
+                    _isTutorialPopupVisible = true;
+                }
             };
 
             RemoveAdButton.Tap += (s, e) =>
@@ -427,6 +445,34 @@ namespace ImageInfoTool.App.Pages
                     _infoMapAnimationPlayed = true;
                 }
             }
+        }
+
+        /// <summary>
+        /// The event handler for the SKIP tutorial button.
+        /// </summary>
+        private void SkipTutorialClick(object sender, RoutedEventArgs e)
+        {
+            SkipTutorial();
+        }
+
+        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
+        {
+            base.OnBackKeyPress(e);
+
+            if (_isTutorialPopupVisible)
+            {
+                SkipTutorial();
+                e.Cancel = true;
+            }
+        }
+
+        /// <summary>
+        /// Skips the swipte tutorial-
+        /// </summary>
+        private void SkipTutorial()
+        {
+            HideTutorialAnimation.Begin();
+            _isTutorialPopupVisible = false;
         }
 
         #region Swipe transition

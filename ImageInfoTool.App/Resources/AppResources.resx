@@ -396,4 +396,16 @@ Showing us some love on the store helps us to continue to work on the app and ma
     <value>Hide screenshots</value>
     <comment>SettingsPage</comment>
   </data>
+  <data name="TutorialCheckItOut" xml:space="preserve">
+    <value>check it out</value>
+    <comment>TutorialPopup</comment>
+  </data>
+  <data name="TutorialContent" xml:space="preserve">
+    <value>You can change the view with a horizontal swipe gesture...</value>
+    <comment>TutorialPopup</comment>
+  </data>
+  <data name="TutorialTitle" xml:space="preserve">
+    <value>Did you know?</value>
+    <comment>TutorialPopup</comment>
+  </data>
 </root>

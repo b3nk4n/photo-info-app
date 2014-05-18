@@ -400,4 +400,16 @@ Das würde uns sehr motivieren um die App noch besser zu machen!</value>
     <value>Screenshots ausblenden</value>
     <comment>SettingsPage</comment>
   </data>
+  <data name="TutorialCheckItOut" xml:space="preserve">
+    <value>ausprobieren</value>
+    <comment>TutorialPopup</comment>
+  </data>
+  <data name="TutorialContent" xml:space="preserve">
+    <value>Du kannst die Ansicht wechseln, indem du mit dem Finger horizontal über den Bildschirm wischst...</value>
+    <comment>TutorialPopup</comment>
+  </data>
+  <data name="TutorialTitle" xml:space="preserve">
+    <value>Wusstest du schon?</value>
+    <comment>TutorialPopup</comment>
+  </data>
 </root>

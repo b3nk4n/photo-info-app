@@ -64,7 +64,41 @@
             <DoubleAnimation BeginTime="0:0:10" Duration="0:0:1.5" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="BannerContainer">
             </DoubleAnimation>
         </Storyboard>
-        
+
+        <Storyboard x:Name="ShowTutorialAnimation">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="TutorialPopup">
+                <DiscreteObjectKeyFrame KeyTime="0:0:3">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="0:0:3" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="TutorialPopup">
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <QuarticEase EasingMode="EaseInOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Name="HideTutorialAnimation">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="TutorialPopup">
+                <DiscreteObjectKeyFrame KeyTime="0:0:1">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="TutorialPopup">
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1200">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <QuarticEase EasingMode="EaseInOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
         <!-- State rotation animation -->
         
         <Storyboard x:Name="InfoToImageAnimation">
@@ -204,14 +238,20 @@
                 </DiscreteObjectKeyFrame>
             </ObjectAnimationUsingKeyFrames>
             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="FullMapPanel">
-                <DiscreteObjectKeyFrame KeyTime="0:0:0.5">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.1">
                     <DiscreteObjectKeyFrame.Value>
                         <Visibility>Visible</Visibility>
                     </DiscreteObjectKeyFrame.Value>
                 </DiscreteObjectKeyFrame>
             </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="FullMapPanel">
+                <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0.01"/>
+                <DiscreteDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
+                <DiscreteDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationY)" Storyboard.TargetName="FullMapPanel">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="-90"/>
+                <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="-89" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="-89"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0">
                     <EasingDoubleKeyFrame.EasingFunction>
                         <BackEase EasingMode="EaseOut"/>
@@ -549,6 +589,20 @@
                     VerticalAlignment="Top" HorizontalAlignment="Right">
                 <Image Source="/Assets/Images/close.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </Border>
+        </Grid>
+        
+        <Grid x:Name="TutorialPopup" Background="{StaticResource PhoneChromeBrush}" Visibility="Visible" Margin="0,0,0,30">
+            <Grid.RenderTransform>
+                <CompositeTransform TranslateY="1200" />
+            </Grid.RenderTransform>
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Text="{Binding Path=LocalizedResources.TutorialTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextExtraLargeStyle}" TextAlignment="Center" Margin="{StaticResource PhoneMargin}" />
+                <TextBlock Text="{Binding Path=LocalizedResources.TutorialContent, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextLargeStyle}"
+                           TextWrapping="Wrap" TextAlignment="Center" Margin="{StaticResource PhoneMargin}" />
+                <Image Source="/Assets/Images/swipe_tutorial.png" Width="240" Margin="24" />
+            </StackPanel>
+            <Button Content="{Binding Path=LocalizedResources.TutorialCheckItOut, Source={StaticResource LocalizedStrings}}" MinWidth="180" Click="SkipTutorialClick"
+                    VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="{StaticResource PhoneMargin}" />
         </Grid>
     </Grid>
 

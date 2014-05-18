@@ -724,6 +724,33 @@ namespace ImageInfoTool.App.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die check it out ähnelt.
+        /// </summary>
+        public static string TutorialCheckItOut {
+            get {
+                return ResourceManager.GetString("TutorialCheckItOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die You can change the view with a horizontal swipe gesture... ähnelt.
+        /// </summary>
+        public static string TutorialContent {
+            get {
+                return ResourceManager.GetString("TutorialContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Did you know? ähnelt.
+        /// </summary>
+        public static string TutorialTitle {
+            get {
+                return ResourceManager.GetString("TutorialTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die auto ähnelt.
         /// </summary>
         public static string WhiteBalanceAuto {

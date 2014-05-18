@@ -367,6 +367,7 @@
                         </Image.RenderTransform>
                     </Image>
                 </Border>
+                <Rectangle Width="480" Height="200" Fill="{StaticResource PhoneBackgroundBrush}" VerticalAlignment="Top" />
             </Grid>
 
             <maps:Map Grid.Row="1" x:Name="MapControl" ZoomLevel="11" Height="400" Width="480" VerticalAlignment="Bottom"

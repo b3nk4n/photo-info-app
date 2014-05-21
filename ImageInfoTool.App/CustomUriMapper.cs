@@ -59,7 +59,14 @@ namespace ImageInfoTool.App
             // URI association launch for contoso.
             if (tempUri.Contains("/Protocol"))
             {
-                int mediaLibIndexPosition = tempUri.IndexOf(string.Format("{0}=", AppConstants.PARAM_MEDIA_LIB_INDEX)) + AppConstants.PARAM_MEDIA_LIB_INDEX.Length + 1;
+
+                int mediaLibIndexPosition = tempUri.IndexOf(string.Format("{0}=", AppConstants.PARAM_MEDIA_LIB_INDEX));
+                
+                if (mediaLibIndexPosition == -1)
+                {
+                    return new Uri(string.Format("/Pages/MainPage.xaml?"), UriKind.Relative);
+                }
+                mediaLibIndexPosition += AppConstants.PARAM_MEDIA_LIB_INDEX.Length + 1;
                 string mediaLibIndex = tempUri.Substring(mediaLibIndexPosition);
 
                 return new Uri(string.Format("/Pages/ImageInfoPage.xaml?{0}={1}", AppConstants.PARAM_MEDIA_LIB_INDEX, mediaLibIndex), UriKind.Relative);

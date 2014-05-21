@@ -64,7 +64,7 @@ namespace ImageInfoTool.App
                 
                 if (mediaLibIndexPosition == -1)
                 {
-                    return new Uri(string.Format("/Pages/MainPage.xaml?"), UriKind.Relative);
+                    return new Uri(string.Format("/Pages/MainPage.xaml"), UriKind.Relative);
                 }
                 mediaLibIndexPosition += AppConstants.PARAM_MEDIA_LIB_INDEX.Length + 1;
                 string mediaLibIndex = tempUri.Substring(mediaLibIndexPosition);

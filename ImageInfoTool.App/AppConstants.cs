@@ -60,5 +60,10 @@ namespace ImageInfoTool.App
         /// The phone state key of the full map zoom level.
         /// </summary>
         public const string STATE_FULL_MAP_ZOOM = "fullMapZoom";
+
+        /// <summary>
+        /// The apps URI scheme.
+        /// </summary>
+        public const string URI_SCHEME_PHOTO_INFO = "photoinfo";
     }
 }

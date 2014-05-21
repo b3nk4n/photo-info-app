@@ -38,6 +38,7 @@
       </PrimaryToken>
     </Tokens>
     <Extensions>
+     
       <!-- Extend the Photos Hub and launch to default start page. -->
       <Extension ExtensionName="Photos_Extra_Hub" ConsumerID="{5B04B775-356B-4AA0-AAF8-6491FFEA5632}" TaskID="_default" />
       <!-- Extend the photo edit picker. -->
@@ -49,9 +50,9 @@
       <!-- Extend the photo apps picker. -->
       <!-- This is only for Windows Phone OS 7.1 apps. -->
       <Extension ExtensionName="Photos_Extra_Viewer" ConsumerID="{5B04B775-356B-4AA0-AAF8-6491FFEA5632}" TaskID="_default" />
-      
+
       <!-- file association -->
-      <!--<FileTypeAssociation Name="Image files" TaskID="_default" NavUriFragment="fileToken=%s">
+      <FileTypeAssociation Name="Image files" TaskID="_default" NavUriFragment="fileToken=%s">
         <Logos>
           <Logo Size="small" IsRelative="true">/Assets/Images/33.png</Logo>
           <Logo Size="medium" IsRelative="true">/Assets/Images/69.png</Logo>
@@ -62,7 +63,11 @@
           <FileType ContentType="image/jpeg">.jpg</FileType>
           <FileType ContentType="image/jpeg">.jpeg</FileType>
         </SupportedFileTypes>
-      </FileTypeAssociation>-->
+      </FileTypeAssociation>
+      
+      <!-- URI schemes -->
+      <Protocol Name="photoinfo" NavUriFragment="encodedLaunchUri=%s" TaskID="_default" />
+      
     </Extensions>
     <ScreenResolutions>
       <ScreenResolution Name="ID_RESOLUTION_WVGA" />

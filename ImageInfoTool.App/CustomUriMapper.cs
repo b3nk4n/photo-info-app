@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Navigation;
+using Windows.Phone.Storage.SharedAccess;
 
 namespace ImageInfoTool.App
 {
@@ -19,7 +22,7 @@ namespace ImageInfoTool.App
         /// <returns>THe mapped URI.</returns>
         public override Uri MapUri(Uri uri)
         {
-            string tempUri = uri.ToString();
+            string tempUri = HttpUtility.UrlDecode(uri.ToString());
             string mappedUri;
 
             // Launch from the photo edit picker.
@@ -51,6 +54,38 @@ namespace ImageInfoTool.App
                 // Redirect to PhotoPage.xaml.
                 mappedUri = tempUri.Replace("MainPage", "ImageInfoPage");
                 return new Uri(mappedUri, UriKind.Relative);
+            }
+
+            // URI association launch for contoso.
+            if (tempUri.Contains("/Protocol"))
+            {
+                int mediaLibIndexPosition = tempUri.IndexOf(string.Format("{0}=", AppConstants.PARAM_MEDIA_LIB_INDEX)) + AppConstants.PARAM_MEDIA_LIB_INDEX.Length + 1;
+                string mediaLibIndex = tempUri.Substring(mediaLibIndexPosition);
+
+                return new Uri(string.Format("/Pages/ImageInfoPage.xaml?{0}={1}", AppConstants.PARAM_MEDIA_LIB_INDEX, mediaLibIndex), UriKind.Relative);
+            }
+
+            // File association launch
+            if (tempUri.Contains("/FileTypeAssociation"))
+            {
+                // Get the file ID (after "fileToken=").
+                int fileIDIndex = tempUri.IndexOf("fileToken=") + 10;
+                string fileID = tempUri.Substring(fileIDIndex);
+
+                // Get the file name.
+                string incomingFileName = SharedStorageAccessManager.GetSharedFileName(fileID);
+
+                // Get the file extension.
+                string incomingFileType = Path.GetExtension(incomingFileName);
+
+                // Map the .sdkTest1 and .sdkTest2 files to different pages.
+                switch (incomingFileType)
+                {
+                    case ".png":
+                    case ".jpg":
+                    case ".jpeg":
+                        return new Uri(string.Format("/Pages/MainPage.xaml?{0}={1}", AppConstants.PARAM_FILE_TOKEN, fileID), UriKind.Relative);
+                }
             }
 
             // Otherwise perform normal launch.

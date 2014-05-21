@@ -43,6 +43,16 @@ namespace ImageInfoTool.App
                 return new Uri(mappedUri, UriKind.Relative);
             }
 
+            // Launch from the photo apps picker.
+            // This is for only Windows Phone OS 7.1 apps.
+            // Incoming URI example: /MainPage.xaml?token=%7B273fea8d-134c-4764-870d-42224d13eb1a%7D
+            if ((tempUri.Contains(AppConstants.PARAM_FILE_TOKEN)) && !(tempUri.Contains("RichMediaEdit")))
+            {
+                // Redirect to PhotoPage.xaml.
+                mappedUri = tempUri.Replace("MainPage", "ImageInfoPage");
+                return new Uri(mappedUri, UriKind.Relative);
+            }
+
             // Otherwise perform normal launch.
             return uri;
         }

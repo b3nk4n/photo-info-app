@@ -46,6 +46,10 @@
       <!-- Integrate as a rich media app. -->
       <!-- This is only for Windows Phone 8 apps. -->
       <Extension ExtensionName="Photos_Rich_Media_Edit" ConsumerID="{5B04B775-356B-4AA0-AAF8-6491FFEA5632}" TaskID="_default" />
+      <!-- Extend the photo apps picker. -->
+      <!-- This is only for Windows Phone OS 7.1 apps. -->
+      <Extension ExtensionName="Photos_Extra_Viewer" ConsumerID="{5B04B775-356B-4AA0-AAF8-6491FFEA5632}" TaskID="_default" />
+      
       <!-- file association -->
       <!--<FileTypeAssociation Name="Image files" TaskID="_default" NavUriFragment="fileToken=%s">
         <Logos>

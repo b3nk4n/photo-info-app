@@ -22,11 +22,6 @@ namespace ImageInfoTool.App
     /// </summary>
     public partial class MainPage : PhoneApplicationPage
     {
-        private const int BOTTOM_OF_LIST = 9999999;
-
-        private const int INITIAL_LOADED_IMAGES_ = 99999;//40;
-        private const int LOADED_IMAGES_PER_INTERVAL = 120;
-
         private bool _doStartupAnimation;
 
         /// <summary>

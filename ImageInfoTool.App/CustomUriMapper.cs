@@ -91,8 +91,11 @@ namespace ImageInfoTool.App
                     case ".png":
                     case ".jpg":
                     case ".jpeg":
-                        return new Uri(string.Format("/Pages/MainPage.xaml?{0}={1}", AppConstants.PARAM_FILE_TOKEN, fileID), UriKind.Relative);
+                        return new Uri(string.Format("/Pages/ImageInfoPage.xaml?{0}={1}", AppConstants.PARAM_FILE_TOKEN, fileID), UriKind.Relative);
                 }
+
+                // ensure to go to the main page when the file type association failed
+                return new Uri("/Pages/MainPage.xaml", UriKind.Relative);
             }
 
             // Otherwise perform normal launch.

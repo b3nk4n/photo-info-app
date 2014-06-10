@@ -99,7 +99,6 @@
     <Compile Include="Controls\LocalizedInAppStoreControl.cs" />
     <Compile Include="CustomUriMapper.cs" />
     <Compile Include="GeoLocation\GeoLocationHelper.cs" />
-    <Compile Include="Helpers\PurchaseHelper.cs" />
     <Compile Include="Model\ExifData.cs" />
     <Compile Include="Pages\ImageInfoPage.xaml.cs">
       <DependentUpon>ImageInfoPage.xaml</DependentUpon>

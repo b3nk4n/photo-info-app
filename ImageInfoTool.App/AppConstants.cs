@@ -42,11 +42,6 @@ namespace ImageInfoTool.App
         public const string PRO_VERSION_IN_APP_KEY = "imageInfoPro";
 
         /// <summary>
-        /// The time interval of the ad free version in days.
-        /// </summary>
-        public const int AD_FREE_TRIAL_TIME_IN_DAYS = 14;
-
-        /// <summary>
         /// The phone state scroll key of the info scrollview.
         /// </summary>
         public const string STATE_SCROLL_KEY = "infoScrollState";

@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
@@ -13,16 +11,11 @@ using ImageInfoTool.App.GeoLocation;
 using System.Windows.Shapes;
 using System.Windows.Media;
 using Microsoft.Phone.Maps.Controls;
-using System.Threading;
-using System.Diagnostics;
-using System.Threading.Tasks;
 using ImageInfoTool.App.Resources;
 using PhoneKit.Framework.Advertising;
-using PhoneKit.Framework.InAppPurchase;
 using PhoneKit.Framework.Core.Collections;
-using Microsoft.Phone.Tasks;
-using ImageInfoTool.App.Helpers;
 using PhoneKit.Framework.Storage;
+using PhoneKit.Framework.InAppPurchase;
 
 namespace ImageInfoTool.App.Pages
 {
@@ -110,22 +103,7 @@ namespace ImageInfoTool.App.Pages
 
             RemoveAdButton.Tap += (s, e) =>
             {
-                if (AppSettings.HasReviewed.Value)
-                {
-                    NavigationService.Navigate(new Uri("/Pages/InAppStorePage.xaml", UriKind.Relative));
-                }
-                else
-                {
-                    if (MessageBox.Show(AppResources.MessageBoxRemoveAdContent, AppResources.MessageBoxRemoveAdTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
-                    {
-                        AppSettings.HasReviewed.Value = true;
-
-                        AppSettings.AddFreeDateDeadline.Value = DateTime.Now.AddDays(AppConstants.AD_FREE_TRIAL_TIME_IN_DAYS);
-
-                        var reviewTask = new MarketplaceReviewTask();
-                        reviewTask.Show();
-                    }
-                }
+                NavigationService.Navigate(new Uri("/Pages/InAppStorePage.xaml", UriKind.Relative));
             };
 
             InitializeMapApiKey();
@@ -185,7 +163,7 @@ namespace ImageInfoTool.App.Pages
         /// </summary>
         private void InitializeBanner()
         {
-            if (PurchaseHelper.IsFreeTrialOrProVersion())
+            if (InAppPurchaseHelper.IsProductActive(AppConstants.PRO_VERSION_IN_APP_KEY))
                 return;
 
             if (BannerControl.AdvertsCount > 0)
@@ -213,7 +191,7 @@ namespace ImageInfoTool.App.Pages
         /// </summary>
         private void UpdateBannerVisibility()
         {
-            if (PurchaseHelper.IsFreeTrialOrProVersion())
+            if (InAppPurchaseHelper.IsProductActive(AppConstants.PRO_VERSION_IN_APP_KEY))
             {
                 BannerControl.Visibility = System.Windows.Visibility.Collapsed;
                 BannerContainer.Visibility = System.Windows.Visibility.Collapsed;

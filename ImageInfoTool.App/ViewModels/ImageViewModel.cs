@@ -33,7 +33,7 @@ namespace ImageInfoTool.App.ViewModels
             _openInGeoPhotoCommand = new DelegateCommand(async () =>
             {
                 string imagePath = ImagePath;
-                await Launcher.LaunchUriAsync(new Uri("geophoto:ShowPicturePosition?PicturePath=" + imagePath, UriKind.Absolute));
+                await Launcher.LaunchUriAsync(new Uri(string.Format("geophoto:ShowPicturePosition?PicturePath={0}&Code=pdowGZ7p", imagePath), UriKind.Absolute));
             });
         }
 

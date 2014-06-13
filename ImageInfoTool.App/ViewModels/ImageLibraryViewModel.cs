@@ -6,6 +6,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -99,7 +100,19 @@ namespace ImageInfoTool.App.ViewModels
         /// <returns></returns>
         public ImageViewModel GetFromToken(string token)
         {
-            Picture photo = MediaLibrary.GetPictureFromToken(token);
+            Picture photo = null;
+
+            // BUGSENSE: "An unexpected error has occured."
+            // 13.06.2014
+            // 1 time in version 1.3.1
+            try
+            {
+                photo = MediaLibrary.GetPictureFromToken(token);
+            }
+            catch (InvalidOperationException ioex)
+            {
+                Debug.WriteLine("Could not retrieve photo from library with error: " + ioex.Message);
+            }
 
             if (photo == null)
                 return null;

@@ -15,7 +15,7 @@
     <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
     <SilverlightApplication>true</SilverlightApplication>
-    <SupportedCultures>de-DE</SupportedCultures>
+    <SupportedCultures>de-DE%3bid-ID</SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
     <XapFilename>ImageInfoTool.App_$(Configuration)_$(Platform).xap</XapFilename>
@@ -155,6 +155,7 @@
     <None Include="app.config" />
     <Content Include="AppResLib.dll.0407.mui" />
     <Content Include="AppResLib.dll.0409.mui" />
+    <None Include="AppResLib.dll.0421.mui" />
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml">
       <SubType>Designer</SubType>
@@ -185,6 +186,7 @@
     <Content Include="Assets\Images\dark\show.png" />
     <Content Include="Assets\Images\geophoto.png" />
     <Content Include="Assets\Images\icon.png" />
+    <Content Include="Assets\Images\indonesian.png" />
     <Content Include="Assets\Images\light\add.png" />
     <Content Include="Assets\Images\light\logo200.png" />
     <Content Include="Assets\Images\light\show.png" />
@@ -205,6 +207,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\AppResources.de-DE.resx" />
+    <EmbeddedResource Include="Resources\AppResources.id-ID.resx" />
     <EmbeddedResource Include="Resources\AppResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>

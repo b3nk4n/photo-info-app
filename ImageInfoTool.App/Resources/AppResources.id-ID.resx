@@ -122,23 +122,23 @@
     <comment>Controls the FlowDirection for all elements in the RootFrame. Set to the traditional direction of this resource file's language</comment>
   </data>
   <data name="ResourceLanguage" xml:space="preserve">
-    <value>en-US</value>
+    <value>id-ID</value>
     <comment>Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</comment>
   </data>
   <data name="AboutTitle" xml:space="preserve">
-    <value>about</value>
+    <value>tentang</value>
     <comment>AboutPage</comment>
   </data>
   <data name="ApplicationAuthor" xml:space="preserve">
-    <value>by Benjamin Sautermeister</value>
+    <value>oleh Benjamin Sautermeister</value>
     <comment>AboutPage</comment>
   </data>
   <data name="ApplicationDescription" xml:space="preserve">
-    <value>This app extends the Photos-Hub of Windows Phone 8 with new capabilities to get image information.</value>
+    <value>Aplikasi ini memperluas Hub-Foto pada Windows Phone 8 dengan kemampuan baru untuk mendapatkan informasi foto.</value>
     <comment>AboutPage</comment>
   </data>
   <data name="ApplicationTitle" xml:space="preserve">
-    <value>Photo-Info</value>
+    <value>Foto-Info</value>
     <comment>General</comment>
   </data>
   <data name="ApplicationVersion" xml:space="preserve">
@@ -146,7 +146,7 @@
     <comment>General</comment>
   </data>
   <data name="Contributors" xml:space="preserve">
-    <value>Contributors</value>
+    <value>Kontributor</value>
     <comment>AboutPage</comment>
   </data>
   <data name="FeedbackBodyText" xml:space="preserve">
@@ -167,121 +167,121 @@ Application Version: {4}
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="FeedbackMessageText" xml:space="preserve">
-    <value>Sorry to hear you didn't want to rate our tool.
+    <value>Sedih jika Anda tidak ingin menilai aplikasi kami.
 
-Tell us about your experience or suggest how we can make it even better.</value>
+Beritahu kami tentang pengalaman Anda atau berikan saran untuk membuat aplikasi ini lebih baik.</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="FeedbackNoText" xml:space="preserve">
-    <value>no thanks</value>
+    <value>tidak terimakasih</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="FeedbackSubject" xml:space="preserve">
-    <value>Photo-Info Customer Feedback </value>
+    <value>Saran Pelanggan Foto-Info</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="FeedbackTitleText" xml:space="preserve">
-    <value>Can we make it better?</value>
+    <value>Bisakah kami membuat aplikasi ini lebih baik?</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="FeedbackYesText" xml:space="preserve">
-    <value>give feedback</value>
+    <value>berikan saran</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="MoreApps" xml:space="preserve">
-    <value>more apps</value>
+    <value>aplikasi lain</value>
     <comment>AboutPage</comment>
   </data>
   <data name="PrivacyInfo" xml:space="preserve">
-    <value>privacy info</value>
+    <value>informasi privasi</value>
     <comment>About Page</comment>
   </data>
   <data name="RateAndReview" xml:space="preserve">
-    <value>rate and review</value>
+    <value>nilai dan tinjau</value>
     <comment>AboutPage</comment>
   </data>
   <data name="RatingMessage10Text" xml:space="preserve">
-    <value>You look to be getting a lot of use out of our application!
+    <value>Sepertinya Anda sering mengugnakan aplikasi kami!
 
-Why not give us a 5 star rating to show your appreciation?</value>
+Mengapa tidak memberikan nilai 5 bintang untuk menunjukkan apresiasi Anda?</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="RatingMessage5Text" xml:space="preserve">
-    <value>We'd love you to rate our app 5 stars
+    <value>Kami gembira Anda memberikan nilai 5 bintang
 
-Showing us some love on the store helps us to continue to work on the app and make things even better!</value>
+Menunjukkan kecintaan di bursa membantu kita terus mengembangkan aplikasi menjadi lebih baik!</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="RatingNoText" xml:space="preserve">
-    <value>no thanks</value>
+    <value>tidak terimakasih</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="RatingTitleText" xml:space="preserve">
-    <value>Enjoying our tool?</value>
+    <value>Menikmati aplikasi kami?</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="RatingYesText" xml:space="preserve">
-    <value>rate 5 stars</value>
+    <value>nilai 5 bintang</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="SupportAndFeedback" xml:space="preserve">
-    <value>support and feedback</value>
+    <value>dukungan dan saran</value>
     <comment>About Page</comment>
   </data>
   <data name="FlashFired" xml:space="preserve">
-    <value>enabled</value>
+    <value>aktifkan</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="FlashFiredAuto" xml:space="preserve">
-    <value>enabled (auto mode)</value>
+    <value>aktifkan (mode otomatis)</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="FlashNotFired" xml:space="preserve">
-    <value>disabled</value>
+    <value>nonaktifkan</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="FlashNotFiredAuto" xml:space="preserve">
-    <value>disabled (auto mode)</value>
+    <value>nonaktifkan (mode otomatis)</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoAlbumName" xml:space="preserve">
-    <value>album name</value>
+    <value>nama album</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoAltitude" xml:space="preserve">
-    <value>altitude:</value>
+    <value>ketinggian:</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoCreationDate" xml:space="preserve">
-    <value>creation date</value>
+    <value>tanggal dibuat</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoDigitalZoom" xml:space="preserve">
-    <value>digital zoom</value>
+    <value>zoom digital</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoExifVersion" xml:space="preserve">
-    <value>exif version</value>
+    <value>versi exif</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoExposureTime" xml:space="preserve">
-    <value>exposure time</value>
+    <value>waktu pencahayaan</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoFileName" xml:space="preserve">
-    <value>file name</value>
+    <value>nama file</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoFileSize" xml:space="preserve">
-    <value>file size</value>
+    <value>ukuran file</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoFlash" xml:space="preserve">
-    <value>flash</value>
+    <value>lampu kilat</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoFocalRatio" xml:space="preserve">
-    <value>focal ratio</value>
+    <value>rasio fokus</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoGPS" xml:space="preserve">
@@ -293,11 +293,11 @@ Showing us some love on the store helps us to continue to work on the app and ma
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoLatitude" xml:space="preserve">
-    <value>latitude:</value>
+    <value>lintang:</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoLongitude" xml:space="preserve">
-    <value>longitude:</value>
+    <value>garis bujur:</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoModel" xml:space="preserve">
@@ -305,39 +305,39 @@ Showing us some love on the store helps us to continue to work on the app and ma
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoOrientation" xml:space="preserve">
-    <value>orientation</value>
+    <value>orientasi</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoResolution" xml:space="preserve">
-    <value>resolution</value>
+    <value>resolusi</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoTitleExtended" xml:space="preserve">
-    <value>extended</value>
+    <value>perluas</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoTitleBasic" xml:space="preserve">
-    <value>information</value>
+    <value>informasi</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoWhiteBalance" xml:space="preserve">
-    <value>white balance</value>
+    <value>keseimbangan putih</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="OrientationLandscape" xml:space="preserve">
-    <value>landscape</value>
+    <value>lanskap</value>
     <comment>MessageBox</comment>
   </data>
   <data name="OrientationPortrait" xml:space="preserve">
-    <value>portrait</value>
+    <value>potret</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="OrientationSquare" xml:space="preserve">
-    <value>square</value>
+    <value>kotak</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="WhiteBalanceAuto" xml:space="preserve">
-    <value>auto</value>
+    <value>otomatis</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="WhiteBalanceManual" xml:space="preserve">
@@ -345,43 +345,43 @@ Showing us some love on the store helps us to continue to work on the app and ma
     <comment>PhotoInfo</comment>
   </data>
   <data name="AddWithGeoPhoto" xml:space="preserve">
-    <value>add with GeoPhoto</value>
+    <value>tambahkan GeoPhoto</value>
     <comment>ImageInfoPage</comment>
   </data>
   <data name="HideFileNameTitle" xml:space="preserve">
-    <value>Hide file name</value>
+    <value>Sembunyikan nama file</value>
     <comment>SettingsPage</comment>
   </data>
   <data name="InfoFileType" xml:space="preserve">
-    <value>file type</value>
+    <value>tipe file</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
-    <value>settings</value>
+    <value>pengaturan</value>
     <comment>SettingsPage</comment>
   </data>
   <data name="MessageBoxNoImageFound" xml:space="preserve">
-    <value>The image could not be opened.</value>
+    <value>Gambar tidak dapat dibuka.</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="MessageBoxWarning" xml:space="preserve">
-    <value>Warning</value>
+    <value>Peringatan</value>
     <comment>MessageBox</comment>
   </data>
   <data name="InAppStoreLoading" xml:space="preserve">
-    <value>loading...</value>
+    <value>memuat...</value>
     <comment>InAppStorePage</comment>
   </data>
   <data name="InAppStoreNoProducts" xml:space="preserve">
-    <value>There are currently no in-app purchases available. Please try again later.</value>
+    <value>Tidak tersedia pembelian dalam aplikasi saat ini. Coba lagi nanti.</value>
     <comment>InAppStorePage</comment>
   </data>
   <data name="InAppStorePurchased" xml:space="preserve">
-    <value>purchased</value>
+    <value>dibeli</value>
     <comment>InAppStorePage</comment>
   </data>
   <data name="InAppStoreTitle" xml:space="preserve">
-    <value>in-app store</value>
+    <value>bursa di aplikasi</value>
     <comment>InAppStorePage</comment>
   </data>
   <data name="SettingsMapTypeAerial" xml:space="preserve">
@@ -389,55 +389,55 @@ Showing us some love on the store helps us to continue to work on the app and ma
     <comment>SettigsPage</comment>
   </data>
   <data name="SettingsMapTypeHybrid" xml:space="preserve">
-    <value>Hybrid</value>
+    <value>Hibrid</value>
     <comment>SettigsPage</comment>
   </data>
   <data name="SettingsMapTypeRoad" xml:space="preserve">
-    <value>Road</value>
+    <value>Jalan</value>
     <comment>SettigsPage</comment>
   </data>
   <data name="SettingsMapTypeTerrain" xml:space="preserve">
-    <value>Terrain</value>
+    <value>Dataran</value>
     <comment>SettigsPage</comment>
   </data>
   <data name="SettingsMapTypeTitle" xml:space="preserve">
-    <value>Map type</value>
+    <value>Tipe peta</value>
     <comment>SettingsPage</comment>
   </data>
   <data name="ShowWithGeoPhoto" xml:space="preserve">
-    <value>show with GeoPhoto</value>
+    <value>tunjukkan dengan GeoPhoto</value>
     <comment>ImageInfoPage</comment>
   </data>
   <data name="AppBarRefresh" xml:space="preserve">
-    <value>reload</value>
+    <value>muat ulang</value>
     <comment>AppBar</comment>
   </data>
   <data name="AppBarSettings" xml:space="preserve">
-    <value>settings</value>
+    <value>pengaturan</value>
     <comment>AppBar</comment>
   </data>
   <data name="MessageBoxRemoveAdContent" xml:space="preserve">
-    <value>We love to get user feedback. Each review helps us to make each app even better. As a thank-you gift, all adverts will disappear for two weeks! Do you want to rate the app now?</value>
+    <value>Kami gembira menerima saran pengguna. Setiap tinjauan akan membantu aplikasi menjadi lebih baik. Sebagai ucapan terima kasih, semua iklan akan hilang selama dua minggu! Apakah Anda ingin menilai aplikasi sekarang?</value>
     <comment>MessageBox</comment>
   </data>
   <data name="MessageBoxRemoveAdTitle" xml:space="preserve">
-    <value>Annoyed by adverts?</value>
+    <value>Kesal dengan iklan?</value>
     <comment>MessageBox</comment>
   </data>
   <data name="HideScreenshotsAlbumTitle" xml:space="preserve">
-    <value>Hide screenshots</value>
+    <value>Sembunyikan tangkapan layar</value>
     <comment>SettingsPage</comment>
   </data>
   <data name="TutorialCheckItOut" xml:space="preserve">
-    <value>check it out</value>
+    <value>lihat</value>
     <comment>TutorialPopup</comment>
   </data>
   <data name="TutorialContent" xml:space="preserve">
-    <value>You can change the view with a horizontal swipe gesture...</value>
+    <value>Anda dapat mengubah tampilan dengan gerakan geser horizontal...</value>
     <comment>TutorialPopup</comment>
   </data>
   <data name="TutorialTitle" xml:space="preserve">
-    <value>Did you know?</value>
+    <value>Apakah Anda tahu?</value>
     <comment>TutorialPopup</comment>
   </data>
 </root>

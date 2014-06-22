@@ -34,6 +34,7 @@ namespace ImageInfoTool.App.Controls
             contributors.Add(new ContributorModel("/Assets/Images/icon.png", "Johanna from The Noun Project"));
             contributors.Add(new ContributorModel("/Assets/Images/geophoto.png", "Timo Partl for GeoPhoto benefits"));
             contributors.Add(new ContributorModel("/Assets/Images/icon.png", "E. MacDonald from The Noun Project"));
+            contributors.Add(new ContributorModel("/Assets/Images/indonesian.png","Agus Setiawan"));
             SetContributorsList(contributors);
         }
     }

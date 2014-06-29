@@ -192,6 +192,7 @@
     <Content Include="Assets\Images\light\add.png" />
     <Content Include="Assets\Images\light\logo200.png" />
     <Content Include="Assets\Images\light\show.png" />
+    <Content Include="Assets\Images\spanish.png" />
     <Content Include="Assets\Images\swipe_tutorial.png" />
     <Content Include="Assets\Tiles\FlipCycleTileLarge.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

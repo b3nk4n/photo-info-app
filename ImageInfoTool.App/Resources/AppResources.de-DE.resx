@@ -129,10 +129,6 @@
     <value>hilfe</value>
     <comment>AboutPage</comment>
   </data>
-  <data name="AddTitle" xml:space="preserve">
-    <value>hinzufügen</value>
-    <comment>AppBar</comment>
-  </data>
   <data name="ApplicationAuthor" xml:space="preserve">
     <value>von Benjamin Sautermeister</value>
     <comment>AboutPage</comment>
@@ -146,7 +142,7 @@
     <comment>General</comment>
   </data>
   <data name="ApplicationVersion" xml:space="preserve">
-    <value>1.4</value>
+    <value>1.4.1</value>
     <comment>General</comment>
   </data>
   <data name="Contributors" xml:space="preserve">
@@ -234,90 +230,119 @@ Das würde uns sehr motivieren um die App noch besser zu machen!</value>
   </data>
   <data name="FlashFired" xml:space="preserve">
     <value>aktiviert</value>
+    <comment>PhotoInfo</comment>
   </data>
   <data name="FlashFiredAuto" xml:space="preserve">
     <value>aktiviert (automatisch)</value>
+    <comment>PhotoInfo</comment>
   </data>
   <data name="FlashNotFired" xml:space="preserve">
     <value>deaktiviert</value>
+    <comment>PhotoInfo</comment>
   </data>
   <data name="FlashNotFiredAuto" xml:space="preserve">
     <value>deaktiviert (automatisch)</value>
+    <comment>PhotoInfo</comment>
   </data>
   <data name="InfoAlbumName" xml:space="preserve">
     <value>album name</value>
+    <comment>PhotoInfo</comment>
   </data>
   <data name="InfoAltitude" xml:space="preserve">
     <value>höhe:</value>
+    <comment>PhotoInfo</comment>
   </data>
   <data name="InfoCreationDate" xml:space="preserve">
     <value>erstellungsdatum</value>
+    <comment>PhotoInfo</comment>
   </data>
   <data name="InfoDigitalZoom" xml:space="preserve">
     <value>digitaler zoom</value>
+    <comment>PhotoInfo</comment>
   </data>
   <data name="InfoExifVersion" xml:space="preserve">
     <value>exif version</value>
+    <comment>PhotoInfo</comment>
   </data>
   <data name="InfoExposureTime" xml:space="preserve">
     <value>Verschlusszeit</value>
+    <comment>PhotoInfo</comment>
   </data>
   <data name="InfoFileName" xml:space="preserve">
     <value>dateiname</value>
+    <comment>PhotoInfo</comment>
   </data>
   <data name="InfoFileSize" xml:space="preserve">
     <value>dateigröße</value>
+    <comment>PhotoInfo</comment>
   </data>
   <data name="InfoFlash" xml:space="preserve">
     <value>blitz</value>
+    <comment>PhotoInfo</comment>
   </data>
   <data name="InfoFocalRatio" xml:space="preserve">
     <value>blendenzahl</value>
+    <comment>PhotoInfo</comment>
   </data>
   <data name="InfoGPS" xml:space="preserve">
     <value>gps</value>
+    <comment>PhotoInfo</comment>
   </data>
   <data name="InfoISO" xml:space="preserve">
     <value>iso</value>
+    <comment>PhotoInfo</comment>
   </data>
   <data name="InfoLatitude" xml:space="preserve">
     <value>breitengrad:</value>
+    <comment>PhotoInfo</comment>
   </data>
   <data name="InfoLongitude" xml:space="preserve">
     <value>längengrad:</value>
+    <comment>PhotoInfo</comment>
   </data>
   <data name="InfoModel" xml:space="preserve">
     <value>modell</value>
+    <comment>PhotoInfo</comment>
   </data>
   <data name="InfoOrientation" xml:space="preserve">
     <value>orientierung</value>
+    <comment>PhotoInfo</comment>
   </data>
   <data name="InfoResolution" xml:space="preserve">
     <value>auflösung</value>
+    <comment>PhotoInfo</comment>
   </data>
   <data name="InfoTitleExtended" xml:space="preserve">
     <value>erweitert</value>
+    <comment>PhotoInfo</comment>
   </data>
   <data name="InfoTitleBasic" xml:space="preserve">
     <value>informationen</value>
+    <comment>PhotoInfo</comment>
   </data>
   <data name="InfoWhiteBalance" xml:space="preserve">
     <value>weißabgleich</value>
+    <comment>PhotoInfo</comment>
   </data>
   <data name="OrientationLandscape" xml:space="preserve">
     <value>quer (Landscape)</value>
+    <comment>PhotoInfo</comment>
   </data>
   <data name="OrientationPortrait" xml:space="preserve">
     <value>hoch (Portrait)</value>
+    <comment>PhotoInfo</comment>
   </data>
   <data name="OrientationSquare" xml:space="preserve">
     <value>quadratisch</value>
+    <comment>PhotoInfo</comment>
   </data>
   <data name="WhiteBalanceAuto" xml:space="preserve">
     <value>automatisch</value>
+    <comment>PhotoInfo</comment>
   </data>
   <data name="WhiteBalanceManual" xml:space="preserve">
     <value>manuell</value>
+    <comment>PhotoInfo</comment>
   </data>
   <data name="AddWithGeoPhoto" xml:space="preserve">
     <value>mit GeoPhoto hinzufügen</value>
@@ -329,12 +354,15 @@ Das würde uns sehr motivieren um die App noch besser zu machen!</value>
   </data>
   <data name="InfoFileType" xml:space="preserve">
     <value>dateityp</value>
+    <comment>PhotoInfo</comment>
   </data>
   <data name="MessageBoxNoImageFound" xml:space="preserve">
     <value>Das Bild konnte nicht geöffnet werden.</value>
+    <comment>MessageBox</comment>
   </data>
   <data name="MessageBoxWarning" xml:space="preserve">
     <value>Warnung</value>
+    <comment>MessageBox</comment>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
     <value>einstellungen</value>

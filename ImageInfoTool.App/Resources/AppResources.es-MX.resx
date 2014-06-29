@@ -117,28 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ResourceFlowDirection" xml:space="preserve">
-    <value>LeftToRight</value>
-    <comment>Controls the FlowDirection for all elements in the RootFrame. Set to the traditional direction of this resource file's language</comment>
-  </data>
-  <data name="ResourceLanguage" xml:space="preserve">
-    <value>en-US</value>
-    <comment>Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</comment>
-  </data>
   <data name="AboutTitle" xml:space="preserve">
-    <value>about</value>
+    <value>acerca de</value>
     <comment>AboutPage</comment>
   </data>
+  <data name="AddWithGeoPhoto" xml:space="preserve">
+    <value>añadir con GeoPhoto</value>
+    <comment>ImageInfoPage</comment>
+  </data>
+  <data name="AppBarRefresh" xml:space="preserve">
+    <value>actualizar</value>
+    <comment>AppBar</comment>
+  </data>
+  <data name="AppBarSettings" xml:space="preserve">
+    <value>configuración</value>
+    <comment>AppBar</comment>
+  </data>
   <data name="ApplicationAuthor" xml:space="preserve">
-    <value>by Benjamin Sautermeister</value>
+    <value>por Benjamin Sautermeister</value>
     <comment>AboutPage</comment>
   </data>
   <data name="ApplicationDescription" xml:space="preserve">
-    <value>This app extends the Photos-Hub of Windows Phone 8 with new capabilities to get image information.</value>
+    <value>Esta app expande el Fotos-Hub de Windows 8 con nuevas características para obtener información de las imágenes.</value>
     <comment>AboutPage</comment>
   </data>
   <data name="ApplicationTitle" xml:space="preserve">
-    <value>Photo-Info</value>
+    <value>Foto-Info</value>
     <comment>General</comment>
   </data>
   <data name="ApplicationVersion" xml:space="preserve">
@@ -146,7 +150,7 @@
     <comment>General</comment>
   </data>
   <data name="Contributors" xml:space="preserve">
-    <value>Contributors</value>
+    <value>Colaboradores</value>
     <comment>AboutPage</comment>
   </data>
   <data name="FeedbackBodyText" xml:space="preserve">
@@ -167,113 +171,101 @@ Application Version: {4}
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="FeedbackMessageText" xml:space="preserve">
-    <value>Sorry to hear you didn't want to rate our tool.
+    <value>Sentimos que no quieras puntuar nuestra herramienta.
 
-Tell us about your experience or suggest how we can make it even better.</value>
+Dinos sobre tu experiencia o sugiere como podemos hacerlo incluso mejor.</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="FeedbackNoText" xml:space="preserve">
-    <value>no thanks</value>
+    <value>no, gracias</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="FeedbackSubject" xml:space="preserve">
-    <value>Photo-Info Customer Feedback </value>
+    <value>Opiniones sobre Foto-Info</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="FeedbackTitleText" xml:space="preserve">
-    <value>Can we make it better?</value>
+    <value>¿Podemos hacerlo mejor?</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="FeedbackYesText" xml:space="preserve">
-    <value>give feedback</value>
+    <value>enviar comentario</value>
     <comment>FeedbackDialogControl</comment>
-  </data>
-  <data name="MoreApps" xml:space="preserve">
-    <value>more apps</value>
-    <comment>AboutPage</comment>
-  </data>
-  <data name="PrivacyInfo" xml:space="preserve">
-    <value>privacy info</value>
-    <comment>About Page</comment>
-  </data>
-  <data name="RateAndReview" xml:space="preserve">
-    <value>rate and review</value>
-    <comment>AboutPage</comment>
-  </data>
-  <data name="RatingMessage10Text" xml:space="preserve">
-    <value>You look to be getting a lot of use out of our application!
-
-Why not give us a 5 star rating to show your appreciation?</value>
-    <comment>FeedbackDialogControl</comment>
-  </data>
-  <data name="RatingMessage5Text" xml:space="preserve">
-    <value>We'd love you to rate our app 5 stars
-
-Showing us some love on the store helps us to continue to work on the app and make things even better!</value>
-    <comment>FeedbackDialogControl</comment>
-  </data>
-  <data name="RatingNoText" xml:space="preserve">
-    <value>no thanks</value>
-    <comment>FeedbackDialogControl</comment>
-  </data>
-  <data name="RatingTitleText" xml:space="preserve">
-    <value>Enjoying our tool?</value>
-    <comment>FeedbackDialogControl</comment>
-  </data>
-  <data name="RatingYesText" xml:space="preserve">
-    <value>rate 5 stars</value>
-    <comment>FeedbackDialogControl</comment>
-  </data>
-  <data name="SupportAndFeedback" xml:space="preserve">
-    <value>support and feedback</value>
-    <comment>About Page</comment>
   </data>
   <data name="FlashFired" xml:space="preserve">
-    <value>enabled</value>
+    <value>habilitado</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="FlashFiredAuto" xml:space="preserve">
-    <value>enabled (auto mode)</value>
+    <value>habilitado (modo automático)</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="FlashNotFired" xml:space="preserve">
-    <value>disabled</value>
+    <value>deshabilitado</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="FlashNotFiredAuto" xml:space="preserve">
-    <value>disabled (auto mode)</value>
+    <value>deshabilitado (modo automático)</value>
     <comment>PhotoInfo</comment>
   </data>
+  <data name="HideFileNameTitle" xml:space="preserve">
+    <value>Ocultar nombre del archivo</value>
+    <comment>SettingsPage</comment>
+  </data>
+  <data name="HideScreenshotsAlbumTitle" xml:space="preserve">
+    <value>Ocultar imágenes</value>
+    <comment>SettingsPage</comment>
+  </data>
+  <data name="InAppStoreLoading" xml:space="preserve">
+    <value>cargando…</value>
+    <comment>InAppStorePage</comment>
+  </data>
+  <data name="InAppStoreNoProducts" xml:space="preserve">
+    <value>Actualmente no hay compras disponibles en la aplicación. Por favor, inténtelo de nuevo más tarde.</value>
+    <comment>InAppStorePage</comment>
+  </data>
+  <data name="InAppStorePurchased" xml:space="preserve">
+    <value>comprada</value>
+    <comment>InAppStorePage</comment>
+  </data>
+  <data name="InAppStoreTitle" xml:space="preserve">
+    <value>tienda</value>
+    <comment>InAppStorePage</comment>
+  </data>
   <data name="InfoAlbumName" xml:space="preserve">
-    <value>album name</value>
+    <value>nombre del álbum</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoAltitude" xml:space="preserve">
-    <value>altitude:</value>
+    <value>altitud:</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoCreationDate" xml:space="preserve">
-    <value>creation date</value>
+    <value>fecha de creación</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoDigitalZoom" xml:space="preserve">
-    <value>digital zoom</value>
+    <value>zoom digital</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoExifVersion" xml:space="preserve">
-    <value>exif version</value>
+    <value>versión de exif</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoExposureTime" xml:space="preserve">
-    <value>exposure time</value>
+    <value>tiempo de exposición</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoFileName" xml:space="preserve">
-    <value>file name</value>
+    <value>nombre</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoFileSize" xml:space="preserve">
-    <value>file size</value>
+    <value>tamaño</value>
+    <comment>PhotoInfo</comment>
+  </data>
+  <data name="InfoFileType" xml:space="preserve">
+    <value>tipo</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoFlash" xml:space="preserve">
@@ -281,7 +273,7 @@ Showing us some love on the store helps us to continue to work on the app and ma
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoFocalRatio" xml:space="preserve">
-    <value>focal ratio</value>
+    <value>distancia focal</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoGPS" xml:space="preserve">
@@ -293,151 +285,159 @@ Showing us some love on the store helps us to continue to work on the app and ma
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoLatitude" xml:space="preserve">
-    <value>latitude:</value>
+    <value>latitud:</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoLongitude" xml:space="preserve">
-    <value>longitude:</value>
+    <value>longitud:</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoModel" xml:space="preserve">
-    <value>model</value>
+    <value>modelo</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoOrientation" xml:space="preserve">
-    <value>orientation</value>
+    <value>orientación</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoResolution" xml:space="preserve">
-    <value>resolution</value>
-    <comment>PhotoInfo</comment>
-  </data>
-  <data name="InfoTitleExtended" xml:space="preserve">
-    <value>extended</value>
+    <value>resolución</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoTitleBasic" xml:space="preserve">
-    <value>information</value>
+    <value>información</value>
+    <comment>PhotoInfo</comment>
+  </data>
+  <data name="InfoTitleExtended" xml:space="preserve">
+    <value>más</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoWhiteBalance" xml:space="preserve">
-    <value>white balance</value>
+    <value>balance de blancos</value>
     <comment>PhotoInfo</comment>
   </data>
+  <data name="MessageBoxNoImageFound" xml:space="preserve">
+    <value>La imagen no se pudo abrir.</value>
+    <comment>PhotoInfo</comment>
+  </data>
+  <data name="MessageBoxRemoveAdContent" xml:space="preserve">
+    <value>Nos encanta recibir comentarios de los usuarios. Cada comentario nos ayuda a hacer cada app incluso mejor. ¡Cómo regalo de agradecimiento todos los anuncios desaparecerán por dos semanas! ¿Quieres puntuar la app ahora?</value>
+    <comment>MessageBox</comment>
+  </data>
+  <data name="MessageBoxRemoveAdTitle" xml:space="preserve">
+    <value>Le molestan los anuncios?</value>
+    <comment>MessageBox</comment>
+  </data>
+  <data name="MessageBoxWarning" xml:space="preserve">
+    <value>Advertencia</value>
+    <comment>MessageBox</comment>
+  </data>
+  <data name="MoreApps" xml:space="preserve">
+    <value>más aplicaciones</value>
+    <comment>AboutPage</comment>
+  </data>
   <data name="OrientationLandscape" xml:space="preserve">
-    <value>landscape</value>
+    <value>modo horizontal</value>
     <comment>MessageBox</comment>
   </data>
   <data name="OrientationPortrait" xml:space="preserve">
-    <value>portrait</value>
+    <value>modo vertical</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="OrientationSquare" xml:space="preserve">
-    <value>square</value>
+    <value>cuadrado</value>
     <comment>PhotoInfo</comment>
   </data>
+  <data name="PrivacyInfo" xml:space="preserve">
+    <value>declaración de privacidad</value>
+    <comment>About Page</comment>
+  </data>
+  <data name="RateAndReview" xml:space="preserve">
+    <value>valorar y comentar</value>
+    <comment>AboutPage</comment>
+  </data>
+  <data name="RatingMessage10Text" xml:space="preserve">
+    <value>¡Parece que nuestra aplicación te está sirviendo de gran ayuda!
+
+¿Por qué en agradecimiento no nos valoras con 5 estrellas?</value>
+    <comment>FeedbackDialogControl</comment>
+  </data>
+  <data name="RatingMessage5Text" xml:space="preserve">
+    <value>Nos gustaría que puntuaras nuestra aplicación con 5 estrellas.
+
+¡Puntuandonos positivamente en la tienda nos ayuda a continuar trabajando en la aplicación y hacer las cosas todavía mejor!</value>
+    <comment>FeedbackDialogControl</comment>
+  </data>
+  <data name="RatingNoText" xml:space="preserve">
+    <value>no, gracias</value>
+    <comment>FeedbackDialogControl</comment>
+  </data>
+  <data name="RatingTitleText" xml:space="preserve">
+    <value>¿Te está gustando nuestra aplicación?</value>
+    <comment>FeedbackDialogControl</comment>
+  </data>
+  <data name="RatingYesText" xml:space="preserve">
+    <value>puntúa</value>
+    <comment>FeedbackDialogControl</comment>
+  </data>
+  <data name="ResourceFlowDirection" xml:space="preserve">
+    <value>LeftToRight</value>
+    <comment>Controls the FlowDirection for all elements in the RootFrame. Set to the traditional direction of this resource file's language</comment>
+  </data>
+  <data name="ResourceLanguage" xml:space="preserve">
+    <value>es-ES</value>
+    <comment>Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</comment>
+  </data>
+  <data name="SettingsMapTypeAerial" xml:space="preserve">
+    <value>Satélite</value>
+    <comment>SettigsPage</comment>
+  </data>
+  <data name="SettingsMapTypeHybrid" xml:space="preserve">
+    <value>Híbrido</value>
+    <comment>SettigsPage</comment>
+  </data>
+  <data name="SettingsMapTypeRoad" xml:space="preserve">
+    <value>Mapa</value>
+    <comment>SettigsPage</comment>
+  </data>
+  <data name="SettingsMapTypeTerrain" xml:space="preserve">
+    <value>Terreno</value>
+    <comment>SettigsPage</comment>
+  </data>
+  <data name="SettingsMapTypeTitle" xml:space="preserve">
+    <value>Tipo de mapa</value>
+    <comment>SettingsPage</comment>
+  </data>
+  <data name="SettingsTitle" xml:space="preserve">
+    <value>configuración</value>
+    <comment>SettingsPage</comment>
+  </data>
+  <data name="ShowWithGeoPhoto" xml:space="preserve">
+    <value>mostrar con GeoPhoto</value>
+    <comment>ImageInfoPage</comment>
+  </data>
+  <data name="SupportAndFeedback" xml:space="preserve">
+    <value>apoyo y comentarios</value>
+    <comment>About Page</comment>
+  </data>
+  <data name="TutorialCheckItOut" xml:space="preserve">
+    <value>échale un vistazo</value>
+    <comment>TutorialPopup</comment>
+  </data>
+  <data name="TutorialContent" xml:space="preserve">
+    <value>Puede cambiar la vista deslizando el dedo horizontalmente…</value>
+    <comment>TutorialPopup</comment>
+  </data>
+  <data name="TutorialTitle" xml:space="preserve">
+    <value>¿Sabía usted?</value>
+    <comment>TutorialPopup</comment>
+  </data>
   <data name="WhiteBalanceAuto" xml:space="preserve">
-    <value>auto</value>
+    <value>automático</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="WhiteBalanceManual" xml:space="preserve">
     <value>manual</value>
     <comment>PhotoInfo</comment>
-  </data>
-  <data name="AddWithGeoPhoto" xml:space="preserve">
-    <value>add with GeoPhoto</value>
-    <comment>ImageInfoPage</comment>
-  </data>
-  <data name="HideFileNameTitle" xml:space="preserve">
-    <value>Hide file name</value>
-    <comment>SettingsPage</comment>
-  </data>
-  <data name="InfoFileType" xml:space="preserve">
-    <value>file type</value>
-    <comment>PhotoInfo</comment>
-  </data>
-  <data name="SettingsTitle" xml:space="preserve">
-    <value>settings</value>
-    <comment>SettingsPage</comment>
-  </data>
-  <data name="MessageBoxNoImageFound" xml:space="preserve">
-    <value>The image could not be opened.</value>
-    <comment>PhotoInfo</comment>
-  </data>
-  <data name="MessageBoxWarning" xml:space="preserve">
-    <value>Warning</value>
-    <comment>MessageBox</comment>
-  </data>
-  <data name="InAppStoreLoading" xml:space="preserve">
-    <value>loading...</value>
-    <comment>InAppStorePage</comment>
-  </data>
-  <data name="InAppStoreNoProducts" xml:space="preserve">
-    <value>There are currently no in-app purchases available. Please try again later.</value>
-    <comment>InAppStorePage</comment>
-  </data>
-  <data name="InAppStorePurchased" xml:space="preserve">
-    <value>purchased</value>
-    <comment>InAppStorePage</comment>
-  </data>
-  <data name="InAppStoreTitle" xml:space="preserve">
-    <value>in-app store</value>
-    <comment>InAppStorePage</comment>
-  </data>
-  <data name="SettingsMapTypeAerial" xml:space="preserve">
-    <value>Aerial</value>
-    <comment>SettigsPage</comment>
-  </data>
-  <data name="SettingsMapTypeHybrid" xml:space="preserve">
-    <value>Hybrid</value>
-    <comment>SettigsPage</comment>
-  </data>
-  <data name="SettingsMapTypeRoad" xml:space="preserve">
-    <value>Road</value>
-    <comment>SettigsPage</comment>
-  </data>
-  <data name="SettingsMapTypeTerrain" xml:space="preserve">
-    <value>Terrain</value>
-    <comment>SettigsPage</comment>
-  </data>
-  <data name="SettingsMapTypeTitle" xml:space="preserve">
-    <value>Map type</value>
-    <comment>SettingsPage</comment>
-  </data>
-  <data name="ShowWithGeoPhoto" xml:space="preserve">
-    <value>show with GeoPhoto</value>
-    <comment>ImageInfoPage</comment>
-  </data>
-  <data name="AppBarRefresh" xml:space="preserve">
-    <value>reload</value>
-    <comment>AppBar</comment>
-  </data>
-  <data name="AppBarSettings" xml:space="preserve">
-    <value>settings</value>
-    <comment>AppBar</comment>
-  </data>
-  <data name="MessageBoxRemoveAdContent" xml:space="preserve">
-    <value>We love to get user feedback. Each review helps us to make each app even better. As a thank-you gift, all adverts will disappear for two weeks! Do you want to rate the app now?</value>
-    <comment>MessageBox</comment>
-  </data>
-  <data name="MessageBoxRemoveAdTitle" xml:space="preserve">
-    <value>Annoyed by adverts?</value>
-    <comment>MessageBox</comment>
-  </data>
-  <data name="HideScreenshotsAlbumTitle" xml:space="preserve">
-    <value>Hide screenshots</value>
-    <comment>SettingsPage</comment>
-  </data>
-  <data name="TutorialCheckItOut" xml:space="preserve">
-    <value>check it out</value>
-    <comment>TutorialPopup</comment>
-  </data>
-  <data name="TutorialContent" xml:space="preserve">
-    <value>You can change the view with a horizontal swipe gesture...</value>
-    <comment>TutorialPopup</comment>
-  </data>
-  <data name="TutorialTitle" xml:space="preserve">
-    <value>Did you know?</value>
-    <comment>TutorialPopup</comment>
   </data>
 </root>

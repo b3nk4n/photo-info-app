@@ -173,6 +173,7 @@
     <Content Include="Assets\ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Banners\frequenzer_adduplex.png" />
     <Content Include="Assets\Banners\GeoPhoto_adduplex.png" />
     <Content Include="Assets\Banners\pocketBRAIN_adduplex.png" />
     <Content Include="Assets\Banners\powernAPP_adduplex.png" />

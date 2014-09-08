@@ -176,6 +176,7 @@ namespace ImageInfoTool.App.Pages
             advertsList.Add(new AdvertData(new Uri("/Assets/Banners/SpacepiXX_adduplex.png", UriKind.Relative), AdvertData.ActionTypes.AppId, "cbe0dfa7-2879-4c2c-b7c6-3798781fba16"));
             advertsList.Add(new AdvertData(new Uri("/Assets/Banners/ScribbleHunter_adduplex.png", UriKind.Relative), AdvertData.ActionTypes.AppId, "ed250596-e670-4d22-aee1-8ed0a08c411f"));
             advertsList.Add(new AdvertData(new Uri("/Assets/Banners/GeoPhoto_adduplex.png", UriKind.Relative), AdvertData.ActionTypes.AppId, "f10991b2-3e1a-4fb0-99bc-833338a33502"));
+            advertsList.Add(new AdvertData(new Uri("/Assets/Banners/frequenzer_adduplex.png", UriKind.Relative), AdvertData.ActionTypes.AppId, "92bac4f7-05eb-47ec-a75b-11f077f0c8f6"));
 
             //shuffle
             advertsList.ShuffleList();

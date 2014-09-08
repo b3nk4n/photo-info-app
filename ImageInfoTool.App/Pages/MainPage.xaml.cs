@@ -54,7 +54,7 @@ namespace ImageInfoTool.App
                 if (!AppSettings.HasReviewed.Value)
                     FeedbackManager.Instance.StartFirst();
             });
-            StartupActionManager.Instance.Register(10, ActionExecutionRule.Equals, () =>
+            StartupActionManager.Instance.Register(15, ActionExecutionRule.Equals, () =>
             {
                 if (!AppSettings.HasReviewed.Value)
                     FeedbackManager.Instance.StartSecond();
@@ -94,7 +94,7 @@ namespace ImageInfoTool.App
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             // fire startup events
-            StartupActionManager.Instance.Fire();
+            StartupActionManager.Instance.Fire(e);
 
             if (e.IsNavigationInitiator)
             {

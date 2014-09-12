@@ -15,7 +15,7 @@
     <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
     <SilverlightApplication>true</SilverlightApplication>
-    <SupportedCultures>de-DE%3bid-ID%3bes-MX%3bes-ES%3bfr-FR</SupportedCultures>
+    <SupportedCultures>de-DE%3bid-ID%3bes-MX%3bes-ES%3bfr-FR%3bcs-CZ</SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
     <XapFilename>ImageInfoTool.App_$(Configuration)_$(Platform).xap</XapFilename>
@@ -158,7 +158,8 @@
     <Content Include="AppResLib.dll.0421.mui" />
     <Content Include="AppResLib.dll.080A.mui" />
     <Content Include="AppResLib.dll.0c0a.mui" />
-    <None Include="AppResLib.dll.040c.mui" />
+    <Content Include="AppResLib.dll.0405.mui" />
+    <Content Include="AppResLib.dll.040c.mui" />
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml">
       <SubType>Designer</SubType>
@@ -181,6 +182,7 @@
     <Content Include="Assets\Banners\ScribbleHunter_adduplex.png" />
     <Content Include="Assets\Banners\SpacepiXX_adduplex.png" />
     <Content Include="Assets\Banners\SpaceScribble_adduplex.png" />
+    <Content Include="Assets\Images\czech.png" />
     <Content Include="Assets\Images\176.png" />
     <Content Include="Assets\Images\33.png" />
     <Content Include="Assets\Images\69.png" />
@@ -212,6 +214,7 @@
     <Content Include="SplashScreenImage.screen-WXGA.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\AppResources.cs-CZ.resx" />
     <EmbeddedResource Include="Resources\AppResources.de-DE.resx" />
     <EmbeddedResource Include="Resources\AppResources.es-ES.resx" />
     <EmbeddedResource Include="Resources\AppResources.es-MX.resx" />

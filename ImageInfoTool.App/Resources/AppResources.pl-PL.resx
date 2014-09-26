@@ -122,23 +122,23 @@
     <comment>Controls the FlowDirection for all elements in the RootFrame. Set to the traditional direction of this resource file's language</comment>
   </data>
   <data name="ResourceLanguage" xml:space="preserve">
-    <value>cs-CZ</value>
+    <value>pl-PL</value>
     <comment>Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</comment>
   </data>
   <data name="AboutTitle" xml:space="preserve">
-    <value>o aplikaci</value>
+    <value>o Foto-Info</value>
     <comment>AboutPage</comment>
   </data>
   <data name="ApplicationAuthor" xml:space="preserve">
-    <value>od Benjamin Sautermeister</value>
+    <value>by Benjamin Sautermeister</value>
     <comment>AboutPage</comment>
   </data>
   <data name="ApplicationDescription" xml:space="preserve">
-    <value>Tato aplikace rozšiřuje schopnosti Centra fotografií ve Windows Phone 8 o nové možnosti práce s informacemi snímku.</value>
+    <value>Ta aplikacja rozszerza możliwości Hubu Zdjęcia, dzięki niej możesz uzyskać dokładne informacje na temat obrazów.</value>
     <comment>AboutPage</comment>
   </data>
   <data name="ApplicationTitle" xml:space="preserve">
-    <value>Foto Info</value>
+    <value>Foto-Info</value>
     <comment>General</comment>
   </data>
   <data name="ApplicationVersion" xml:space="preserve">
@@ -146,7 +146,7 @@
     <comment>General</comment>
   </data>
   <data name="Contributors" xml:space="preserve">
-    <value>Přispěvatelé</value>
+    <value>Współtwórcy</value>
     <comment>AboutPage</comment>
   </data>
   <data name="FeedbackBodyText" xml:space="preserve">
@@ -167,121 +167,121 @@ Application Version: {4}
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="FeedbackMessageText" xml:space="preserve">
-    <value>Je nám líto, že nechcete ohodnotit naši aplikaci.
+    <value>Prykro nam, że nie chcesz ocenić naszej aplikacji.
 
-Řekněte nám o svých zkušenostech nebo navrhněte, jak ji můžeme udělat ještě lepší.</value>
+Powiedz nam o swoich doświadczeniach lub zasugeruj, co możemy poprawić aby ulepszyć program.</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="FeedbackNoText" xml:space="preserve">
-    <value>ne děkuji</value>
+    <value>nie, dziękuję</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="FeedbackSubject" xml:space="preserve">
-    <value>Foto Info zpětná vazba</value>
+    <value>Foto-Info opinia użytkownika</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="FeedbackTitleText" xml:space="preserve">
-    <value>Můžeme to vylepšit?</value>
+    <value>Możemy zrobić to lepiej?</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="FeedbackYesText" xml:space="preserve">
-    <value>zpětná vazba</value>
+    <value>wyraź opinię</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="MoreApps" xml:space="preserve">
-    <value>více aplikací</value>
+    <value>więcej aplikacji</value>
     <comment>AboutPage</comment>
   </data>
   <data name="PrivacyInfo" xml:space="preserve">
-    <value>info o ochraně osobních údajů</value>
+    <value>informacje o prywatności</value>
     <comment>About Page</comment>
   </data>
   <data name="RateAndReview" xml:space="preserve">
-    <value>napsat recenzi a ohodnocení</value>
+    <value>oceń i opisz</value>
     <comment>AboutPage</comment>
   </data>
   <data name="RatingMessage10Text" xml:space="preserve">
-    <value>Zdá se, že hodně používáte naši aplikaci!
+    <value>Mamy nadzieję, że aplikacja będzie użyteczna.
 
-Proč nám nedáte hodnocení 5 hvězdiček, abyste ukázal svoji spokojenost?</value>
+Dlaczego nie dasz nam 5 gwiazdek, aby pokazać swoją wdzięczność?</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="RatingMessage5Text" xml:space="preserve">
-    <value>Budeme rádi, když ohodnotíte naši aplikaci 5 hvězdičkami
+    <value>Chcielibyśmy, abyś ocenił naszą aplikację na 5 gwiazdek.
 
-Vaše hodnocení ve Store nám pomáhá s pokračováním práce na aplikaci a se snahou dělat věci ještě lépe!</value>
+Pokazując jak bardo ci się podoba, przyczyniasz się do kontynuowania prac nad nią, aby była jeszcze lepsza! :)</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="RatingNoText" xml:space="preserve">
-    <value>ne děkuji</value>
+    <value>nie, dziękuję</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="RatingTitleText" xml:space="preserve">
-    <value>Máte rádi naši aplikaci?</value>
+    <value>Podoba ci się?</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="RatingYesText" xml:space="preserve">
-    <value>vyhodnotit</value>
+    <value>ocenić</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="SupportAndFeedback" xml:space="preserve">
-    <value>podpora a zpětná vazba</value>
+    <value>pomoc i opinie</value>
     <comment>About Page</comment>
   </data>
   <data name="FlashFired" xml:space="preserve">
-    <value>zapnutý</value>
+    <value>włączony</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="FlashFiredAuto" xml:space="preserve">
-    <value>zapnutý (automatický režim)</value>
+    <value>włączony (tryb auto)</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="FlashNotFired" xml:space="preserve">
-    <value>zakázán</value>
+    <value>wyłączony</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="FlashNotFiredAuto" xml:space="preserve">
-    <value>zakázán (automatický režim)</value>
+    <value>wyłączony (tryb auto)</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoAlbumName" xml:space="preserve">
-    <value>jméno alba</value>
+    <value>nazwa albumu</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoAltitude" xml:space="preserve">
-    <value>výška:</value>
+    <value>wysokość:</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoCreationDate" xml:space="preserve">
-    <value>datum vytvoření</value>
+    <value>data utworzenia</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoDigitalZoom" xml:space="preserve">
-    <value>digitální přiblížení</value>
+    <value>zoom cyfrowy</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoExifVersion" xml:space="preserve">
-    <value>verze exif</value>
+    <value>wersja exif</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoExposureTime" xml:space="preserve">
-    <value>doba expozice</value>
+    <value>czas ekspozycji</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoFileName" xml:space="preserve">
-    <value>jméno souboru</value>
+    <value>nazwa pliku</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoFileSize" xml:space="preserve">
-    <value>velikost souboru</value>
+    <value>rozmiar pliku</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoFlash" xml:space="preserve">
-    <value>blesk</value>
+    <value>lampa błyskowa</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoFocalRatio" xml:space="preserve">
-    <value>ohnisko</value>
+    <value>stosunek ogniskowej</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoGPS" xml:space="preserve">
@@ -293,11 +293,11 @@ Vaše hodnocení ve Store nám pomáhá s pokračováním práce na aplikaci a s
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoLatitude" xml:space="preserve">
-    <value>šířka:</value>
+    <value>szerokość:</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoLongitude" xml:space="preserve">
-    <value>délka:</value>
+    <value>długość:</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoModel" xml:space="preserve">
@@ -305,99 +305,99 @@ Vaše hodnocení ve Store nám pomáhá s pokračováním práce na aplikaci a s
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoOrientation" xml:space="preserve">
-    <value>orientace</value>
+    <value>orientacja</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoResolution" xml:space="preserve">
-    <value>rozlišení</value>
+    <value>rozdzielczość</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoTitleExtended" xml:space="preserve">
-    <value>rozšířené</value>
+    <value>rozszerzone</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoTitleBasic" xml:space="preserve">
-    <value>informace</value>
+    <value>informacje</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoWhiteBalance" xml:space="preserve">
-    <value>vyvážení bílé</value>
+    <value>balans bieli</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="OrientationLandscape" xml:space="preserve">
-    <value>vodorovně</value>
+    <value>krajobraz</value>
     <comment>MessageBox</comment>
   </data>
   <data name="OrientationPortrait" xml:space="preserve">
-    <value>svisle</value>
+    <value>portret</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="OrientationSquare" xml:space="preserve">
-    <value>čtverec</value>
+    <value>kwadrat</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="WhiteBalanceAuto" xml:space="preserve">
-    <value>automaticky</value>
+    <value>auto</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="WhiteBalanceManual" xml:space="preserve">
-    <value>manuálně</value>
+    <value>ręczny</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="AddWithGeoPhoto" xml:space="preserve">
-    <value>přidat v GeoPhoto</value>
+    <value>dodaj z GeoPhoto</value>
     <comment>ImageInfoPage</comment>
   </data>
   <data name="HideFileNameTitle" xml:space="preserve">
-    <value>Skrýt jméno souboru</value>
+    <value>Ukryj nazwy plików</value>
     <comment>SettingsPage</comment>
   </data>
   <data name="InfoFileType" xml:space="preserve">
-    <value>typ souboru</value>
+    <value>typ pliku</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
-    <value>nastavení</value>
+    <value>ustawienia</value>
     <comment>SettingsPage</comment>
   </data>
   <data name="MessageBoxNoImageFound" xml:space="preserve">
-    <value>Obrázek nemůže být otevřen.</value>
+    <value>Obraz nie może zostać otwarty.</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="MessageBoxWarning" xml:space="preserve">
-    <value>Varování</value>
+    <value>Ostrzeżenie</value>
     <comment>MessageBox</comment>
   </data>
   <data name="InAppStoreLoading" xml:space="preserve">
-    <value>načítám…</value>
+    <value>Ukryj zrzuty ekranu...</value>
     <comment>InAppStorePage</comment>
   </data>
   <data name="InAppStoreNoProducts" xml:space="preserve">
-    <value>Momentálně zde nejsou žádné in-app nákupy k dispozici. Zkuste to prosím znovu později.</value>
+    <value>Obecnie nie ma dostępnych żadnych zakupów w aplikacji. Spróbuj ponownie później.</value>
     <comment>InAppStorePage</comment>
   </data>
   <data name="InAppStorePurchased" xml:space="preserve">
-    <value>zakoupeno</value>
+    <value>zakupiono</value>
     <comment>InAppStorePage</comment>
   </data>
   <data name="InAppStoreTitle" xml:space="preserve">
-    <value>in-app obchod</value>
+    <value>sklep</value>
     <comment>InAppStorePage</comment>
   </data>
   <data name="SettingsMapTypeAerial" xml:space="preserve">
-    <value>Letecká</value>
+    <value>Lotnicza</value>
     <comment>SettigsPage</comment>
   </data>
   <data name="SettingsMapTypeHybrid" xml:space="preserve">
-    <value>Hybridní</value>
+    <value>Hybrydowa</value>
     <comment>SettigsPage</comment>
   </data>
   <data name="SettingsMapTypeRoad" xml:space="preserve">
-    <value>Silniční</value>
+    <value>Drogowa</value>
     <comment>SettigsPage</comment>
   </data>
   <data name="SettingsMapTypeTerrain" xml:space="preserve">
-    <value>Terén</value>
+    <value>Terenowa</value>
     <comment>SettigsPage</comment>
   </data>
   <data name="SettingsMapTypeTitle" xml:space="preserve">
@@ -405,39 +405,39 @@ Vaše hodnocení ve Store nám pomáhá s pokračováním práce na aplikaci a s
     <comment>SettingsPage</comment>
   </data>
   <data name="ShowWithGeoPhoto" xml:space="preserve">
-    <value>ukázat v GeoPhoto</value>
+    <value>pokaż z GeoPhoto</value>
     <comment>ImageInfoPage</comment>
   </data>
   <data name="AppBarRefresh" xml:space="preserve">
-    <value>znovu načíst</value>
+    <value>Przeładuj</value>
     <comment>AppBar</comment>
   </data>
   <data name="AppBarSettings" xml:space="preserve">
-    <value>nastavení</value>
+    <value>ustawienia</value>
     <comment>AppBar</comment>
   </data>
   <data name="MessageBoxRemoveAdContent" xml:space="preserve">
-    <value>Vážíme si zpětné vazby od uživatelů. Každé hodnocení nám pomáhá dělat naše aplikace ještě lepšími. Jako poděkování zmizí všechny reklamy na dva týdny! Chcete ohodnotit aplikaci nyní?</value>
+    <value>Lubimy wasze opinie. Każda przyczynia się do polepszania aplikacji. Jako prezent za ocenę, reklamy znikną na dwa tygodnie! :) Czy chciałbyś ocenić aplikację?</value>
     <comment>MessageBox</comment>
   </data>
   <data name="MessageBoxRemoveAdTitle" xml:space="preserve">
-    <value>Jste otráveni reklamami?</value>
+    <value>Wkurzony przez reklamy?</value>
     <comment>MessageBox</comment>
   </data>
   <data name="HideScreenshotsAlbumTitle" xml:space="preserve">
-    <value>Skrýt snímky obrazovky</value>
+    <value>Ukryj nazwy plików</value>
     <comment>SettingsPage</comment>
   </data>
   <data name="TutorialCheckItOut" xml:space="preserve">
-    <value>podívejte se na to</value>
+    <value>sprawdź teraz</value>
     <comment>TutorialPopup</comment>
   </data>
   <data name="TutorialContent" xml:space="preserve">
-    <value>Můžete změnit typ zobrazení s horizontálním tahem...</value>
+    <value>Możesz zmienić widok poprzez poziome przeciągnięcie po ekranie...</value>
     <comment>TutorialPopup</comment>
   </data>
   <data name="TutorialTitle" xml:space="preserve">
-    <value>Věděli jste že?</value>
+    <value>Czy wiesz, że...?</value>
     <comment>TutorialPopup</comment>
   </data>
 </root>

@@ -160,7 +160,7 @@
     <Content Include="AppResLib.dll.0c0a.mui" />
     <Content Include="AppResLib.dll.0405.mui" />
     <Content Include="AppResLib.dll.040c.mui" />
-    <None Include="AppResLib.dll.0415.mui" />
+    <Content Include="AppResLib.dll.0415.mui" />
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml">
       <SubType>Designer</SubType>

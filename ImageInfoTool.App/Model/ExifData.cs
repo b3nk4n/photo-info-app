@@ -33,10 +33,10 @@ namespace ImageInfoTool.App.Model
             {
                 using (ExifReader exifReader = new ExifReader(_image.GetImage()))
                 {
-                    double tmp;
-                    exifReader.GetTagValue<double>(ExifTags.GPSAltitude, out tmp);
+                    double[] tmp;
+                    exifReader.GetTagValue<double[]>(ExifTags.GPSLatitude, out tmp);
 
-                    if (tmp == 0.0)
+                    if (tmp == null)
                         return false;
                 }
             }

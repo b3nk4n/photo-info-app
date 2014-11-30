@@ -668,6 +668,31 @@ namespace ImageInfoTool.App.Pages
 
         private void ShowPhotoOnMapClicked(object sender, RoutedEventArgs e)
         {
+            TryChangeStateToFullMap();
+        }
+
+        private void AddressInfoContainerDoubleTapped(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            HideAddressInfoAnimation.Begin();
+        }
+
+        private void ScreenDoubleTapped(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            var pos = e.GetPosition(this);
+            if (pos.Y < 350)
+            {
+                InfoToImageAnimation.Begin();
+                _viewState = InfoPageViewState.Image;
+                CheckForSwitchStateAnimations();
+            } 
+            else if (pos.Y > 450)
+            {
+                TryChangeStateToFullMap();
+            }
+        }
+
+        private void TryChangeStateToFullMap()
+        {
             var vm = DataContext as ImageViewModel;
             if (vm == null)
                 return;
@@ -679,11 +704,6 @@ namespace ImageInfoTool.App.Pages
                 _viewState = InfoPageViewState.Map;
                 CheckForSwitchStateAnimations();
             }
-        }
-
-        private void AddressInfoContainerDoubleTapped(object sender, System.Windows.Input.GestureEventArgs e)
-        {
-            HideAddressInfoAnimation.Begin();
         }
     }
 }

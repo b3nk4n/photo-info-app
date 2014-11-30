@@ -452,7 +452,7 @@
                 </Rectangle.OpacityMask>
             </Rectangle>
 
-            <ScrollViewer x:Name="ImageInfoScroller" Grid.RowSpan="2">
+            <ScrollViewer x:Name="ImageInfoScroller" Grid.RowSpan="2" DoubleTap="ScreenDoubleTapped">
                 <ScrollViewer.RenderTransform>
                     <CompositeTransform TranslateY="800" />
                 </ScrollViewer.RenderTransform>
@@ -619,7 +619,7 @@
             	</Grid.RenderTransform>
                 <Rectangle Fill="{StaticResource PhoneBackgroundBrush}" Opacity="0.66" />
                 <StackPanel Margin="56,4,6,10">
-                    <TextBlock x:Name="AddressInfoTitle" Style="{StaticResource PhoneTextExtraLargeStyle}" TextWrapping="Wrap" />
+                    <TextBlock x:Name="AddressInfoTitle" Style="{StaticResource PhoneTextExtraLargeStyle}" FontSize="36" TextWrapping="Wrap" />
                     <TextBlock x:Name="AddressInfoLine2" Style="{StaticResource PhoneTextSubtleStyle}" />
                     <TextBlock x:Name="AddressInfoLine3" Style="{StaticResource PhoneTextSubtleStyle}" />
                     <TextBlock x:Name="AddressInfoLine4" Style="{StaticResource PhoneTextSubtleStyle}" />

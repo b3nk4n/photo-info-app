@@ -51,7 +51,7 @@ namespace ImageInfoTool.App.ViewModels
 
             ImagesToLoad = totalCount;
 
-            int steps = totalCount / 20;
+            int steps = Math.Max(1, totalCount / 50);
 
             FilterProcessCounter = 0;
 
@@ -90,7 +90,7 @@ namespace ImageInfoTool.App.ViewModels
                     else
                     {
                         tempList.Add(imageViewModel);
-                    }
+                    }      
                 }
             });
 

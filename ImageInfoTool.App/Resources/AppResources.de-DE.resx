@@ -440,4 +440,12 @@ Das würde uns sehr motivieren um die App noch besser zu machen!</value>
     <value>Wusstest du schon?</value>
     <comment>TutorialPopup</comment>
   </data>
+  <data name="FilterImagesAll" xml:space="preserve">
+    <value>alle Bilder</value>
+    <comment>MainPage</comment>
+  </data>
+  <data name="FilterImagesGPS" xml:space="preserve">
+    <value>nur GPS Bilder</value>
+    <comment>MainPage</comment>
+  </data>
 </root>

@@ -207,13 +207,13 @@ namespace ImageInfoTool.App
         private void ChangeAppBarToNonFilteredState()
         {
             _appBarFilterIconButton.IconUri = new Uri("/Assets/AppBar/appbar.map.gps.png", UriKind.Relative);
-            _appBarFilterIconButton.Text = "nur GPS Bilder";
+            _appBarFilterIconButton.Text = AppResources.FilterImagesGPS;
         }
 
         private void ChangeAppBarToFilteredState()
         {
             _appBarFilterIconButton.IconUri = new Uri("/Assets/AppBar/appbar.image.multiple.png", UriKind.Relative);
-            _appBarFilterIconButton.Text = "alle Bilder";
+            _appBarFilterIconButton.Text = AppResources.FilterImagesAll;
         }
 
         /// <summary>

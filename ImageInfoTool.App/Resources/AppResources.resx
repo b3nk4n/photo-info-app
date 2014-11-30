@@ -440,4 +440,12 @@ Showing us some love on the store helps us to continue to work on the app and ma
     <value>Did you know?</value>
     <comment>TutorialPopup</comment>
   </data>
+  <data name="FilterImagesAll" xml:space="preserve">
+    <value>all photos</value>
+    <comment>MainPage</comment>
+  </data>
+  <data name="FilterImagesGPS" xml:space="preserve">
+    <value>GPS photos only</value>
+    <comment>MainPage</comment>
+  </data>
 </root>

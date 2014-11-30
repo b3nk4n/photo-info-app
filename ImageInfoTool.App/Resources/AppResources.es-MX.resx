@@ -192,6 +192,14 @@ Dinos sobre tu experiencia o sugiere como podemos hacerlo incluso mejor.</value>
     <value>enviar comentario</value>
     <comment>FeedbackDialogControl</comment>
   </data>
+  <data name="FilterImagesAll" xml:space="preserve">
+    <value>todas las fotos</value>
+    <comment>MainPage</comment>
+  </data>
+  <data name="FilterImagesGPS" xml:space="preserve">
+    <value>fotos GPS</value>
+    <comment>MainPage</comment>
+  </data>
   <data name="FlashFired" xml:space="preserve">
     <value>habilitado</value>
     <comment>PhotoInfo</comment>

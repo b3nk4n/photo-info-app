@@ -440,4 +440,12 @@ Pokazując jak bardo ci się podoba, przyczyniasz się do kontynuowania prac nad
     <value>Czy wiesz, że...?</value>
     <comment>TutorialPopup</comment>
   </data>
+  <data name="FilterImagesAll" xml:space="preserve">
+    <value>wszystkie zdjęcia</value>
+    <comment>MainPage</comment>
+  </data>
+  <data name="FilterImagesGPS" xml:space="preserve">
+    <value>zdjęcia GPS</value>
+    <comment>MainPage</comment>
+  </data>
 </root>

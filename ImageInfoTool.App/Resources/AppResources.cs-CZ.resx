@@ -440,4 +440,12 @@ Vaše hodnocení ve Store nám pomáhá s pokračováním práce na aplikaci a s
     <value>Věděli jste že?</value>
     <comment>TutorialPopup</comment>
   </data>
+  <data name="FilterImagesAll" xml:space="preserve">
+    <value>všechny fotky</value>
+    <comment>MainPage</comment>
+  </data>
+  <data name="FilterImagesGPS" xml:space="preserve">
+    <value>GPS fotky</value>
+    <comment>MainPage</comment>
+  </data>
 </root>

@@ -216,6 +216,24 @@ namespace ImageInfoTool.App.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die all photos ähnelt.
+        /// </summary>
+        public static string FilterImagesAll {
+            get {
+                return ResourceManager.GetString("FilterImagesAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die GPS photos only ähnelt.
+        /// </summary>
+        public static string FilterImagesGPS {
+            get {
+                return ResourceManager.GetString("FilterImagesGPS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die enabled ähnelt.
         /// </summary>
         public static string FlashFired {

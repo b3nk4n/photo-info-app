@@ -440,4 +440,12 @@ Menunjukkan kecintaan di bursa membantu kita terus mengembangkan aplikasi menjad
     <value>Apakah Anda tahu?</value>
     <comment>TutorialPopup</comment>
   </data>
+  <data name="FilterImagesAll" xml:space="preserve">
+    <value>semua</value>
+    <comment>MainPage</comment>
+  </data>
+  <data name="FilterImagesGPS" xml:space="preserve">
+    <value>dengan GPS</value>
+    <comment>MainPage</comment>
+  </data>
 </root>

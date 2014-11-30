@@ -440,4 +440,12 @@ Votre soutien sur le Store nous aide à améliorer sans cesse notre app!</value>
     <value>Le savez vous?</value>
     <comment>TutorialPopup</comment>
   </data>
+  <data name="FilterImagesAll" xml:space="preserve">
+    <value>toutes les photos</value>
+    <comment>MainPage</comment>
+  </data>
+  <data name="FilterImagesGPS" xml:space="preserve">
+    <value>photos de GPS</value>
+    <comment>MainPage</comment>
+  </data>
 </root>

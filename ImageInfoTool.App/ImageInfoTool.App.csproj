@@ -184,6 +184,9 @@
     <Content Include="Assets\Images\69.png" />
     <Content Include="Assets\Images\close.png" />
     <Content Include="Assets\Images\dark\add.png" />
+    <Content Include="Assets\Images\dark\appbar.geophoto.png" />
+    <Content Include="Assets\Images\dark\appbar.here.png" />
+    <Content Include="Assets\Images\dark\appbar.map.png" />
     <Content Include="Assets\Images\dark\logo200.png" />
     <Content Include="Assets\Images\dark\show.png" />
     <Content Include="Assets\Images\french.png" />
@@ -191,6 +194,9 @@
     <Content Include="Assets\Images\icon.png" />
     <Content Include="Assets\Images\indonesian.png" />
     <Content Include="Assets\Images\light\add.png" />
+    <Content Include="Assets\Images\light\appbar.geophoto.png" />
+    <Content Include="Assets\Images\light\appbar.here.png" />
+    <Content Include="Assets\Images\light\appbar.map.png" />
     <Content Include="Assets\Images\light\logo200.png" />
     <Content Include="Assets\Images\light\show.png" />
     <Content Include="Assets\Images\spanish.png" />
@@ -229,6 +235,9 @@
     </Reference>
     <Reference Include="ExifLib">
       <HintPath>..\packages\ExifLib.1.5.0.0\lib\sl3-wp\ExifLib.dll</HintPath>
+    </Reference>
+    <Reference Include="HereLauncher">
+      <HintPath>..\packages\HereLaunchers.1.2\lib\wp8\HereLauncher.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone.Controls.Toolkit">
       <HintPath>..\Libs\Microsoft.Phone.Controls.Toolkit.dll</HintPath>

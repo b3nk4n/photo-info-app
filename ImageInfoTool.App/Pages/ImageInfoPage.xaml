@@ -542,13 +542,24 @@
                             <Image Source="{Binding AddWithGeoPhotoImagePath}" Height="48" />
                         </StackPanel>
                     </Button>
-                    <Button Command="{Binding OpenInGeoPhotoCommand}" HorizontalAlignment="Left" Template="{StaticResource EmptyControlTemplate}" Margin="{StaticResource PhoneVerticalMargin}"
-                            Visibility="{Binding ExifData.HasGPS, Converter={StaticResource BoolToVis}}">
-                        <StackPanel Orientation="Horizontal" toolkit:TiltEffect.IsTiltEnabled="True">
-                            <TextBlock Text="{Binding Path=LocalizedResources.ShowWithGeoPhoto, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextLargeStyle}" VerticalAlignment="Center" />
-                            <Image Source="{Binding ShowWithGeoPhotoImagePath}" Height="48" />
-                        </StackPanel>
-                    </Button>
+                    <StackPanel Orientation="Horizontal" Visibility="{Binding ExifData.HasGPS, Converter={StaticResource BoolToVis}}">
+                        <Button HorizontalAlignment="Left" Template="{StaticResource EmptyControlTemplate}" Margin="{StaticResource PhoneMargin}"
+                            Click="ShowPhotoOnMapClicked">
+                            <StackPanel toolkit:TiltEffect.IsTiltEnabled="True">
+                                <Image Source="{Binding ShowOnMapImagePath}" Height="48" />
+                            </StackPanel>
+                        </Button>
+                        <Button Command="{Binding OpenInGeoPhotoCommand}" HorizontalAlignment="Left" Template="{StaticResource EmptyControlTemplate}" Margin="{StaticResource PhoneMargin}">
+                            <StackPanel toolkit:TiltEffect.IsTiltEnabled="True">
+                                <Image Source="{Binding ShowWithGeoPhotoImagePath}" Height="48" />
+                            </StackPanel>
+                        </Button>
+                        <Button Command="{Binding OpenInHereMapsCommand}" HorizontalAlignment="Left" Template="{StaticResource EmptyControlTemplate}" Margin="{StaticResource PhoneMargin}">
+                            <StackPanel toolkit:TiltEffect.IsTiltEnabled="True">
+                                <Image Source="{Binding ShowWithHereMapsImagePath}" Height="48" />
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
                 </StackPanel>
             </ScrollViewer>
         </Grid>
@@ -560,6 +571,20 @@
                 <PlaneProjection/>
             </Grid.Projection>
             <maps:Map Grid.Row="1" x:Name="FullMapControl" IsHitTestVisible="False" ZoomLevel="9"/>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="12">
+                <Button Command="{Binding OpenInGeoPhotoCommand}" HorizontalAlignment="Left" Template="{StaticResource EmptyControlTemplate}" Margin="{StaticResource PhoneMargin}">
+                    <Grid toolkit:TiltEffect.IsTiltEnabled="True">
+                        <Ellipse Fill="{StaticResource PhoneBackgroundBrush}" Width="44" Height="44" />
+                        <Image Source="{Binding ShowWithGeoPhotoImagePath}" Height="48" />
+                    </Grid>
+                </Button>
+                <Button Command="{Binding OpenInHereMapsCommand}" HorizontalAlignment="Left" Template="{StaticResource EmptyControlTemplate}" Margin="{StaticResource PhoneMargin}">
+                    <Grid toolkit:TiltEffect.IsTiltEnabled="True">
+                        <Ellipse Fill="{StaticResource PhoneBackgroundBrush}" Width="44" Height="44" />
+                        <Image Source="{Binding ShowWithHereMapsImagePath}" Height="48" />
+                    </Grid>
+                </Button>
+            </StackPanel>
         </Grid>
 
         <Grid x:Name="FullImagePanel" Visibility="Collapsed" Background="{StaticResource PhoneBackgroundBrush}"

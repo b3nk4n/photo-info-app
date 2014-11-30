@@ -4,9 +4,11 @@ using ImageInfoTool.App.Resources;
 using Microsoft.Phone;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Media.PhoneExtensions;
+using Nokia.Phone.HereLaunchers;
 using PhoneKit.Framework.Core.MVVM;
 using PhoneKit.Framework.Core.Themeing;
 using System;
+using System.Device.Location;
 using System.IO;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -21,6 +23,7 @@ namespace ImageInfoTool.App.ViewModels
         private ExifData _exifData;
 
         ICommand _openInGeoPhotoCommand;
+        ICommand _openInHereMapsCommand;
 
         public int LibIndex { get; private set; }
 
@@ -34,6 +37,19 @@ namespace ImageInfoTool.App.ViewModels
             {
                 string imagePath = ImagePath;
                 await Launcher.LaunchUriAsync(new Uri(string.Format("geophoto:ShowPicturePosition?PicturePath={0}&Code=pdowGZ7p", imagePath), UriKind.Absolute));
+            });
+
+            _openInHereMapsCommand = new DelegateCommand(() =>
+            {
+                if (_exifData != null && _exifData.HasGPS)
+                {
+                    ExploremapsShowMapTask showMap = new ExploremapsShowMapTask();
+                    showMap.Location = new GeoCoordinate(
+                        GeoLocationHelper.ToDouble(_exifData.GPSLatitude, _exifData.GPSLatitudeRef),
+                        GeoLocationHelper.ToDouble(_exifData.GPSLongitude, _exifData.GPSLongitudeRef));
+                    showMap.Zoom = 14;
+                    showMap.Show();
+                }
             });
         }
 
@@ -361,6 +377,14 @@ namespace ImageInfoTool.App.ViewModels
             }
         }
 
+        public ICommand OpenInHereMapsCommand
+        {
+            get
+            {
+                return _openInHereMapsCommand;
+            }
+        }
+
 
         /// <summary>
         /// Gets the add image path.
@@ -378,13 +402,43 @@ namespace ImageInfoTool.App.ViewModels
         }
 
         /// <summary>
-        /// Gets the show image path.
+        /// Gets the show geo photo image path.
         /// </summary>
         public string ShowWithGeoPhotoImagePath
         {
             get
             {
-                const string imageName = "show.png";
+                const string imageName = "appbar.geophoto.png";
+                if (PhoneThemeHelper.IsLightThemeActive)
+                    return AppConstants.THEME_LIGHT_BASEPATH + imageName;
+                else
+                    return AppConstants.THEME_DARK_BASEPATH + imageName;
+            }
+        }
+
+        /// <summary>
+        /// Gets the show image HERE path.
+        /// </summary>
+        public string ShowWithHereMapsImagePath
+        {
+            get
+            {
+                const string imageName = "appbar.here.png";
+                if (PhoneThemeHelper.IsLightThemeActive)
+                    return AppConstants.THEME_LIGHT_BASEPATH + imageName;
+                else
+                    return AppConstants.THEME_DARK_BASEPATH + imageName;
+            }
+        }
+
+        /// <summary>
+        /// Gets the show on map path.
+        /// </summary>
+        public string ShowOnMapImagePath
+        {
+            get
+            {
+                const string imageName = "appbar.map.png";
                 if (PhoneThemeHelper.IsLightThemeActive)
                     return AppConstants.THEME_LIGHT_BASEPATH + imageName;
                 else

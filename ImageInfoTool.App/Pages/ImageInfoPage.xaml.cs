@@ -259,8 +259,8 @@ namespace ImageInfoTool.App.Pages
 
             var container = new Grid
             {
-                Height = 28,
-                Width = 28
+                Height = 30,
+                Width = 30
             };
             container.Children.Add(innerCircle);
             container.Children.Add(outerCircle);
@@ -497,7 +497,7 @@ namespace ImageInfoTool.App.Pages
             // left
             else if (flickX < -SWIPE_SENSITIVITY_VALUE)
             {
-                if (vm.HasExifData && vm.ExifData.HasGPSLatitude && vm.ExifData.HasGPSLongitude)
+                if (vm.HasGPS)
                 {
                     ImageToMapAnimation.Begin();
                     _viewState = InfoPageViewState.Map;
@@ -574,5 +574,19 @@ namespace ImageInfoTool.App.Pages
         }
 
         #endregion
+
+        private void ShowPhotoOnMapClicked(object sender, RoutedEventArgs e)
+        {
+            var vm = DataContext as ImageViewModel;
+            if (vm == null)
+                return;
+
+            if (vm.HasGPS)
+            {
+                InfoToMapAnimation.Begin();
+                _viewState = InfoPageViewState.Map;
+                CheckForSwitchStateAnimations();
+            }
+        }
     }
 }

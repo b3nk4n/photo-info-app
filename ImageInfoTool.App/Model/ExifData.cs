@@ -193,7 +193,7 @@ namespace ImageInfoTool.App.Model
         {
             get
             {
-                return HasGPSAltitude || HasGPSLatitude || HasGPSLongitude;
+                return HasGPSLatitude || HasGPSLongitude;
             }
         }
 

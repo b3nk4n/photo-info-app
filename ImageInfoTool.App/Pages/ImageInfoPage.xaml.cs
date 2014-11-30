@@ -16,6 +16,7 @@ using PhoneKit.Framework.Advertising;
 using PhoneKit.Framework.Core.Collections;
 using PhoneKit.Framework.Storage;
 using PhoneKit.Framework.InAppPurchase;
+using Microsoft.Phone.Maps.Services;
 
 namespace ImageInfoTool.App.Pages
 {
@@ -106,9 +107,97 @@ namespace ImageInfoTool.App.Pages
                 NavigationService.Navigate(new Uri("/Pages/InAppStorePage.xaml", UriKind.Relative));
             };
 
+            InfoToMapAnimation.Completed += (s, e) =>
+            {
+                // show address when animation is over:
+                ShowAddressOfLocation();
+            };
+
             InitializeMapApiKey();
 
             BuildLocalizedApplicationBar();
+        }
+
+        private void ShowAddressOfLocation()
+        {
+            var vm = DataContext as ImageViewModel;
+            if (vm == null)
+                return;
+
+            if (vm.HasGPS)
+            {
+                List<MapLocation> locations;
+                ReverseGeocodeQuery query = new ReverseGeocodeQuery();
+                var exif = vm.ExifData;
+                query.GeoCoordinate = new GeoCoordinate(
+                    GeoLocationHelper.ToDouble(exif.GPSLatitude, exif.GPSLatitudeRef),
+                    GeoLocationHelper.ToDouble(exif.GPSLongitude, exif.GPSLongitudeRef));
+                query.QueryCompleted += (s, e) =>
+                {
+                    if (e.Error == null && e.Result.Count > 0)
+                    {
+                        locations = e.Result as List<MapLocation>;
+                        var first = locations[0];
+                        Dispatcher.BeginInvoke(() =>
+                        {
+                            // title
+                            string txt1 = "";
+                            if (first.Information.Address.City != "")
+                                txt1 += string.Format("{0}, ", first.Information.Address.City);
+                            if (first.Information.Address.StateCode != "")
+                                txt1 += string.Format("{0}, ", first.Information.Address.StateCode);
+                            if (first.Information.Address.Country != "")
+                                txt1 += string.Format("{0}", first.Information.Address.Country);
+                            AddressInfoTitle.Text = txt1;
+
+                            // line 2
+                            AddressInfoLine2.Visibility = Visibility.Visible;
+                            if (first.Information.Address.District != "" && first.Information.Address.Neighborhood != "")
+                            {
+                                AddressInfoLine2.Text = string.Format("{0}, {1}", first.Information.Address.District, first.Information.Address.Neighborhood);
+                            }
+                            else if (first.Information.Address.District != "")
+                            {
+                                AddressInfoLine2.Text = first.Information.Address.District;
+                            }
+                            else if (first.Information.Address.Neighborhood != "")
+                            {
+                                AddressInfoLine2.Text = first.Information.Address.Neighborhood;
+                            }
+                            else
+                            {
+                                AddressInfoLine2.Visibility = Visibility.Collapsed;
+                            }
+
+                            // line 3
+                            if (first.Information.Address.Street != "")
+                            {
+                                AddressInfoLine3.Text = string.Format("{0} {1}", first.Information.Address.Street, first.Information.Address.HouseNumber);
+                                AddressInfoLine3.Visibility = Visibility.Visible;
+                            } 
+                            else
+                            {
+                                AddressInfoLine3.Visibility = Visibility.Collapsed;
+                            } 
+
+                            // line 4
+                            if (first.Information.Address.PostalCode != "")
+                            {
+                                AddressInfoLine4.Text = string.Format("{0} {1}", first.Information.Address.PostalCode, first.Information.Address.City);
+                                AddressInfoLine4.Visibility = Visibility.Visible;
+                            }
+                            else
+                            {
+                                AddressInfoLine4.Visibility = Visibility.Collapsed;
+                            }
+
+                            ShowAddressInfoAnimation.Begin();
+                        });
+                    }
+                };
+                query.QueryAsync();
+            }
+            
         }
 
         /// <summary>
@@ -453,6 +542,7 @@ namespace ImageInfoTool.App.Pages
             {
                 if (vm.HasExifData && vm.ExifData.HasGPSLatitude && vm.ExifData.HasGPSLongitude)
                 {
+                    ResetAddressInfoAnimation.Begin();
                     InfoToMapAnimation.Begin();
                     _viewState = InfoPageViewState.Map;
                     CheckForSwitchStateAnimations();
@@ -499,6 +589,7 @@ namespace ImageInfoTool.App.Pages
             {
                 if (vm.HasGPS)
                 {
+                    ResetAddressInfoAnimation.Begin();
                     ImageToMapAnimation.Begin();
                     _viewState = InfoPageViewState.Map;
                     CheckForSwitchStateAnimations();
@@ -583,10 +674,16 @@ namespace ImageInfoTool.App.Pages
 
             if (vm.HasGPS)
             {
+                ResetAddressInfoAnimation.Begin();
                 InfoToMapAnimation.Begin();
                 _viewState = InfoPageViewState.Map;
                 CheckForSwitchStateAnimations();
             }
+        }
+
+        private void AddressInfoContainerDoubleTapped(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            HideAddressInfoAnimation.Begin();
         }
     }
 }

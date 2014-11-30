@@ -346,6 +346,32 @@
                 </EasingDoubleKeyFrame>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+        <Storyboard x:Name="ShowAddressInfoAnimation">
+        	<DoubleAnimation Duration="0:0:1" To="-50" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="AddressInfoContainer" d:IsOptimized="True">
+        		<DoubleAnimation.EasingFunction>
+        			<BackEase EasingMode="EaseOut" Amplitude="0.2"/>
+        		</DoubleAnimation.EasingFunction>
+        	</DoubleAnimation>
+            <DoubleAnimation Duration="0:0:1" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="AddressInfoContainer" d:IsOptimized="True"/>
+        </Storyboard>
+
+        <Storyboard x:Name="HideAddressInfoAnimation">
+            <DoubleAnimation Duration="0:0:1" To="-600" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="AddressInfoContainer" d:IsOptimized="True">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase EasingMode="EaseInOut" Amplitude="0.2"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Duration="0:0:1" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="AddressInfoContainer" d:IsOptimized="True"/>
+        </Storyboard>
+
+        <Storyboard x:Name="ResetAddressInfoAnimation">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="AddressInfoContainer" d:IsOptimized="True">
+                <DiscreteDoubleKeyFrame KeyTime="0" Value="-600"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="AddressInfoContainer" d:IsOptimized="True">
+                <DiscreteDoubleKeyFrame KeyTime="0" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
 
     </phone:PhoneApplicationPage.Resources>
 
@@ -571,7 +597,7 @@
                 <PlaneProjection/>
             </Grid.Projection>
             <maps:Map Grid.Row="1" x:Name="FullMapControl" IsHitTestVisible="False" ZoomLevel="9"/>
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="12">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right">
                 <Button Command="{Binding OpenInGeoPhotoCommand}" HorizontalAlignment="Left" Template="{StaticResource EmptyControlTemplate}" Margin="{StaticResource PhoneMargin}">
                     <Grid toolkit:TiltEffect.IsTiltEnabled="True">
                         <Ellipse Fill="{StaticResource PhoneBackgroundBrush}" Width="44" Height="44" />
@@ -585,6 +611,20 @@
                     </Grid>
                 </Button>
             </StackPanel>
+            
+            <Grid x:Name="AddressInfoContainer" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0,0,0,48" RenderTransformOrigin="0.5,0.5"
+                  DoubleTap="AddressInfoContainerDoubleTapped">
+            	<Grid.RenderTransform>
+            		<CompositeTransform TranslateX="-600"/>
+            	</Grid.RenderTransform>
+                <Rectangle Fill="{StaticResource PhoneBackgroundBrush}" Opacity="0.66" />
+                <StackPanel Margin="56,4,6,10">
+                    <TextBlock x:Name="AddressInfoTitle" Style="{StaticResource PhoneTextExtraLargeStyle}" TextWrapping="Wrap" />
+                    <TextBlock x:Name="AddressInfoLine2" Style="{StaticResource PhoneTextSubtleStyle}" />
+                    <TextBlock x:Name="AddressInfoLine3" Style="{StaticResource PhoneTextSubtleStyle}" />
+                    <TextBlock x:Name="AddressInfoLine4" Style="{StaticResource PhoneTextSubtleStyle}" />
+                </StackPanel>
+            </Grid>
         </Grid>
 
         <Grid x:Name="FullImagePanel" Visibility="Collapsed" Background="{StaticResource PhoneBackgroundBrush}"

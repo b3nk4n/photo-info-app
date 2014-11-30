@@ -24,6 +24,12 @@ namespace ImageInfoTool.App
     {
         private bool _doStartupAnimation;
 
+        ApplicationBarIconButton _appBarFilterIconButton;
+
+        private bool _isGpsFilterActive = false;
+
+        private bool _isBusy = false;
+
         /// <summary>
         /// Creates the MainPage instance.
         /// </summary>
@@ -33,12 +39,18 @@ namespace ImageInfoTool.App
 
             Loaded += async (s, e) =>
             {
-                if (!ImageLibraryViewModel.Instance.HasLoadedAllImages)
+                //if (!ImageLibraryViewModel.Instance.HasLoadedAllImages)
+                if (!ImageLibraryViewModel.Instance.HasLoadedImages)
                 {
-                    
-                    await ImageLibraryViewModel.Instance.LoadAll();
-                    DataContext = ImageLibraryViewModel.Instance;
-                    ScrollListToBottom();
+
+                    if (!_isBusy)
+                    {
+                        _isBusy = true;
+                        await ImageLibraryViewModel.Instance.LoadAllAsync(this, _isGpsFilterActive);
+                        DataContext = ImageLibraryViewModel.Instance;
+                        ScrollListToBottom();
+                        _isBusy = false;
+                    }
                 }
 
                 if (_doStartupAnimation)
@@ -106,6 +118,9 @@ namespace ImageInfoTool.App
             {
                 _doStartupAnimation = true;
             }
+
+            // make sure the list is hit-test visible
+            ImageList.IsHitTestVisible = true;
         }
 
         /// <summary>
@@ -115,7 +130,6 @@ namespace ImageInfoTool.App
         {
             // ApplicationBar der Seite einer neuen Instanz von ApplicationBar zuweisen
             ApplicationBar = new ApplicationBar();
-            ApplicationBar.Mode = ApplicationBarMode.Minimized;
             ApplicationBar.Opacity = 0.99f;
 
             // refresh
@@ -123,10 +137,46 @@ namespace ImageInfoTool.App
             appBarRefreshIconButton.Text = AppResources.AppBarRefresh;
             appBarRefreshIconButton.Click += async (s, e) =>
             {
-                await ImageLibraryViewModel.Instance.LoadAll();
-                ScrollListToBottom();
+                if (!_isBusy)
+                {
+                    _isBusy = true;
+                    ShowLoadingPopup();
+                    await ImageLibraryViewModel.Instance.LoadAllAsync(this, _isGpsFilterActive);
+                    ScrollListToBottom();
+                    HideLoadingPopup();
+                    _isBusy = false;
+                }
             };
             ApplicationBar.Buttons.Add(appBarRefreshIconButton);
+
+            // filter GPS images
+            _appBarFilterIconButton = new ApplicationBarIconButton();
+            ChangeAppBarToNonFilteredState();
+            _appBarFilterIconButton.Click += async (s, e) =>
+            {
+                if (!_isBusy)
+                {
+                    _isBusy = true;
+                    ShowLoadingPopup();
+
+                    if (_isGpsFilterActive)
+                    {
+                        _isGpsFilterActive = false;
+                        await ImageLibraryViewModel.Instance.LoadAllAsync(this, _isGpsFilterActive);
+                        ChangeAppBarToNonFilteredState();
+                    }
+                    else
+                    {
+                        _isGpsFilterActive = true;
+                        await ImageLibraryViewModel.Instance.LoadAllAsync(this, _isGpsFilterActive);
+                        ChangeAppBarToFilteredState();
+                    }
+                    ScrollListToBottom();
+                    HideLoadingPopup();
+                    _isBusy = false;
+                }
+            };
+            ApplicationBar.Buttons.Add(_appBarFilterIconButton);
 
             // settings
             ApplicationBarIconButton appBarSettingsIconButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/feature.settings.png", UriKind.Relative));
@@ -154,6 +204,18 @@ namespace ImageInfoTool.App
             ApplicationBar.MenuItems.Add(appBarAboutMenuItem);
         }
 
+        private void ChangeAppBarToNonFilteredState()
+        {
+            _appBarFilterIconButton.IconUri = new Uri("/Assets/AppBar/appbar.map.gps.png", UriKind.Relative);
+            _appBarFilterIconButton.Text = "nur GPS Bilder";
+        }
+
+        private void ChangeAppBarToFilteredState()
+        {
+            _appBarFilterIconButton.IconUri = new Uri("/Assets/AppBar/appbar.image.multiple.png", UriKind.Relative);
+            _appBarFilterIconButton.Text = "alle Bilder";
+        }
+
         /// <summary>
         /// Called when an image got selected in the long list.
         /// </summary>
@@ -166,6 +228,20 @@ namespace ImageInfoTool.App
 
             NavigateToImageInfoPageByLibraryIndex(vm.LibIndex);
             ImageList.SelectedItem = null;
+        }
+
+        private void ShowLoadingPopup()
+        {
+            ImageList.IsHitTestVisible = false;
+            FilteringLoadingComponent.Visibility = Visibility.Visible;
+            FilteringAnimation.Begin();
+        }
+
+        private void HideLoadingPopup()
+        {
+            ImageList.IsHitTestVisible = true;
+            FilteringLoadingComponent.Visibility = Visibility.Collapsed;
+            FilteringAnimation.Stop();
         }
     }
 }

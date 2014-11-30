@@ -12,6 +12,8 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Threading;
 
 namespace ImageInfoTool.App.ViewModels
 {
@@ -20,6 +22,9 @@ namespace ImageInfoTool.App.ViewModels
         private MediaLibrary _mediaLibrary;
 
         private const string SCREENSHOTS_ALBUM_NAME = "Screenshots";
+
+        private int _filterProcessCounter = 0;
+        private int _imagesToLoad = 0;
 
         /// <summary>
         /// The singleton instance.
@@ -36,7 +41,7 @@ namespace ImageInfoTool.App.ViewModels
         /// Loads all images from the library.
         /// </summary>
         /// <returns>The async task.</returns>
-        public async Task LoadAll()
+        public async Task LoadAllAsync(Control c, bool filtered)
         {
             _images.Clear();
             List<ImageViewModel> tempList = new List<ImageViewModel>();
@@ -44,11 +49,28 @@ namespace ImageInfoTool.App.ViewModels
 
             bool hideScreenshots = AppSettings.HideScreenshotsAlbum.Value;
 
+            ImagesToLoad = totalCount;
+
+            int steps = totalCount / 20;
+
+            FilterProcessCounter = 0;
+
             await Task.Run(() =>
             {
+                int j = 0;
                 int i = 0;
                 foreach (var picture in MediaLibrary.Pictures)
                 {
+                    j++;
+
+                    if (j % steps == 0)
+                    {
+                        c.Dispatcher.BeginInvoke(() =>
+                        {
+                            FilterProcessCounter = j;
+                        });
+                    }
+
                     // skip screenshots
                     if (hideScreenshots && picture.Album.Name == SCREENSHOTS_ALBUM_NAME)
                     {
@@ -56,7 +78,19 @@ namespace ImageInfoTool.App.ViewModels
                         continue;
                     }
 
-                    tempList.Add(new ImageViewModel(i++, picture));
+                    var imageViewModel = new ImageViewModel(i++, picture);
+
+                    if (filtered)
+                    {
+                        if (imageViewModel.CheckGPSPreLoading())
+                        {
+                            tempList.Add(imageViewModel);
+                        }
+                    }
+                    else
+                    {
+                        tempList.Add(imageViewModel);
+                    }
                 }
             });
 
@@ -78,6 +112,46 @@ namespace ImageInfoTool.App.ViewModels
             get
             {
                 return _images.Count >= GetFilteredImageCount();
+            }
+        }
+
+        public bool HasLoadedImages
+        {
+            get
+            {
+                return _images.Count > 0;
+            }
+        }
+
+        public int ImagesToLoad
+        {
+            get
+            {
+                return _imagesToLoad;
+            }
+            set
+            {
+                if (_imagesToLoad != value)
+                {
+                    _imagesToLoad = value;
+                    NotifyPropertyChanged("ImagesToLoad");
+                }
+            }
+        }
+
+        public int FilterProcessCounter
+        {
+            get
+            {
+                return _filterProcessCounter;
+            }
+            set
+            {
+                if (_filterProcessCounter != value)
+                {
+                    _filterProcessCounter = value;
+                    NotifyPropertyChanged("FilterProcessCounter");
+                }
             }
         }
 

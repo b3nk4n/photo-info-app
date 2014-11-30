@@ -112,6 +112,21 @@
         		</DoubleAnimation.EasingFunction>
         	</DoubleAnimation>
         </Storyboard>
+        <Storyboard x:Name="FilteringAnimation">
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="path" RepeatBehavior="Forever">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="-50"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="50">
+        			<EasingDoubleKeyFrame.EasingFunction>
+        				<CircleEase EasingMode="EaseInOut"/>
+        			</EasingDoubleKeyFrame.EasingFunction>
+        		</EasingDoubleKeyFrame>
+        		<EasingDoubleKeyFrame KeyTime="0:0:1" Value="-50">
+        			<EasingDoubleKeyFrame.EasingFunction>
+        				<CircleEase EasingMode="EaseInOut"/>
+        			</EasingDoubleKeyFrame.EasingFunction>
+        		</EasingDoubleKeyFrame>
+        	</DoubleAnimationUsingKeyFrames>
+        </Storyboard>
 
     </phone:PhoneApplicationPage.Resources>
 
@@ -119,7 +134,7 @@
     <Grid x:Name="LayoutRoot" Background="Transparent">
 
         <!--ContentPanel - zusätzliche Inhalte hier platzieren-->
-        <Grid x:Name="ContentPanel" Margin="0,0,0,30">
+        <Grid x:Name="ContentPanel" Margin="0,0,0,72">
             <phone:LongListSelector Name="ImageList" Margin="24,-30,0,0"
                                     ItemsSource="{Binding GroupedImages}"
                                     ItemTemplate="{StaticResource ItemTemplate}"                     
@@ -134,6 +149,20 @@
                     <CompositeTransform TranslateY="800" />
                 </phone:LongListSelector.RenderTransform>
             </phone:LongListSelector>
+            
+            <Grid x:Name="FilteringLoadingComponent" Opacity="0.85" Background="{StaticResource PhoneBackgroundBrush}" IsHitTestVisible="False" Visibility="Collapsed">
+                <Path Width="96" Height="84" Stretch="Fill" Fill="{StaticResource PhoneForegroundBrush}" Data="F1 M 20,23L 62,23L 62,59L 20,59L 20,23 Z M 23,26L 23,56L 59,56L 59,26L 23,26 Z M 27,54L 33.25,47.5L 36.4166,50.6667L 49.0833,38L 53.8333,42.75L 57,39L 57,54L 27,54 Z M 33.25,30.0834C 33.25,33.5812 30.4145,36.4167 26.9167,36.4167C 26.3699,36.4167 25.5061,36.1303 25,36L 25,28L 32.6666,28C 32.7968,28.5061 33.25,29.5366 33.25,30.0834 Z M 59,22L 19,22L 19,56L 17,56L 17,20L 59,20L 59,22 Z M 56,19L 16,19L 16,53L 14,53L 14,17L 56,17L 56,19 Z "/>
+                <Path x:Name="path" Margin="0,64,0,0" Width="72" Height="72" Stretch="Fill" Fill="{StaticResource PhoneForegroundBrush}" Data="F1 M 42.5,22C 49.4036,22 55,27.5964 55,34.5C 55,41.4036 49.4036,47 42.5,47C 40.1356,47 37.9245,46.3435 36,45.2426L 26.9749,54.2678C 25.8033,55.4393 23.9038,55.4393 22.7322,54.2678C 21.5607,53.0962 21.5607,51.1967 22.7322,50.0251L 31.7971,40.961C 30.6565,39.0755 30,36.8644 30,34.5C 30,27.5964 35.5964,22 42.5,22 Z M 42.5,26C 37.8056,26 34,29.8056 34,34.5C 34,39.1944 37.8056,43 42.5,43C 47.1944,43 51,39.1944 51,34.5C 51,29.8056 47.1944,26 42.5,26 Z " Stroke="{StaticResource PhoneBackgroundBrush}" StrokeThickness="3" RenderTransformOrigin="0.5,0.5">
+                    <Path.RenderTransform>
+                        <CompositeTransform/>
+                    </Path.RenderTransform>
+                </Path>
+                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,150,0,0">
+                    <Run Text="{Binding FilterProcessCounter}" />
+                    <Run>/</Run>
+                    <Run Text="{Binding ImagesToLoad}" />
+                </TextBlock>
+            </Grid>
         </Grid>
 
         <Image x:Name="SplashImage" Width="480" Height="800" Source="/SplashScreenImage.screen-WXGA.jpg">

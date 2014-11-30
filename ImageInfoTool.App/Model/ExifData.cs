@@ -27,6 +27,27 @@ namespace ImageInfoTool.App.Model
             IsLoaded = false;
         }
 
+        public bool CheckGPSBeforeLoading()
+        {
+            try
+            {
+                using (ExifReader exifReader = new ExifReader(_image.GetImage()))
+                {
+                    double tmp;
+                    exifReader.GetTagValue<double>(ExifTags.GPSAltitude, out tmp);
+
+                    if (tmp == 0.0)
+                        return false;
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("GPS check error: " + e.Message);
+                return false;
+            }
+            return true;
+        }
+
         public bool Load()
         {
             if (IsLoaded == true)

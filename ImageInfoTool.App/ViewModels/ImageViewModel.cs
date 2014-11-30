@@ -46,6 +46,13 @@ namespace ImageInfoTool.App.ViewModels
             return _exifData.Load();
         }
 
+        public bool CheckGPSPreLoading()
+        {
+            if (_exifData == null)
+                return false;
+            return _exifData.CheckGPSBeforeLoading();
+        }
+
         public ImageSource ThumbnailImage
         {
             get
@@ -332,6 +339,17 @@ namespace ImageInfoTool.App.ViewModels
             get
             {
                 return _exifData;
+            }
+        }
+
+        public bool HasGPS
+        {
+            get
+            {
+                if (_exifData == null)
+                    return false;
+
+                return _exifData.HasGPS;
             }
         }
 

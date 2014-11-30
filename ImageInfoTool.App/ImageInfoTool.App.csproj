@@ -171,6 +171,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AppResLib.dll" />
+    <Content Include="Assets\AppBar\appbar.image.multiple.png" />
+    <Content Include="Assets\AppBar\appbar.map.gps.png" />
     <Content Include="Assets\AppBar\feature.settings.png" />
     <Content Include="Assets\AppBar\refresh.png" />
     <Content Include="Assets\ApplicationIcon.png">

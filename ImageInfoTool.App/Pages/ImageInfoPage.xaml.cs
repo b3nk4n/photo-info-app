@@ -108,8 +108,6 @@ namespace ImageInfoTool.App.Pages
 
             InitializeMapApiKey();
 
-            InitializeBanner();
-
             BuildLocalizedApplicationBar();
         }
 
@@ -159,35 +157,6 @@ namespace ImageInfoTool.App.Pages
         }
 
         /// <summary>
-        /// Initializes the banner.
-        /// </summary>
-        private void InitializeBanner()
-        {
-            if (InAppPurchaseHelper.IsProductActive(AppConstants.PRO_VERSION_IN_APP_KEY))
-                return;
-
-            if (BannerControl.AdvertsCount > 0)
-                return;
-
-            List<AdvertData> advertsList = new List<AdvertData>();
-            advertsList.Add(new AdvertData(new Uri("/Assets/Banners/powernAPP_adduplex.png", UriKind.Relative), AdvertData.ActionTypes.AppId, "92740dff-b2e1-4813-b08b-c6429df03356"));
-            advertsList.Add(new AdvertData(new Uri("/Assets/Banners/pocketBRAIN_adduplex.png", UriKind.Relative), AdvertData.ActionTypes.AppId, "ad1227e4-9f80-4967-957f-6db140dc0c90"));
-            advertsList.Add(new AdvertData(new Uri("/Assets/Banners/SpaceScribble_adduplex.png", UriKind.Relative), AdvertData.ActionTypes.AppId, "71fc4a5b-de12-4b28-88ec-8ac573ce9708"));
-            advertsList.Add(new AdvertData(new Uri("/Assets/Banners/SpacepiXX_adduplex.png", UriKind.Relative), AdvertData.ActionTypes.AppId, "cbe0dfa7-2879-4c2c-b7c6-3798781fba16"));
-            advertsList.Add(new AdvertData(new Uri("/Assets/Banners/ScribbleHunter_adduplex.png", UriKind.Relative), AdvertData.ActionTypes.AppId, "ed250596-e670-4d22-aee1-8ed0a08c411f"));
-            advertsList.Add(new AdvertData(new Uri("/Assets/Banners/GeoPhoto_adduplex.png", UriKind.Relative), AdvertData.ActionTypes.AppId, "f10991b2-3e1a-4fb0-99bc-833338a33502"));
-            advertsList.Add(new AdvertData(new Uri("/Assets/Banners/frequenzer_adduplex.png", UriKind.Relative), AdvertData.ActionTypes.AppId, "92bac4f7-05eb-47ec-a75b-11f077f0c8f6"));
-
-            //shuffle
-            advertsList.ShuffleList();
-
-            foreach (var advert in advertsList)
-            {
-                BannerControl.AddAdvert(advert);
-            }
-        }
-
-        /// <summary>
         /// Updates the banner visiblilty.
         /// </summary>
         private void UpdateBannerVisibility()
@@ -201,7 +170,6 @@ namespace ImageInfoTool.App.Pages
             {
                 BannerControl.Visibility = System.Windows.Visibility.Visible;
                 BannerContainer.Visibility = System.Windows.Visibility.Visible;
-                BannerControl.Start();
                 ShowBannerAnimation.Begin();
             }
         }

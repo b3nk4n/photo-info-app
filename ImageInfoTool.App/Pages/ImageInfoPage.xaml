@@ -575,17 +575,18 @@
             <Grid.RenderTransform>
                 <CompositeTransform TranslateY="-400"/>
             </Grid.RenderTransform>
-            <adverts:OfflineAdControl x:Name="BannerControl" Width="480" Height="80" Visibility="Collapsed">
-                <adverts:OfflineAdControl.OpacityMask>
+
+            <adverts:MsDuplexAdControl x:Name="BannerControl" Width="480" Height="80" Visibility="Collapsed" AdDuplexAppId="128527" MsApplicationId="185442cc-ca6e-4c17-b28e-8c27d7b678d9" MsAdUnitId="197273">
+                <adverts:MsDuplexAdControl.OpacityMask>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
                         <GradientStop Offset="0" Color="#FFFFFFFF" />
                         <GradientStop Offset="0.95" Color="#DDFFFFFF" />
                         <GradientStop Offset="1" Color="#66FFFFFF" />
                     </LinearGradientBrush>
-                </adverts:OfflineAdControl.OpacityMask>
+                </adverts:MsDuplexAdControl.OpacityMask>
+            </adverts:MsDuplexAdControl>
 
-            </adverts:OfflineAdControl>
-            <Border x:Name="RemoveAdButton" Background="{StaticResource PhoneAccentBrush}" Width="32" Height="32" Opacity="0.9"
+            <Border x:Name="RemoveAdButton" Background="{StaticResource PhoneAccentBrush}" Width="26" Height="26" Opacity="0.9" Margin="1"
                     VerticalAlignment="Top" HorizontalAlignment="Right">
                 <Image Source="/Assets/Images/close.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </Border>

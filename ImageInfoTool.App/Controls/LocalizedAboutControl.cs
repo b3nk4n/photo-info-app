@@ -38,6 +38,7 @@ namespace ImageInfoTool.App.Controls
             contributors.Add(new ContributorModel("/Assets/Images/spanish.png", "Juan Febrero"));
             contributors.Add(new ContributorModel("/Assets/Images/french.png", "Vincent Vuillaume"));
             contributors.Add(new ContributorModel("/Assets/Images/czech.png", "Petr Hovorka"));
+            contributors.Add(new ContributorModel("/Assets/Images/polish.png", "Rudolf_PL"));
             SetContributorsList(contributors);
         }
     }

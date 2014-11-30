@@ -176,13 +176,6 @@
     <Content Include="Assets\ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Banners\frequenzer_adduplex.png" />
-    <Content Include="Assets\Banners\GeoPhoto_adduplex.png" />
-    <Content Include="Assets\Banners\pocketBRAIN_adduplex.png" />
-    <Content Include="Assets\Banners\powernAPP_adduplex.png" />
-    <Content Include="Assets\Banners\ScribbleHunter_adduplex.png" />
-    <Content Include="Assets\Banners\SpacepiXX_adduplex.png" />
-    <Content Include="Assets\Banners\SpaceScribble_adduplex.png" />
     <Content Include="Assets\Images\czech.png" />
     <Content Include="Assets\Images\176.png" />
     <Content Include="Assets\Images\33.png" />
@@ -200,6 +193,7 @@
     <Content Include="Assets\Images\light\show.png" />
     <Content Include="Assets\Images\spanish.png" />
     <Content Include="Assets\Images\swipe_tutorial.png" />
+    <Content Include="Assets\Images\polish.png" />
     <Content Include="Assets\Tiles\FlipCycleTileLarge.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

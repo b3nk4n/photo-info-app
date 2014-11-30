@@ -51,7 +51,7 @@ namespace ImageInfoTool.App.ViewModels
 
             ImagesToLoad = totalCount;
 
-            int steps = Math.Max(1, totalCount / 50);
+            int steps = 1 + (totalCount / 50); // WinPhone 8.1 Bug !? Math.Max() not working correctly !??!
 
             FilterProcessCounter = 0;
 

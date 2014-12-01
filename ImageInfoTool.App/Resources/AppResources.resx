@@ -142,7 +142,7 @@
     <comment>General</comment>
   </data>
   <data name="ApplicationVersion" xml:space="preserve">
-    <value>1.5.1</value>
+    <value>1.5.2</value>
     <comment>General</comment>
   </data>
   <data name="Contributors" xml:space="preserve">
@@ -445,7 +445,7 @@ Showing us some love on the store helps us to continue to work on the app and ma
     <comment>MainPage</comment>
   </data>
   <data name="FilterImagesGPS" xml:space="preserve">
-    <value>GPS photos only</value>
+    <value>GPS photos</value>
     <comment>MainPage</comment>
   </data>
 </root>

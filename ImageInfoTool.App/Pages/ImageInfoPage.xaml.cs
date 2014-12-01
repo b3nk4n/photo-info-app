@@ -62,9 +62,17 @@ namespace ImageInfoTool.App.Pages
                     {
                         var lat = GeoLocationHelper.ToDouble(exif.GPSLatitude, exif.GPSLatitudeRef);
                         var lng = GeoLocationHelper.ToDouble(exif.GPSLongitude, exif.GPSLongitudeRef);
+
+                        if (lat == GeoLocationHelper.NO_COORDINATE || lng == GeoLocationHelper.NO_COORDINATE)
+                            return;
+
                         MapControl.CartographicMode = AppSettings.MapType.Value;
                         var photoPosition = new GeoCoordinate(lat, lng);
-                        var centerPosition = new GeoCoordinate(photoPosition.Latitude + 0.0275, photoPosition.Longitude);
+
+                        var latCenter = lat + 0.0275;
+                        latCenter = (latCenter > 90) ? 90 : latCenter;
+
+                        var centerPosition = new GeoCoordinate(latCenter, lng);
                         MapControl.Center = centerPosition;
                         UpdateOverlayAtCenter(MapControl, photoPosition);
                         MapControl.Visibility = System.Windows.Visibility.Visible;
@@ -129,9 +137,15 @@ namespace ImageInfoTool.App.Pages
                 List<MapLocation> locations;
                 ReverseGeocodeQuery query = new ReverseGeocodeQuery();
                 var exif = vm.ExifData;
+
+                var lat = GeoLocationHelper.ToDouble(exif.GPSLatitude, exif.GPSLatitudeRef);
+                var lng = GeoLocationHelper.ToDouble(exif.GPSLongitude, exif.GPSLongitudeRef);
+                if (lat == GeoLocationHelper.NO_COORDINATE || lng == GeoLocationHelper.NO_COORDINATE)
+                    return;
+
                 query.GeoCoordinate = new GeoCoordinate(
-                    GeoLocationHelper.ToDouble(exif.GPSLatitude, exif.GPSLatitudeRef),
-                    GeoLocationHelper.ToDouble(exif.GPSLongitude, exif.GPSLongitudeRef));
+                    lat,
+                    lng);
                 query.QueryCompleted += (s, e) =>
                 {
                     if (e.Error == null && e.Result.Count > 0)
@@ -269,7 +283,7 @@ namespace ImageInfoTool.App.Pages
         /// <param name="image">The image.</param>
         private void UpdateImageTranslation(ImageViewModel image)
         {
-            if (image != null)
+            if (image != null && image.Width != 0)
             {
                 // transform
                 var transform = (CompositeTransform)ImageControl.RenderTransform;

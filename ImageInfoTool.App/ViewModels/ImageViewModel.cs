@@ -44,9 +44,13 @@ namespace ImageInfoTool.App.ViewModels
                 if (_exifData != null && _exifData.HasGPS)
                 {
                     ExploremapsShowMapTask showMap = new ExploremapsShowMapTask();
+                    var lat = GeoLocationHelper.ToDouble(_exifData.GPSLatitude, _exifData.GPSLatitudeRef);
+                    var lng = GeoLocationHelper.ToDouble(_exifData.GPSLongitude, _exifData.GPSLongitudeRef);
+                    if (lat == GeoLocationHelper.NO_COORDINATE || lng == GeoLocationHelper.NO_COORDINATE)
+                        return;
                     showMap.Location = new GeoCoordinate(
-                        GeoLocationHelper.ToDouble(_exifData.GPSLatitude, _exifData.GPSLatitudeRef),
-                        GeoLocationHelper.ToDouble(_exifData.GPSLongitude, _exifData.GPSLongitudeRef));
+                        lat,
+                        lng);
                     showMap.Zoom = 14;
                     showMap.Show();
                 }

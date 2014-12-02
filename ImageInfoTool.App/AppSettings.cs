@@ -13,7 +13,7 @@ namespace ImageInfoTool.App
         /// <summary>
         /// Setting for whether the file name should be hidden.
         /// </summary>
-        public static StoredObject<bool> HideFileName = new StoredObject<bool>("_hideFileName_", true);
+        public static StoredObject<bool> HideFileName = new StoredObject<bool>("_hideFileName_", false);
 
         /// <summary>
         /// Setting for whether the file name should be hidden.

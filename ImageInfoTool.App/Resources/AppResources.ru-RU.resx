@@ -122,23 +122,23 @@
     <comment>Controls the FlowDirection for all elements in the RootFrame. Set to the traditional direction of this resource file's language</comment>
   </data>
   <data name="ResourceLanguage" xml:space="preserve">
-    <value>pl-PL</value>
+    <value>ru-RU</value>
     <comment>Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</comment>
   </data>
   <data name="AboutTitle" xml:space="preserve">
-    <value>o Foto-Info</value>
+    <value>о программе</value>
     <comment>AboutPage</comment>
   </data>
   <data name="ApplicationAuthor" xml:space="preserve">
-    <value>by Benjamin Sautermeister</value>
+    <value>Benjamin Sautermeister</value>
     <comment>AboutPage</comment>
   </data>
   <data name="ApplicationDescription" xml:space="preserve">
-    <value>Ta aplikacja rozszerza możliwości Hubu Zdjęcia, dzięki niej możesz uzyskać dokładne informacje na temat obrazów.</value>
+    <value>Это приложение расширяет функции Photo Hub Windows Phone, чтобы получить больше информации о фотографиях.</value>
     <comment>AboutPage</comment>
   </data>
   <data name="ApplicationTitle" xml:space="preserve">
-    <value>Foto-Info</value>
+    <value>Фото-Info</value>
     <comment>General</comment>
   </data>
   <data name="ApplicationVersion" xml:space="preserve">
@@ -146,7 +146,7 @@
     <comment>General</comment>
   </data>
   <data name="Contributors" xml:space="preserve">
-    <value>Współtwórcy</value>
+    <value>Помощники</value>
     <comment>AboutPage</comment>
   </data>
   <data name="FeedbackBodyText" xml:space="preserve">
@@ -167,121 +167,124 @@ Application Version: {4}
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="FeedbackMessageText" xml:space="preserve">
-    <value>Prykro nam, że nie chcesz ocenić naszej aplikacji.
+    <value>Жаль слышать, что вы не хотите оценить наш инструмент.
 
-Powiedz nam o swoich doświadczeniach lub zasugeruj, co możemy poprawić aby ulepszyć program.</value>
+
+
+Расскажите нам о своём опыте или подскажите, как мы можем сделать его ещё лучше.
+</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="FeedbackNoText" xml:space="preserve">
-    <value>nie, dziękuję</value>
+    <value>нет, спасибо</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="FeedbackSubject" xml:space="preserve">
-    <value>Foto-Info opinia użytkownika</value>
+    <value>Фото-Info обратная связь с клиентами</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="FeedbackTitleText" xml:space="preserve">
-    <value>Możemy zrobić to lepiej?</value>
+    <value>Можем ли мы сделать приложение лучше?</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="FeedbackYesText" xml:space="preserve">
-    <value>wyraź opinię</value>
+    <value>отзыв</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="MoreApps" xml:space="preserve">
-    <value>więcej aplikacji</value>
+    <value>больше приложений</value>
     <comment>AboutPage</comment>
   </data>
   <data name="PrivacyInfo" xml:space="preserve">
-    <value>informacje o prywatności</value>
+    <value>информация о конфиденциальности</value>
     <comment>About Page</comment>
   </data>
   <data name="RateAndReview" xml:space="preserve">
-    <value>oceń i opisz</value>
+    <value>оцените нас</value>
     <comment>AboutPage</comment>
   </data>
   <data name="RatingMessage10Text" xml:space="preserve">
-    <value>Mamy nadzieję, że aplikacja będzie użyteczna.
+    <value>Вероятнее всего, вы получаете много пользы от нашего приложения!
 
-Dlaczego nie dasz nam 5 gwiazdek, aby pokazać swoją wdzięczność?</value>
+Почему бы не поставить нам 5 звёзд, чтобы показать вашу признательность?</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="RatingMessage5Text" xml:space="preserve">
-    <value>Chcielibyśmy, abyś ocenił naszą aplikację na 5 gwiazdek.
+    <value>Мы будем признательны вам, если вы поставите нашему приложению 5 звёзд.
 
-Pokazując jak bardo ci się podoba, przyczyniasz się do kontynuowania prac nad nią, aby była jeszcze lepsza! :)</value>
+Ваши отзывы в магазине приложений помогают нам продолжать работать над нашим приложением и делать некоторые его функции ещё лучше!</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="RatingNoText" xml:space="preserve">
-    <value>nie, dziękuję</value>
+    <value>нет, спасибо</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="RatingTitleText" xml:space="preserve">
-    <value>Podoba ci się?</value>
+    <value>Понравилось наше приложение?</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="RatingYesText" xml:space="preserve">
-    <value>ocenić</value>
+    <value>оценивать</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="SupportAndFeedback" xml:space="preserve">
-    <value>pomoc i opinie</value>
+    <value>поддержка и обратная связь</value>
     <comment>About Page</comment>
   </data>
   <data name="FlashFired" xml:space="preserve">
-    <value>włączony</value>
+    <value>включена</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="FlashFiredAuto" xml:space="preserve">
-    <value>włączony (tryb auto)</value>
+    <value>включена (авто)</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="FlashNotFired" xml:space="preserve">
-    <value>wyłączony</value>
+    <value>выключена</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="FlashNotFiredAuto" xml:space="preserve">
-    <value>wyłączony (tryb auto)</value>
+    <value>выключена (авто)</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoAlbumName" xml:space="preserve">
-    <value>nazwa albumu</value>
+    <value>имя альбома</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoAltitude" xml:space="preserve">
-    <value>wysokość:</value>
+    <value>высота над уровнем моря:</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoCreationDate" xml:space="preserve">
-    <value>data utworzenia</value>
+    <value>дата создания</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoDigitalZoom" xml:space="preserve">
-    <value>zoom cyfrowy</value>
+    <value>цифровой зум</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoExifVersion" xml:space="preserve">
-    <value>wersja exif</value>
+    <value>версия exif</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoExposureTime" xml:space="preserve">
-    <value>czas ekspozycji</value>
+    <value>выдержка</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoFileName" xml:space="preserve">
-    <value>nazwa pliku</value>
+    <value>Имя файла</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoFileSize" xml:space="preserve">
-    <value>rozmiar pliku</value>
+    <value>размер файла</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoFlash" xml:space="preserve">
-    <value>lampa błyskowa</value>
+    <value>вспышка</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoFocalRatio" xml:space="preserve">
-    <value>stosunek ogniskowej</value>
+    <value>диафрагма</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoGPS" xml:space="preserve">
@@ -293,159 +296,159 @@ Pokazując jak bardo ci się podoba, przyczyniasz się do kontynuowania prac nad
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoLatitude" xml:space="preserve">
-    <value>szerokość:</value>
+    <value>широта:</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoLongitude" xml:space="preserve">
-    <value>długość:</value>
+    <value>долгота:</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoModel" xml:space="preserve">
-    <value>model</value>
+    <value>модель</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoOrientation" xml:space="preserve">
-    <value>orientacja</value>
+    <value>ориентация</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoResolution" xml:space="preserve">
-    <value>rozdzielczość</value>
+    <value>разрешение</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoTitleExtended" xml:space="preserve">
-    <value>rozszerzone</value>
+    <value>больше</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoTitleBasic" xml:space="preserve">
-    <value>informacje</value>
+    <value>информация</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoWhiteBalance" xml:space="preserve">
-    <value>balans bieli</value>
+    <value>баланс белого</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="OrientationLandscape" xml:space="preserve">
-    <value>krajobraz</value>
+    <value>пейзажная</value>
     <comment>MessageBox</comment>
   </data>
   <data name="OrientationPortrait" xml:space="preserve">
-    <value>portret</value>
+    <value>портретная</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="OrientationSquare" xml:space="preserve">
-    <value>kwadrat</value>
+    <value>квадрат</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="WhiteBalanceAuto" xml:space="preserve">
-    <value>auto</value>
+    <value>авто</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="WhiteBalanceManual" xml:space="preserve">
-    <value>ręczny</value>
+    <value>ручной</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="AddWithGeoPhoto" xml:space="preserve">
-    <value>dodaj z GeoPhoto</value>
+    <value>добавить местоположение с GeoPhoto</value>
     <comment>ImageInfoPage</comment>
   </data>
   <data name="HideFileNameTitle" xml:space="preserve">
-    <value>Ukryj nazwy plików</value>
+    <value>Скрывать имя файла</value>
     <comment>SettingsPage</comment>
   </data>
   <data name="InfoFileType" xml:space="preserve">
-    <value>typ pliku</value>
+    <value>тип файла</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
-    <value>ustawienia</value>
+    <value>настройки</value>
     <comment>SettingsPage</comment>
   </data>
   <data name="MessageBoxNoImageFound" xml:space="preserve">
-    <value>Obraz nie może zostać otwarty.</value>
+    <value>Изображение не может быть открыто.</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="MessageBoxWarning" xml:space="preserve">
-    <value>Ostrzeżenie</value>
+    <value>Предупреждение</value>
     <comment>MessageBox</comment>
   </data>
   <data name="InAppStoreLoading" xml:space="preserve">
-    <value>Ukryj zrzuty ekranu...</value>
+    <value>Загрузка…</value>
     <comment>InAppStorePage</comment>
   </data>
   <data name="InAppStoreNoProducts" xml:space="preserve">
-    <value>Obecnie nie ma dostępnych żadnych zakupów w aplikacji. Spróbuj ponownie później.</value>
+    <value>В настоящее время покупки в приложении недоступны. Пожалуйста, повторите попытку позже.</value>
     <comment>InAppStorePage</comment>
   </data>
   <data name="InAppStorePurchased" xml:space="preserve">
-    <value>zakupiono</value>
+    <value>приобретено</value>
     <comment>InAppStorePage</comment>
   </data>
   <data name="InAppStoreTitle" xml:space="preserve">
-    <value>sklep</value>
+    <value>покупки в приложении</value>
     <comment>InAppStorePage</comment>
   </data>
   <data name="SettingsMapTypeAerial" xml:space="preserve">
-    <value>Lotnicza</value>
+    <value>Спутник</value>
     <comment>SettigsPage</comment>
   </data>
   <data name="SettingsMapTypeHybrid" xml:space="preserve">
-    <value>Hybrydowa</value>
+    <value>Гибрид</value>
     <comment>SettigsPage</comment>
   </data>
   <data name="SettingsMapTypeRoad" xml:space="preserve">
-    <value>Drogowa</value>
+    <value>Дорожная</value>
     <comment>SettigsPage</comment>
   </data>
   <data name="SettingsMapTypeTerrain" xml:space="preserve">
-    <value>Terenowa</value>
+    <value>Ландшафтная</value>
     <comment>SettigsPage</comment>
   </data>
   <data name="SettingsMapTypeTitle" xml:space="preserve">
-    <value>Typ mapy</value>
+    <value>Тип карты</value>
     <comment>SettingsPage</comment>
   </data>
   <data name="ShowWithGeoPhoto" xml:space="preserve">
-    <value>pokaż z GeoPhoto</value>
+    <value>показать с GeoPhoto</value>
     <comment>ImageInfoPage</comment>
   </data>
   <data name="AppBarRefresh" xml:space="preserve">
-    <value>Przeładuj</value>
+    <value>обновить</value>
     <comment>AppBar</comment>
   </data>
   <data name="AppBarSettings" xml:space="preserve">
-    <value>ustawienia</value>
+    <value>настройки</value>
     <comment>AppBar</comment>
   </data>
   <data name="MessageBoxRemoveAdContent" xml:space="preserve">
-    <value>Lubimy wasze opinie. Każda przyczynia się do polepszania aplikacji. Jako prezent za ocenę, reklamy znikną na dwa tygodnie! :) Czy chciałbyś ocenić aplikację?</value>
+    <value>Нам нравится иметь обратную связь с пользователем. Каждый отзыв поможет нам сделать приложение ещё лучше. Спасибо вам за подарок, все обьявления исчезнут в течении двух недель! Вы хотите оценить это приложение сейчас?</value>
     <comment>MessageBox</comment>
   </data>
   <data name="MessageBoxRemoveAdTitle" xml:space="preserve">
-    <value>Wkurzony przez reklamy?</value>
+    <value>Раздражает реклама?</value>
     <comment>MessageBox</comment>
   </data>
   <data name="HideScreenshotsAlbumTitle" xml:space="preserve">
-    <value>Ukryj nazwy plików</value>
+    <value>Скрывать снимки экрана</value>
     <comment>SettingsPage</comment>
   </data>
   <data name="TutorialCheckItOut" xml:space="preserve">
-    <value>sprawdź teraz</value>
+    <value>зацени</value>
     <comment>TutorialPopup</comment>
   </data>
   <data name="TutorialContent" xml:space="preserve">
-    <value>Możesz zmienić widok poprzez poziome przeciągnięcie po ekranie...</value>
+    <value>Вы можете изменить вид, просто сделав горизонтальный свайп вправо или влево…</value>
     <comment>TutorialPopup</comment>
   </data>
   <data name="TutorialTitle" xml:space="preserve">
-    <value>Czy wiesz, że...?</value>
+    <value>Вы знали?</value>
     <comment>TutorialPopup</comment>
   </data>
   <data name="FilterImagesAll" xml:space="preserve">
-    <value>wszystkie zdjęcia</value>
+    <value>все фотографии</value>
     <comment>MainPage</comment>
   </data>
   <data name="FilterImagesGPS" xml:space="preserve">
-    <value>zdjęcia GPS</value>
+    <value>GPS фотографии</value>
     <comment>MainPage</comment>
   </data>
 </root>

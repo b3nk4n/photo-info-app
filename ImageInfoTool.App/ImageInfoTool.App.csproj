@@ -15,7 +15,7 @@
     <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
     <SilverlightApplication>true</SilverlightApplication>
-    <SupportedCultures>de-DE%3bid-ID%3bes-MX%3bes-ES%3bfr-FR%3bcs-CZ%3bpl-PL</SupportedCultures>
+    <SupportedCultures>de-DE%3bid-ID%3bes-MX%3bes-ES%3bfr-FR%3bcs-CZ%3bpl-PL%3bru-RU</SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
     <XapFilename>ImageInfoTool.App_$(Configuration)_$(Platform).xap</XapFilename>
@@ -161,6 +161,7 @@
     <Content Include="AppResLib.dll.0405.mui" />
     <Content Include="AppResLib.dll.040c.mui" />
     <Content Include="AppResLib.dll.0415.mui" />
+    <Content Include="AppResLib.dll.0419.mui" />
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml">
       <SubType>Designer</SubType>
@@ -199,6 +200,7 @@
     <Content Include="Assets\Images\light\appbar.map.png" />
     <Content Include="Assets\Images\light\logo200.png" />
     <Content Include="Assets\Images\light\show.png" />
+    <Content Include="Assets\Images\russia.png" />
     <Content Include="Assets\Images\spanish.png" />
     <Content Include="Assets\Images\swipe_tutorial.png" />
     <Content Include="Assets\Images\polish.png" />
@@ -228,6 +230,7 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\AppResources.ru-RU.resx" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="BugSense-WP8">

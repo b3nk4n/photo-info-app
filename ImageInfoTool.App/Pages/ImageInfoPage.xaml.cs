@@ -392,8 +392,8 @@ namespace ImageInfoTool.App.Pages
                     if (int.TryParse(indexString, out index))
                     {
                         var vm = ImageLibraryViewModel.Instance.GetByLibIndex(index);
-                        UpdateImageTranslation(vm);
                         vm.LoadExifData();
+                        UpdateImageTranslation(vm);
                         DataContext = vm;
                         success = true;
                     }
@@ -406,8 +406,8 @@ namespace ImageInfoTool.App.Pages
                     var vm = ImageLibraryViewModel.Instance.GetFromToken(token);
                     if (vm != null)
                     {
-                        UpdateImageTranslation(vm);
                         vm.LoadExifData();
+                        UpdateImageTranslation(vm);
                         DataContext = vm;
                         success = true;
                     }

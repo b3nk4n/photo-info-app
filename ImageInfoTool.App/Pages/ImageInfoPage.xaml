@@ -665,7 +665,7 @@
                 <TextBlock Text="{Binding Path=LocalizedResources.TutorialTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextExtraLargeStyle}" TextAlignment="Center" Margin="{StaticResource PhoneMargin}" />
                 <TextBlock Text="{Binding Path=LocalizedResources.TutorialContent, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextLargeStyle}"
                            TextWrapping="Wrap" TextAlignment="Center" Margin="{StaticResource PhoneMargin}" />
-                <Image Source="/Assets/Images/swipe_tutorial.png" Width="240" Margin="24" />
+                <Image Source="/Assets/Images/swipe_tutorial.png" Width="240" Margin="0,0,0,24" />
             </StackPanel>
             <Button Content="{Binding Path=LocalizedResources.TutorialCheckItOut, Source={StaticResource LocalizedStrings}}" MinWidth="180" Click="SkipTutorialClick"
                     VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="{StaticResource PhoneMargin}" />

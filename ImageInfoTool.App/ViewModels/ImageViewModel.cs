@@ -85,7 +85,12 @@ namespace ImageInfoTool.App.ViewModels
         {
             get
             {
-                return PictureDecoder.DecodeJpeg(_image.GetPreviewImage());
+                var image = PictureDecoder.DecodeJpeg(_image.GetPreviewImage());
+                if (_exifData != null && _exifData.HasAbnormalOrientation)
+                {
+                    return image.Rotate(90);
+                }
+                return image;
             }
         }
 
@@ -93,7 +98,12 @@ namespace ImageInfoTool.App.ViewModels
         {
             get
             {
-                return PictureDecoder.DecodeJpeg(_image.GetImage());
+                var image = PictureDecoder.DecodeJpeg(_image.GetImage());
+                if (_exifData != null && _exifData.HasAbnormalOrientation)
+                {
+                    return image.Rotate(90);
+                }
+                return image;
             }
         }
 
@@ -189,12 +199,20 @@ namespace ImageInfoTool.App.ViewModels
         {
             get
             {
+                string orientationText;
                 if (_image.Height > _image.Width)
-                    return AppResources.OrientationPortrait;
+                    orientationText = AppResources.OrientationPortrait;
                 else if (_image.Height < _image.Width)
-                    return AppResources.OrientationLandscape;
+                    orientationText = AppResources.OrientationLandscape;
                 else
-                    return AppResources.OrientationSquare;
+                    orientationText = AppResources.OrientationSquare;
+
+                if (_exifData != null && _exifData.HasAbnormalOrientation)
+                {
+                    orientationText += " [inconsistent]";
+                }
+
+                return orientationText;
             }
         }
 
@@ -447,6 +465,16 @@ namespace ImageInfoTool.App.ViewModels
                     return AppConstants.THEME_LIGHT_BASEPATH + imageName;
                 else
                     return AppConstants.THEME_DARK_BASEPATH + imageName;
+            }
+        }
+
+        public bool NeedImageRotation
+        {
+            get
+            {
+                if (_exifData.HasData && _exifData.HasAbnormalOrientation)
+                    return true;
+                return false;
             }
         }
     }

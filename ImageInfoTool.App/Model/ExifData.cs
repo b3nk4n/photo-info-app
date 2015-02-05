@@ -72,6 +72,10 @@ namespace ImageInfoTool.App.Model
                     HasISOSpeedRatings = exifReader.GetTagValue<ushort>(ExifTags.ISOSpeedRatings, out _isoSpeedRatings);
                     HasModel = exifReader.GetTagValue<string>(ExifTags.Model, out _model);
                     HasWhiteBalance = exifReader.GetTagValue<ushort>(ExifTags.WhiteBalance, out _whiteBalance);
+                    
+                    exifReader.GetTagValue<ushort>(ExifTags.Orientation, out _abnormalOrientation);
+                    // normal: 1 , abnormal: 6
+                    // http://sylvana.net/jpegcrop/exif_orientation.html
 
                     /* black-list - these are tested and not from interest:
                      * ExifTags.Sharpness (no value)
@@ -236,5 +240,22 @@ namespace ImageInfoTool.App.Model
         }
 
         public bool HasWhiteBalance { get; private set; }
+
+        private ushort _abnormalOrientation = 1; // normal: 1, abnormal(Lumia 930): 6
+        private const ushort ABNORMAL_ARIENTATION_LUMIA_930 = 6;
+
+        public ushort AbnormalOrientation
+        {
+            get { return _abnormalOrientation; }
+            set { _abnormalOrientation = value; }
+        }
+
+        public bool HasAbnormalOrientation
+        {
+            get
+            {
+                return _abnormalOrientation == ABNORMAL_ARIENTATION_LUMIA_930;
+            }
+        }
     }
 }

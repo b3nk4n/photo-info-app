@@ -241,8 +241,14 @@ namespace ImageInfoTool.App.Model
 
         public bool HasWhiteBalance { get; private set; }
 
-        private ushort _abnormalOrientation = 1; // normal: 1, abnormal(Lumia 930): 6
-        private const ushort ABNORMAL_ARIENTATION_LUMIA_930 = 6;
+        // normal: 1, abnormal(Lumia 930): 6,...
+        // Read more: http://sylvana.net/jpegcrop/exif_orientation.html
+        private ushort _abnormalOrientation = ORTIENTATION_NORMAL;
+        public const ushort ORTIENTATION_NORMAL = 1;
+        
+        public const ushort ORIENTATION_ABNORMAL_90 = 6;
+        public const ushort ORIENTATION_ABNORMAL_180 = 3;
+        public const ushort ORIENTATION_ABNORMAL_270 = 8;
 
         public ushort AbnormalOrientation
         {
@@ -254,7 +260,7 @@ namespace ImageInfoTool.App.Model
         {
             get
             {
-                return _abnormalOrientation == ABNORMAL_ARIENTATION_LUMIA_930;
+                return _abnormalOrientation != ORTIENTATION_NORMAL;
             }
         }
     }

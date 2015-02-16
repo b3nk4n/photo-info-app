@@ -88,7 +88,12 @@ namespace ImageInfoTool.App.ViewModels
                 var image = PictureDecoder.DecodeJpeg(_image.GetPreviewImage());
                 if (_exifData != null && _exifData.HasAbnormalOrientation)
                 {
-                    return image.Rotate(90);
+                    if (_exifData.AbnormalOrientation == ExifData.ORIENTATION_ABNORMAL_90)
+                        return image.Rotate(90);
+                    else if (_exifData.AbnormalOrientation == ExifData.ORIENTATION_ABNORMAL_180)
+                        return image.Rotate(180);
+                    else if (_exifData.AbnormalOrientation == ExifData.ORIENTATION_ABNORMAL_270)
+                        return image.Rotate(270);
                 }
                 return image;
             }
@@ -98,10 +103,15 @@ namespace ImageInfoTool.App.ViewModels
         {
             get
             {
-                var image = PictureDecoder.DecodeJpeg(_image.GetImage());
+                var image = PictureDecoder.DecodeJpeg(_image.GetPreviewImage());
                 if (_exifData != null && _exifData.HasAbnormalOrientation)
                 {
-                    return image.Rotate(90);
+                    if (_exifData.AbnormalOrientation == ExifData.ORIENTATION_ABNORMAL_90)
+                        return image.Rotate(90);
+                    else if (_exifData.AbnormalOrientation == ExifData.ORIENTATION_ABNORMAL_180)
+                        return image.Rotate(180);
+                    else if (_exifData.AbnormalOrientation == ExifData.ORIENTATION_ABNORMAL_270)
+                        return image.Rotate(270);
                 }
                 return image;
             }
@@ -201,20 +211,25 @@ namespace ImageInfoTool.App.ViewModels
         {
             get
             {
-                string orientationText;
-                if (_image.Height > _image.Width)
-                    orientationText = AppResources.OrientationPortrait;
-                else if (_image.Height < _image.Width)
-                    orientationText = AppResources.OrientationLandscape;
-                else
-                    orientationText = AppResources.OrientationSquare;
-
+                bool flipOrientation = false;
+                // detect whether the orientation has to be flipped
                 if (_exifData != null && _exifData.HasAbnormalOrientation)
                 {
-                    orientationText += " [inconsistent]";
+                    flipOrientation = true;
                 }
 
-                return orientationText;
+                if (_image.Height > _image.Width) {
+                    return (flipOrientation) ? AppResources.OrientationLandscape : AppResources.OrientationPortrait;
+                }
+
+                else if (_image.Height < _image.Width)
+                {
+                    return (flipOrientation) ? AppResources.OrientationPortrait : AppResources.OrientationLandscape;
+                }
+                else
+                    return AppResources.OrientationSquare;
+
+                
             }
         }
 

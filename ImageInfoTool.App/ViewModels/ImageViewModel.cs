@@ -171,7 +171,7 @@ namespace ImageInfoTool.App.ViewModels
             }
         }
 
-        public int Heigth
+        public int Height
         {
             get
             {
@@ -191,7 +191,9 @@ namespace ImageInfoTool.App.ViewModels
         {
             get
             {
-                return string.Format("{0} x {1}", _image.Width, _image.Height);
+                var mp = (Width * Height) / 1000000.0;
+
+                return string.Format("{0} x {1} ({2:0.0} MP)", Width, Height, mp);
             }
         }
 

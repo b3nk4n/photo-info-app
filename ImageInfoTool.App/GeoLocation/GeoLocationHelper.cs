@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,7 +38,7 @@ namespace ImageInfoTool.App.GeoLocation
             if (geoData == null || geoData.Length != 3)
                 return AppConstants.PLACEHOLDER_STRING;
 
-            return string.Format("{0}°{1}\'{2}\"{3}", geoData[0], geoData[1], geoData[2], posRef);
+            return string.Format(CultureInfo.InvariantCulture, "{0}°{1}\'{2}\"{3}", geoData[0], geoData[1], geoData[2], posRef);
         }
     }
 }

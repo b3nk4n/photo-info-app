@@ -545,7 +545,7 @@
                         <TextBlock Text="{Binding Path=LocalizedResources.InfoGPS, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}"/>
                         <Grid Visibility="{Binding ExifData.HasGPS, Converter={StaticResource BoolToVis}}">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition MaxWidth="240"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
@@ -554,7 +554,7 @@
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Path=LocalizedResources.InfoLatitude, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionStyle}" Visibility="{Binding ExifData.HasGPSLatitude, Converter={StaticResource BoolToVis}}" />
-                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding GPSLatitude}" Style="{StaticResource DesciptionStyle}" Visibility="{Binding ExifData.HasGPSLatitude, Converter={StaticResource BoolToVis}}" />
+                            <TextBlock Grid.Row="0" Grid.Column="1"  Text="{Binding GPSLatitude}" Style="{StaticResource DesciptionStyle}" Visibility="{Binding ExifData.HasGPSLatitude, Converter={StaticResource BoolToVis}}" />
                             <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Path=LocalizedResources.InfoLongitude, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionStyle}" Visibility="{Binding ExifData.HasGPSLongitude, Converter={StaticResource BoolToVis}}" />
                             <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding GPSLongitude}" Style="{StaticResource DesciptionStyle}" Visibility="{Binding ExifData.HasGPSLongitude, Converter={StaticResource BoolToVis}}" />
                             <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding Path=LocalizedResources.InfoAltitude, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionStyle}" Visibility="{Binding ExifData.HasGPSAltitude, Converter={StaticResource BoolToVis}}" />

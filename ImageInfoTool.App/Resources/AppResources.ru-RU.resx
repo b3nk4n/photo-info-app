@@ -142,7 +142,7 @@
     <comment>General</comment>
   </data>
   <data name="ApplicationVersion" xml:space="preserve">
-    <value>1.5.4</value>
+    <value>1.6</value>
     <comment>General</comment>
   </data>
   <data name="Contributors" xml:space="preserve">
@@ -252,7 +252,7 @@ Application Version: {4}
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoAltitude" xml:space="preserve">
-    <value>высота над уровнем моря:</value>
+    <value>высота:</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoCreationDate" xml:space="preserve">

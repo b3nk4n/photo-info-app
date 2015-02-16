@@ -288,7 +288,7 @@ namespace ImageInfoTool.App.Pages
                 // transform
                 var transform = (CompositeTransform)ImageControl.RenderTransform;
 
-                double imageRatio = (double)image.Heigth / image.Width;
+                double imageRatio = (double)image.Height / image.Width;
 
                 if (imageRatio != 1)
                 {

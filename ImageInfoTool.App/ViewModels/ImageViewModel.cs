@@ -103,7 +103,7 @@ namespace ImageInfoTool.App.ViewModels
         {
             get
             {
-                var image = PictureDecoder.DecodeJpeg(_image.GetPreviewImage());
+                var image = PictureDecoder.DecodeJpeg(_image.GetImage());
                 if (_exifData != null && _exifData.HasAbnormalOrientation)
                 {
                     if (_exifData.AbnormalOrientation == ExifData.ORIENTATION_ABNORMAL_90)

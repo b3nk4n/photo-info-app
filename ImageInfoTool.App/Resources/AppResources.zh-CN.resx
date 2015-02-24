@@ -122,23 +122,23 @@
     <comment>Controls the FlowDirection for all elements in the RootFrame. Set to the traditional direction of this resource file's language</comment>
   </data>
   <data name="ResourceLanguage" xml:space="preserve">
-    <value>cs-CZ</value>
+    <value>zh-CN</value>
     <comment>Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</comment>
   </data>
   <data name="AboutTitle" xml:space="preserve">
-    <value>o aplikaci</value>
+    <value>关于</value>
     <comment>AboutPage</comment>
   </data>
   <data name="ApplicationAuthor" xml:space="preserve">
-    <value>od Benjamin Sautermeister</value>
+    <value>Benjamin Sautermeister</value>
     <comment>AboutPage</comment>
   </data>
   <data name="ApplicationDescription" xml:space="preserve">
-    <value>Tato aplikace rozšiřuje schopnosti Centra fotografií ve Windows Phone 8 o nové možnosti práce s informacemi snímku.</value>
+    <value>本应用通过获取图片信息以扩展WP8原生相册的功能</value>
     <comment>AboutPage</comment>
   </data>
   <data name="ApplicationTitle" xml:space="preserve">
-    <value>Foto Info</value>
+    <value>照片信息Photo-Info</value>
     <comment>General</comment>
   </data>
   <data name="ApplicationVersion" xml:space="preserve">
@@ -146,7 +146,7 @@
     <comment>General</comment>
   </data>
   <data name="Contributors" xml:space="preserve">
-    <value>Přispěvatelé</value>
+    <value>贡献者</value>
     <comment>AboutPage</comment>
   </data>
   <data name="FeedbackBodyText" xml:space="preserve">
@@ -167,285 +167,285 @@ Application Version: {4}
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="FeedbackMessageText" xml:space="preserve">
-    <value>Je nám líto, že nechcete ohodnotit naši aplikaci.
+    <value>得知您不愿对本应用作出评价我们深感抱歉
 
-Řekněte nám o svých zkušenostech nebo navrhněte, jak ji můžeme udělat ještě lepší.</value>
+告诉我们您的使用体验或者向我们提议如何将本应用做得更好。</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="FeedbackNoText" xml:space="preserve">
-    <value>ne děkuji</value>
+    <value>不了，谢谢</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="FeedbackSubject" xml:space="preserve">
-    <value>Foto Info zpětná vazba</value>
+    <value>Photo-Info用户反馈</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="FeedbackTitleText" xml:space="preserve">
-    <value>Můžeme to vylepšit?</value>
+    <value>我们如何才能做得更好？</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="FeedbackYesText" xml:space="preserve">
-    <value>zpětná vazba</value>
+    <value>反馈</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="MoreApps" xml:space="preserve">
-    <value>více aplikací</value>
+    <value>更多应用</value>
     <comment>AboutPage</comment>
   </data>
   <data name="PrivacyInfo" xml:space="preserve">
-    <value>info o ochraně osobních údajů</value>
+    <value>隐私策略</value>
     <comment>About Page</comment>
   </data>
   <data name="RateAndReview" xml:space="preserve">
-    <value>napsat recenzi a ohodnocení</value>
+    <value>打分与评价</value>
     <comment>AboutPage</comment>
   </data>
   <data name="RatingMessage10Text" xml:space="preserve">
-    <value>Zdá se, že hodně používáte naši aplikaci!
+    <value>您使用我们的应用已经有一段时间了！
 
-Proč nám nedáte hodnocení 5 hvězdiček, abyste ukázal svoji spokojenost?</value>
+为什么不给我们五星作为感谢呢？</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="RatingMessage5Text" xml:space="preserve">
-    <value>Budeme rádi, když ohodnotíte naši aplikaci 5 hvězdičkami
+    <value>若您给五星，我们会感激不尽的
 
-Vaše hodnocení ve Store nám pomáhá s pokračováním práce na aplikaci a se snahou dělat věci ještě lépe!</value>
+在商店里面给我们一些正能量以助力我们将应用做得更好！</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="RatingNoText" xml:space="preserve">
-    <value>ne děkuji</value>
+    <value>不了，谢谢</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="RatingTitleText" xml:space="preserve">
-    <value>Máte rádi naši aplikaci?</value>
+    <value>喜欢我们的应用吗？</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="RatingYesText" xml:space="preserve">
-    <value>vyhodnotit</value>
+    <value>给五颗星</value>
     <comment>FeedbackDialogControl</comment>
   </data>
   <data name="SupportAndFeedback" xml:space="preserve">
-    <value>podpora a zpětná vazba</value>
+    <value>支持与反馈</value>
     <comment>About Page</comment>
   </data>
   <data name="FlashFired" xml:space="preserve">
-    <value>zapnutý</value>
+    <value>已开启</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="FlashFiredAuto" xml:space="preserve">
-    <value>zapnutý (automatický režim)</value>
+    <value>已开启（自动模式）</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="FlashNotFired" xml:space="preserve">
-    <value>zakázán</value>
+    <value>已禁用</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="FlashNotFiredAuto" xml:space="preserve">
-    <value>zakázán (automatický režim)</value>
+    <value>已禁用（自动模式）</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoAlbumName" xml:space="preserve">
-    <value>jméno alba</value>
+    <value>相册名</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoAltitude" xml:space="preserve">
-    <value>výška:</value>
+    <value>海拔高度:</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoCreationDate" xml:space="preserve">
-    <value>datum vytvoření</value>
+    <value>创建日期</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoDigitalZoom" xml:space="preserve">
-    <value>digitální přiblížení</value>
+    <value>数码变焦</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoExifVersion" xml:space="preserve">
-    <value>verze exif</value>
+    <value>EXIF版本</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoExposureTime" xml:space="preserve">
-    <value>doba expozice</value>
+    <value>曝光时间</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoFileName" xml:space="preserve">
-    <value>jméno souboru</value>
+    <value>文件名</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoFileSize" xml:space="preserve">
-    <value>velikost souboru</value>
+    <value>文件大小</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoFlash" xml:space="preserve">
-    <value>blesk</value>
+    <value>闪关灯</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoFocalRatio" xml:space="preserve">
-    <value>ohnisko</value>
+    <value>焦距</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoGPS" xml:space="preserve">
-    <value>gps</value>
+    <value>GPS信息</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoISO" xml:space="preserve">
-    <value>iso</value>
+    <value>ISO感光度</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoLatitude" xml:space="preserve">
-    <value>šířka:</value>
+    <value>纬度:</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoLongitude" xml:space="preserve">
-    <value>délka:</value>
+    <value>经度:</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoModel" xml:space="preserve">
-    <value>model</value>
+    <value>型号</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoOrientation" xml:space="preserve">
-    <value>orientace</value>
+    <value>方向</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoResolution" xml:space="preserve">
-    <value>rozlišení</value>
+    <value>分辨率</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoTitleExtended" xml:space="preserve">
-    <value>rozšířené</value>
+    <value>扩展信息</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoTitleBasic" xml:space="preserve">
-    <value>informace</value>
+    <value>基本信息</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoWhiteBalance" xml:space="preserve">
-    <value>vyvážení bílé</value>
+    <value>白平衡</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="OrientationLandscape" xml:space="preserve">
-    <value>vodorovně</value>
+    <value>横向</value>
     <comment>MessageBox</comment>
   </data>
   <data name="OrientationPortrait" xml:space="preserve">
-    <value>svisle</value>
+    <value>竖向</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="OrientationSquare" xml:space="preserve">
-    <value>čtverec</value>
+    <value>方形</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="WhiteBalanceAuto" xml:space="preserve">
-    <value>automaticky</value>
+    <value>自动</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="WhiteBalanceManual" xml:space="preserve">
-    <value>manuálně</value>
+    <value>手动</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="AddWithGeoPhoto" xml:space="preserve">
-    <value>přidat v GeoPhoto</value>
+    <value>通过GeoPhoto添加位置</value>
     <comment>ImageInfoPage</comment>
   </data>
   <data name="HideFileNameTitle" xml:space="preserve">
-    <value>Skrýt jméno souboru</value>
+    <value>隐藏文件名</value>
     <comment>SettingsPage</comment>
   </data>
   <data name="InfoFileType" xml:space="preserve">
-    <value>typ souboru</value>
+    <value>文件类型</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
-    <value>nastavení</value>
+    <value>设置</value>
     <comment>SettingsPage</comment>
   </data>
   <data name="MessageBoxNoImageFound" xml:space="preserve">
-    <value>Obrázek nemůže být otevřen.</value>
+    <value>图像无法打开</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="MessageBoxWarning" xml:space="preserve">
-    <value>Varování</value>
+    <value>警告</value>
     <comment>MessageBox</comment>
   </data>
   <data name="InAppStoreLoading" xml:space="preserve">
-    <value>načítám…</value>
+    <value>加载中…</value>
     <comment>InAppStorePage</comment>
   </data>
   <data name="InAppStoreNoProducts" xml:space="preserve">
-    <value>Momentálně zde nejsou žádné in-app nákupy k dispozici. Zkuste to prosím znovu později.</value>
+    <value>此刻还没有可用的应用内购。请您稍后重试。</value>
     <comment>InAppStorePage</comment>
   </data>
   <data name="InAppStorePurchased" xml:space="preserve">
-    <value>zakoupeno</value>
+    <value>已购买</value>
     <comment>InAppStorePage</comment>
   </data>
   <data name="InAppStoreTitle" xml:space="preserve">
-    <value>in-app obchod</value>
+    <value>应用内购</value>
     <comment>InAppStorePage</comment>
   </data>
   <data name="SettingsMapTypeAerial" xml:space="preserve">
-    <value>Letecká</value>
+    <value>鸟瞰图</value>
     <comment>SettigsPage</comment>
   </data>
   <data name="SettingsMapTypeHybrid" xml:space="preserve">
-    <value>Hybridní</value>
+    <value>混合地图</value>
     <comment>SettigsPage</comment>
   </data>
   <data name="SettingsMapTypeRoad" xml:space="preserve">
-    <value>Silniční</value>
+    <value>交通图</value>
     <comment>SettigsPage</comment>
   </data>
   <data name="SettingsMapTypeTerrain" xml:space="preserve">
-    <value>Terén</value>
+    <value>地形图</value>
     <comment>SettigsPage</comment>
   </data>
   <data name="SettingsMapTypeTitle" xml:space="preserve">
-    <value>Typ mapy</value>
+    <value>地图类型</value>
     <comment>SettingsPage</comment>
   </data>
   <data name="ShowWithGeoPhoto" xml:space="preserve">
-    <value>ukázat v GeoPhoto</value>
+    <value>在GeoPhoto上展示</value>
     <comment>ImageInfoPage</comment>
   </data>
   <data name="AppBarRefresh" xml:space="preserve">
-    <value>znovu načíst</value>
+    <value>重新载入</value>
     <comment>AppBar</comment>
   </data>
   <data name="AppBarSettings" xml:space="preserve">
-    <value>nastavení</value>
+    <value>设置</value>
     <comment>AppBar</comment>
   </data>
   <data name="MessageBoxRemoveAdContent" xml:space="preserve">
-    <value>Vážíme si zpětné vazby od uživatelů. Každé hodnocení nám pomáhá dělat naše aplikace ještě lepšími. Jako poděkování zmizí všechny reklamy na dva týdny! Chcete ohodnotit aplikaci nyní?</value>
+    <value>我们十分愿意接受用户的反馈。您的每一条评价都助力我们将应用做得更好。作为谢礼，应用内的广告将消失两周！您现在想要给这个应用打分吗？</value>
     <comment>MessageBox</comment>
   </data>
   <data name="MessageBoxRemoveAdTitle" xml:space="preserve">
-    <value>Jste otráveni reklamami?</value>
+    <value>很烦这些广告？</value>
     <comment>MessageBox</comment>
   </data>
   <data name="HideScreenshotsAlbumTitle" xml:space="preserve">
-    <value>Skrýt snímky obrazovky</value>
+    <value>不显示屏幕截图</value>
     <comment>SettingsPage</comment>
   </data>
   <data name="TutorialCheckItOut" xml:space="preserve">
-    <value>podívejte se na to</value>
+    <value>试一试</value>
     <comment>TutorialPopup</comment>
   </data>
   <data name="TutorialContent" xml:space="preserve">
-    <value>Můžete změnit typ zobrazení s horizontálním tahem...</value>
+    <value>您可以通过左右滑动切换视图…</value>
     <comment>TutorialPopup</comment>
   </data>
   <data name="TutorialTitle" xml:space="preserve">
-    <value>Věděli jste že?</value>
+    <value>你知道吗？</value>
     <comment>TutorialPopup</comment>
   </data>
   <data name="FilterImagesAll" xml:space="preserve">
-    <value>všechny fotky</value>
+    <value>所有照片</value>
     <comment>MainPage</comment>
   </data>
   <data name="FilterImagesGPS" xml:space="preserve">
-    <value>GPS fotky</value>
+    <value>GPS照片</value>
     <comment>MainPage</comment>
   </data>
 </root>

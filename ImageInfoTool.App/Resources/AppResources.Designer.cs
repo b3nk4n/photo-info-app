@@ -124,7 +124,7 @@ namespace ImageInfoTool.App.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die 1.6.1 ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die 1.7 ähnelt.
         /// </summary>
         public static string ApplicationVersion {
             get {
@@ -342,6 +342,15 @@ namespace ImageInfoTool.App.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die aperture ähnelt.
+        /// </summary>
+        public static string InfoAperture {
+            get {
+                return ResourceManager.GetString("InfoAperture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die creation date ähnelt.
         /// </summary>
         public static string InfoCreationDate {
@@ -414,7 +423,16 @@ namespace ImageInfoTool.App.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die focal ratio ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die focal length ähnelt.
+        /// </summary>
+        public static string InfoFocalLength {
+            get {
+                return ResourceManager.GetString("InfoFocalLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die f-number ähnelt.
         /// </summary>
         public static string InfoFocalRatio {
             get {

@@ -72,6 +72,8 @@ namespace ImageInfoTool.App.Model
                     HasISOSpeedRatings = exifReader.GetTagValue<ushort>(ExifTags.ISOSpeedRatings, out _isoSpeedRatings);
                     HasModel = exifReader.GetTagValue<string>(ExifTags.Model, out _model);
                     HasWhiteBalance = exifReader.GetTagValue<ushort>(ExifTags.WhiteBalance, out _whiteBalance);
+                    HasFocalLength = exifReader.GetTagValue<double>(ExifTags.FocalLength, out _focalLength);
+                    HasApertureValue = exifReader.GetTagValue<double>(ExifTags.ApertureValue, out _apertureValue);
                     
                     exifReader.GetTagValue<ushort>(ExifTags.Orientation, out _abnormalOrientation);
                     // normal: 1 , abnormal: 6
@@ -142,6 +144,26 @@ namespace ImageInfoTool.App.Model
         }
 
         public bool HasFNumber { get; private set; }
+
+        private double _focalLength;
+
+        public double FocalLength
+        {
+            get { return _focalLength; }
+            set { _focalLength = value; }
+        }
+
+        public bool HasFocalLength { get; private set; }
+
+        private double _apertureValue;
+
+        public double ApertureValue
+        {
+            get { return _apertureValue; }
+            set { _apertureValue = value; }
+        }
+
+        public bool HasApertureValue { get; private set; }
 
         private double _gpsAltitude;
 

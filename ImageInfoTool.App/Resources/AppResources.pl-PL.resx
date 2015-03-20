@@ -142,7 +142,7 @@
     <comment>General</comment>
   </data>
   <data name="ApplicationVersion" xml:space="preserve">
-    <value>1.6.1</value>
+    <value>1.7</value>
     <comment>General</comment>
   </data>
   <data name="Contributors" xml:space="preserve">
@@ -447,5 +447,13 @@ Pokazując jak bardo ci się podoba, przyczyniasz się do kontynuowania prac nad
   <data name="FilterImagesGPS" xml:space="preserve">
     <value>zdjęcia GPS</value>
     <comment>MainPage</comment>
+  </data>
+  <data name="InfoAperture" xml:space="preserve">
+    <value>apertura</value>
+    <comment>PhotoInfo</comment>
+  </data>
+  <data name="InfoFocalLength" xml:space="preserve">
+    <value>ogniskowa</value>
+    <comment>PhotoInfo</comment>
   </data>
 </root>

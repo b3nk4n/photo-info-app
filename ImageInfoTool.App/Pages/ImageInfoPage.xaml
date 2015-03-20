@@ -510,6 +510,16 @@
                         <TextBlock Text="{Binding FNumber}" Style="{StaticResource DesciptionStyle}" />
                     </StackPanel>
 
+                    <StackPanel Visibility="{Binding ExifData.HasFocalLength, Converter={StaticResource BoolToVis}}">
+                        <TextBlock Text="{Binding Path=LocalizedResources.InfoFocalLength, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}"/>
+                        <TextBlock Text="{Binding FocalLength}" Style="{StaticResource DesciptionStyle}" />
+                    </StackPanel>
+
+                    <StackPanel Visibility="{Binding ExifData.HasApertureValue, Converter={StaticResource BoolToVis}}">
+                        <TextBlock Text="{Binding Path=LocalizedResources.InfoAperture, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}"/>
+                        <TextBlock Text="{Binding ApertureValue}" Style="{StaticResource DesciptionStyle}" />
+                    </StackPanel>
+
                     <StackPanel Visibility="{Binding ExifData.HasISOSpeedRatings, Converter={StaticResource BoolToVis}}">
                         <TextBlock Text="{Binding Path=LocalizedResources.InfoISO, Source={StaticResource LocalizedStrings}}" Style="{StaticResource DesciptionTitleStyle}" />
                         <TextBlock Text="{Binding ExifData.ISOSpeedRatings}" Style="{StaticResource DesciptionStyle}" />

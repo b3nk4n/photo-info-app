@@ -142,7 +142,7 @@
     <comment>General</comment>
   </data>
   <data name="ApplicationVersion" xml:space="preserve">
-    <value>1.6.1</value>
+    <value>1.7</value>
     <comment>General</comment>
   </data>
   <data name="Contributors" xml:space="preserve">
@@ -281,7 +281,7 @@ Menunjukkan kecintaan di bursa membantu kita terus mengembangkan aplikasi menjad
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoFocalRatio" xml:space="preserve">
-    <value>rasio fokus</value>
+    <value>bukaan</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoGPS" xml:space="preserve">
@@ -447,5 +447,13 @@ Menunjukkan kecintaan di bursa membantu kita terus mengembangkan aplikasi menjad
   <data name="FilterImagesGPS" xml:space="preserve">
     <value>dengan GPS</value>
     <comment>MainPage</comment>
+  </data>
+  <data name="InfoAperture" xml:space="preserve">
+    <value>apertur</value>
+    <comment>PhotoInfo</comment>
+  </data>
+  <data name="InfoFocalLength" xml:space="preserve">
+    <value>jarak fokus</value>
+    <comment>PhotoInfo</comment>
   </data>
 </root>

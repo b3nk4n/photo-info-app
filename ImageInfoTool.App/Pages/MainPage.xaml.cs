@@ -61,12 +61,12 @@ namespace ImageInfoTool.App
             };
 
             // register startup actions
-            StartupActionManager.Instance.Register(5, ActionExecutionRule.Equals, () =>
+            StartupActionManager.Instance.Register(10, ActionExecutionRule.Equals, () =>
             {
                 if (!AppSettings.HasReviewed.Value)
                     FeedbackManager.Instance.StartFirst();
             });
-            StartupActionManager.Instance.Register(15, ActionExecutionRule.Equals, () =>
+            StartupActionManager.Instance.Register(20, ActionExecutionRule.Equals, () =>
             {
                 if (!AppSettings.HasReviewed.Value)
                     FeedbackManager.Instance.StartSecond();

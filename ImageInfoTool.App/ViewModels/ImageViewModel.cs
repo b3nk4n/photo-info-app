@@ -331,6 +331,28 @@ namespace ImageInfoTool.App.ViewModels
             }
         }
 
+        public string FocalLength
+        {
+            get
+            {
+                if (_exifData == null || !_exifData.HasFocalLength)
+                    return AppConstants.PLACEHOLDER_STRING;
+
+                return string.Format("{0:0.0} mm", _exifData.FocalLength);
+            }
+        }
+
+        public string ApertureValue
+        {
+            get
+            {
+                if (_exifData == null || !_exifData.HasApertureValue)
+                    return AppConstants.PLACEHOLDER_STRING;
+
+                return string.Format("{0}", _exifData.ApertureValue);
+            }
+        }
+
         public string GPSLatitude
         {
             get

@@ -142,7 +142,7 @@
     <comment>General</comment>
   </data>
   <data name="ApplicationVersion" xml:space="preserve">
-    <value>1.6.1</value>
+    <value>1.7</value>
     <comment>General</comment>
   </data>
   <data name="Contributors" xml:space="preserve">
@@ -284,7 +284,7 @@ Application Version: {4}
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoFocalRatio" xml:space="preserve">
-    <value>диафрагма</value>
+    <value>Диафра́гменное число́</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoGPS" xml:space="preserve">
@@ -450,5 +450,13 @@ Application Version: {4}
   <data name="FilterImagesGPS" xml:space="preserve">
     <value>GPS фотографии</value>
     <comment>MainPage</comment>
+  </data>
+  <data name="InfoAperture" xml:space="preserve">
+    <value>aпертура</value>
+    <comment>PhotoInfo</comment>
+  </data>
+  <data name="InfoFocalLength" xml:space="preserve">
+    <value>фокусное расстояние</value>
+    <comment>PhotoInfo</comment>
   </data>
 </root>

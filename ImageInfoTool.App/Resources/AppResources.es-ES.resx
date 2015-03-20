@@ -142,7 +142,7 @@
     <comment>General</comment>
   </data>
   <data name="ApplicationVersion" xml:space="preserve">
-    <value>1.6.1</value>
+    <value>1.7</value>
     <comment>General</comment>
   </data>
   <data name="Contributors" xml:space="preserve">
@@ -281,7 +281,7 @@ Dinos sobre tu experiencia o sugiere como podemos hacerlo incluso mejor.</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoFocalRatio" xml:space="preserve">
-    <value>distancia focal</value>
+    <value>número f</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoGPS" xml:space="preserve">
@@ -447,5 +447,13 @@ Dinos sobre tu experiencia o sugiere como podemos hacerlo incluso mejor.</value>
   <data name="FilterImagesGPS" xml:space="preserve">
     <value>fotos GPS</value>
     <comment>MainPage</comment>
+  </data>
+  <data name="InfoAperture" xml:space="preserve">
+    <value>diafragma</value>
+    <comment>PhotoInfo</comment>
+  </data>
+  <data name="InfoFocalLength" xml:space="preserve">
+    <value>distancia focal</value>
+    <comment>PhotoInfo</comment>
   </data>
 </root>

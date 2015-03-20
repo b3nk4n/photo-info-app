@@ -142,7 +142,7 @@
     <comment>General</comment>
   </data>
   <data name="ApplicationVersion" xml:space="preserve">
-    <value>1.6.1</value>
+    <value>1.7</value>
     <comment>General</comment>
   </data>
   <data name="Contributors" xml:space="preserve">
@@ -281,7 +281,7 @@ Showing us some love on the store helps us to continue to work on the app and ma
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoFocalRatio" xml:space="preserve">
-    <value>focal ratio</value>
+    <value>f-number</value>
     <comment>PhotoInfo</comment>
   </data>
   <data name="InfoGPS" xml:space="preserve">
@@ -447,5 +447,13 @@ Showing us some love on the store helps us to continue to work on the app and ma
   <data name="FilterImagesGPS" xml:space="preserve">
     <value>GPS photos</value>
     <comment>MainPage</comment>
+  </data>
+  <data name="InfoAperture" xml:space="preserve">
+    <value>aperture</value>
+    <comment>PhotoInfo</comment>
+  </data>
+  <data name="InfoFocalLength" xml:space="preserve">
+    <value>focal length</value>
+    <comment>PhotoInfo</comment>
   </data>
 </root>

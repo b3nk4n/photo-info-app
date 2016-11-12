@@ -6,14 +6,9 @@ using ImageInfoTool.App.Resources;
 using PhoneKit.Framework.Support;
 using ImageInfoTool.App.ViewModels;
 using System.Windows.Controls;
-using System.Threading.Tasks;
-using System.Windows.Media.Imaging;
 using System.Windows;
-using System.Collections;
 using System.Windows.Media;
-using System.Windows.Controls.Primitives;
-using System.Windows.Input;
-using System.Diagnostics;
+using PhoneKit.Framework.InAppPurchase;
 
 namespace ImageInfoTool.App
 {
@@ -63,12 +58,12 @@ namespace ImageInfoTool.App
             // register startup actions
             StartupActionManager.Instance.Register(10, ActionExecutionRule.Equals, () =>
             {
-                if (!AppSettings.HasReviewed.Value)
+                if (!AppSettings.HasReviewed.Value && !InAppPurchaseHelper.IsProductActive(AppConstants.PRO_VERSION_IN_APP_KEY))
                     FeedbackManager.Instance.StartFirst();
             });
             StartupActionManager.Instance.Register(20, ActionExecutionRule.Equals, () =>
             {
-                if (!AppSettings.HasReviewed.Value)
+                if (!AppSettings.HasReviewed.Value && !InAppPurchaseHelper.IsProductActive(AppConstants.PRO_VERSION_IN_APP_KEY))
                     FeedbackManager.Instance.StartSecond();
             }); 
 

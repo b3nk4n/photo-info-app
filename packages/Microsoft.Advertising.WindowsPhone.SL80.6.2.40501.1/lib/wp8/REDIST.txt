@@ -1,0 +1,7 @@
+The following is a list of files available for redistribution under the terms
+of the Microsoft Advertising SDK for Windows Phone license agreement:
+
+Microsoft.Advertising.Mobile.dll
+Microsoft.Advertising.Mobile.resources.dll
+Microsoft.Advertising.Mobile.UI.dll
+Microsoft.Advertising.Mobile.Xna.dll

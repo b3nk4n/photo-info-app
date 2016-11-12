@@ -12,8 +12,6 @@ using System.Windows.Shapes;
 using System.Windows.Media;
 using Microsoft.Phone.Maps.Controls;
 using ImageInfoTool.App.Resources;
-using PhoneKit.Framework.Advertising;
-using PhoneKit.Framework.Core.Collections;
 using PhoneKit.Framework.Storage;
 using PhoneKit.Framework.InAppPurchase;
 using Microsoft.Phone.Maps.Services;

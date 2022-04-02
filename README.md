@@ -3,6 +3,10 @@
 
 Photo-Info app is a free Photo-Hub extension app for Windows Phone.
 
+<p align="center">
+    <img alt="App Logo" src="ImageInfoTool.App/Assets/imageinfoapp.jpg">
+</p>
+
 This application is an image information extension tool for the Pictures-Hub on your Windows Phone. It enables you to show basic and advanced image information (EXIF) with the ability to show the location of your photos on a map. In addition, this app works perfectly togther with the loved GeoPhoto app. With all its features, benefits and beautiful design, this application is a must-have for every Windows Phone user.
 
 You can get the app from the [Windows Store](http://www.windowsphone.com/s?appid=ac39aa30-c9b1-4dc6-af2d-1cc17d9807cc).
@@ -26,8 +30,12 @@ What did users think about Photo-Info? Here are just a few of about 1,500 review
 >
 > _Juan, Spain_
 
+## Framework
+
+This app was created and bootstrapped using my [PhoneKit Framework](https://github.com/b3nk4n/phonekit.framework).
+
 ## License
 
 This work is published under [MIT][mit] License.
 
-[mit]: https://github.com/b3nk4n/photo-info-app/blob/master/LICENSE
+[mit]: https://github.com/b3nk4n/photo-info-app/blob/main/LICENSE
